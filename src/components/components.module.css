@@ -1,0 +1,19 @@
+.header_nav {
+  list-style-type: none;
+  display: inline-block;
+}
+
+.header_nav li {
+  margin-right: 30px;
+  display: inline-block;
+}
+
+.nav_button:hover {
+  background-color: rgb(161, 11, 161) !important;
+}
+
+@media screen and (max-width: 900px) {
+  .vector {
+    display: none;
+  }
+}
