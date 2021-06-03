@@ -1,19 +1,13 @@
 import React from "react";
 import { buildings } from "../data";
-import Block from "./Block";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import NavigationButton from "./NavigationButton";
-import { SingleBuildingDetials } from "./DetailsPanel";
+import { colors } from "../utility";
+import Floor from "./Floor";
 
-let blocks = [
-  buildings.blocka,
-  buildings.blockb,
-  buildings.blockc,
-  buildings.blockd,
-  buildings.blocke,
-];
+let floors = buildings.blocka.floorPaths;
 
 const getIndex = (id) => {
   switch (id) {
@@ -32,13 +26,12 @@ const getIndex = (id) => {
   }
 };
 
-function Blocks({ match }) {
+function Floors({ match }) {
+  console.log(match);
   return (
     <div
       style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL}/images/blocks/bg.jpg`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "100%",
+        backgroundColor: colors.light_blue,
       }}
     >
       <Carousel
@@ -64,17 +57,12 @@ function Blocks({ match }) {
           />
         )}
       >
-        {blocks.map((block) => (
-          <Block
-            id={block.id}
-            paths={block.floorPaths}
-            viewBox={block.viewBox}
-            key={block.id}
-          />
+        {floors.map((floor, index) => (
+          <Floor blockId={match.params.blockId} floorId={index + 1} />
         ))}
       </Carousel>
     </div>
   );
 }
 
-export default Blocks;
+export default Floors;

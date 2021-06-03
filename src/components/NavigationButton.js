@@ -20,7 +20,7 @@ function NavigationButton({
         height: "50px",
         padding: "10px",
         position: "absolute",
-        top: "50%",
+        top: "20%",
         transform: "translateY(-50%)",
         marginInline: "50px",
         cursor: "pointer",

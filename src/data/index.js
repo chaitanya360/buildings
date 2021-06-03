@@ -289,6 +289,23 @@ const buildings = {
   },
 };
 
+const getBlockName = (blockId) => {
+  switch (blockId) {
+    case "blocka":
+      return "A Block";
+    case "blockb":
+      return "B Block";
+    case "blockc":
+      return "C Block";
+    case "blockd":
+      return "D Block";
+    case "blocke":
+      return "E Block";
+    default:
+      return "Unknown Block";
+  }
+};
+
 const buildingsArray = [
   buildings.blocka,
   buildings.blockb,
@@ -297,4 +314,4 @@ const buildingsArray = [
   buildings.blocke,
 ];
 
-export { buildings, buildingsArray };
+export { buildings, buildingsArray, getBlockName };

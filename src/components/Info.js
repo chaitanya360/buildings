@@ -1,4 +1,5 @@
 import React from "react";
+import { getBlockName } from "../data";
 import { colors, sizes } from "../utility";
 
 const getFloorNum = (floorNum) => {
@@ -11,23 +12,6 @@ const getFloorNum = (floorNum) => {
       return "3rd Floor";
     default:
       return floorNum + "th Floor";
-  }
-};
-
-const getBlockName = (blockId) => {
-  switch (blockId) {
-    case "blocka":
-      return "A Block";
-    case "blockb":
-      return "B Block";
-    case "blockc":
-      return "C Block";
-    case "blockd":
-      return "D Block";
-    case "blocke":
-      return "E Block";
-    default:
-      return "Unknown Block";
   }
 };
 
