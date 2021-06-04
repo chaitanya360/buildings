@@ -1,26 +1,17 @@
 import React from "react";
-import { getBlockName } from "../data";
 import { colors, sizes } from "../utility";
+import { getBlockName } from "../utility/functions";
 
-const getFloorNum = (floorNum) => {
-  switch (floorNum) {
-    case 1:
-      return "1st Floor";
-    case 2:
-      return "2nd Floor";
-    case 3:
-      return "3rd Floor";
-    default:
-      return floorNum + "th Floor";
-  }
-};
-
-function Info({ blockId = "blocka", isFloor = false, floorNum = 0 }) {
+function Info({
+  title = "Block A",
+  items = ["3bhk and 2bhks", "234Sqft - 3023Sqft", "234 units"],
+}) {
   return (
     <div
       style={{
         backgroundColor: colors.light_blue,
-        padding: "20px",
+        paddingInline: "20px",
+        paddingBlock: "10px",
         color: "white",
         display: "block",
         borderRadius: "3px",
@@ -31,6 +22,8 @@ function Info({ blockId = "blocka", isFloor = false, floorNum = 0 }) {
           borderBottom: "2px solid white",
           paddingBlock: "10px",
           display: "flex",
+          paddingLeft: "10px",
+          paddingRight: "50px",
         }}
       >
         <img
@@ -38,15 +31,18 @@ function Info({ blockId = "blocka", isFloor = false, floorNum = 0 }) {
           src={`${process.env.PUBLIC_URL}/images/icons/location.svg`}
           alt="location icon"
         />
-        <span style={{ marginInline: "10px", fontSize: sizes.medium }}>
-          {isFloor ? getFloorNum(floorNum) : getBlockName(blockId)}
-        </span>
+        <div
+          style={{
+            fontSize: sizes.medium,
+            marginInline: "10px",
+          }}
+        >
+          {title}
+        </div>
       </div>
-      <div style={{ marginBlock: "10px", marginRight: "20px" }}>
-        3BHK, 2BHK Apartments
-      </div>
-      <div style={{ marginBlock: "10px" }}>1250 Sft - 1865 Sft</div>
-      <div style={{ marginBlock: "10px" }}>Total Flats 244</div>
+      {items.map((item) => (
+        <div style={{ marginBlock: "10px" }}>{item}</div>
+      ))}
     </div>
   );
 }

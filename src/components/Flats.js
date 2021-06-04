@@ -1,43 +1,23 @@
 import React from "react";
 import { buildings } from "../data";
-import Block from "./Block";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import NavigationButton from "./NavigationButton";
+import { colors } from "../utility";
+import Flat from "./Flat";
 
-let blocks = [
-  buildings.blocka,
-  buildings.blockb,
-  buildings.blockc,
-  buildings.blockd,
-  buildings.blocke,
-];
+let floors = buildings.blocka.floors;
+let flats = buildings.blocka.flats;
 
-const getIndex = (id) => {
-  switch (id) {
-    case "blocka":
-      return 0;
-    case "blockb":
-      return 1;
-    case "blockc":
-      return 2;
-    case "blockd":
-      return 3;
-    case "blocke":
-      return 4;
-    default:
-      return 0;
-  }
-};
-
-function Blocks({ match }) {
+function Flats({ match }) {
+  const blockId = match.params.blockId;
+  const flatId = match.params.flatId;
+  const floorId = match.params.floorId;
   return (
     <div
       style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL}/images/blocks/bg.jpg`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "100%",
+        backgroundColor: colors.light_blue,
       }}
     >
       <Carousel
@@ -47,7 +27,7 @@ function Blocks({ match }) {
         showThumbs={false}
         centerMode={false}
         showStatus={false}
-        selectedItem={getIndex(match.params.id)}
+        selectedItem={0}
         renderArrowPrev={(handleClick, hasPrev) => (
           <NavigationButton
             prev
@@ -63,17 +43,12 @@ function Blocks({ match }) {
           />
         )}
       >
-        {blocks.map((block) => (
-          <Block
-            id={block.id}
-            floors={block.floors}
-            viewBox={block.viewBox}
-            key={block.id}
-          />
+        {flats.map((flat) => (
+          <Flat blockId={blockId} flatId={flat.id} />
         ))}
       </Carousel>
     </div>
   );
 }
 
-export default Blocks;
+export default Flats;

@@ -1,10 +1,12 @@
 import React from "react";
 import Tippy, { useSingleton } from "@tippyjs/react";
 import Info from "./Info";
-import { SingleBuildingDetials } from "./DetailsPanel";
+import { SingleBuildingDetails } from "./DetailsPanel";
 import { Link } from "react-router-dom";
+import Label from "./Label";
+import { getBlockName, getFloorName } from "../utility/functions";
 
-function Block({ id, paths, viewBox = "0 0 824 1293", height = "90%" }) {
+function Block({ id, floors, viewBox = "0 0 824 1293", height = "90%" }) {
   const [source, target] = useSingleton({
     delay: 0,
     moveTransition: "transform 0.2s ease-out",
@@ -12,7 +14,7 @@ function Block({ id, paths, viewBox = "0 0 824 1293", height = "90%" }) {
 
   return (
     <>
-      <SingleBuildingDetials blockId={id} />
+      <Label label={getBlockName(id)} />
       <div style={{ height: "100vh" }}>
         <svg
           height={height}
@@ -35,17 +37,19 @@ function Block({ id, paths, viewBox = "0 0 824 1293", height = "90%" }) {
 
             <Tippy singleton={source} placement={"left-end"} delay={[100, 0]}>
               <>
-                {paths.map((path, index) => (
+                {floors.map((floor, index) => (
                   <Tippy
-                    content={<Info isFloor floorNum={index + 1} />}
+                    content={
+                      <Info isFloor floorNum={getFloorName(index + 1)} />
+                    }
                     singleton={target}
                     key={index}
                   >
-                    <Link to={`/block/${id}/${path.id}`}>
+                    <Link to={`/block/${id}/${floor.id}`}>
                       <path
                         className="floor"
-                        id={path.id}
-                        d={path.d}
+                        id={floor.id}
+                        d={floor.d}
                         fill="transparent"
                       />
                     </Link>
@@ -56,6 +60,7 @@ function Block({ id, paths, viewBox = "0 0 824 1293", height = "90%" }) {
           </g>
         </svg>
       </div>
+      <SingleBuildingDetails blockId={id} />
     </>
   );
 }

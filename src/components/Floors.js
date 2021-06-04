@@ -6,28 +6,12 @@ import { Carousel } from "react-responsive-carousel";
 import NavigationButton from "./NavigationButton";
 import { colors } from "../utility";
 import Floor from "./Floor";
+import { getFloorNum } from "../utility/functions";
 
-let floors = buildings.blocka.floorPaths;
-
-const getIndex = (id) => {
-  switch (id) {
-    case "blocka":
-      return 0;
-    case "blockb":
-      return 1;
-    case "blockc":
-      return 2;
-    case "blockd":
-      return 3;
-    case "blocke":
-      return 4;
-    default:
-      return 0;
-  }
-};
+let floors = buildings.blocka.floors;
+let flats = buildings.blocka.flats;
 
 function Floors({ match }) {
-  console.log(match);
   return (
     <div
       style={{
@@ -41,7 +25,7 @@ function Floors({ match }) {
         showThumbs={false}
         centerMode={false}
         showStatus={false}
-        selectedItem={getIndex(match.params.id)}
+        selectedItem={getFloorNum(match.params.floorId) - 1}
         renderArrowPrev={(handleClick, hasPrev) => (
           <NavigationButton
             prev
@@ -57,8 +41,15 @@ function Floors({ match }) {
           />
         )}
       >
-        {floors.map((floor, index) => (
-          <Floor blockId={match.params.blockId} floorId={index + 1} />
+        {floors.map((floor) => (
+          <Floor
+            blockId={match.params.blockId}
+            floorId={floor.id}
+            floors={buildings[match.params.blockId]}
+            flats={flats}
+            viewBox={"0 0 1500 870"}
+            height="90%"
+          />
         ))}
       </Carousel>
     </div>

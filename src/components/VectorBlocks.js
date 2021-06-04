@@ -10,6 +10,8 @@ function VectorBlocks(props) {
     moveTransition: "transform 0.2s ease-out",
   });
 
+  console.log(buildings);
+
   return (
     <svg
       width="100%"
