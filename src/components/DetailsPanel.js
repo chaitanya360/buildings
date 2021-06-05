@@ -1,15 +1,22 @@
 import React, { useState } from "react";
+import { useContext } from "react";
 import Collapsible from "react-collapsible";
 import { Link } from "react-router-dom";
 import { colors, sizes } from "../utility";
+import Compare from "./Compare";
 import {
   getBlockName,
   getBlocks,
+  getFlatNum,
   getFloorName,
   getFloorNum,
   getFloors,
 } from "../utility/functions";
+import { compareContext } from "./compareContext";
 import styles from "./components.module.css";
+import DetailsButton from "./DetailsButton";
+import DropDown from "./DropDown";
+import { useAlert } from "react-alert";
 
 const ButtonTrigger = ({ show }) => {
   return (
@@ -31,92 +38,6 @@ const Features = ({ value, name }) => {
     <div>
       <div>{value}</div>
       <div style={{ color: colors.font_light }}>{name}</div>
-    </div>
-  );
-};
-
-const DropDown = ({ items, text, isFloor, blockId }) => {
-  const [open, setOpen] = useState(false);
-  return (
-    <div
-      style={{
-        position: "absolute",
-        top: "0%",
-        marginTop: "7%",
-      }}
-    >
-      <Collapsible
-        trigger={
-          <span
-            style={{
-              width: "20px",
-              height: "20px",
-              display: "block ",
-              display: "flex",
-              marginInline: "10px 20px",
-              cursor: "pointer",
-            }}
-          >
-            {text}
-            <img
-              width="100%"
-              height="100%"
-              src={`${process.env.PUBLIC_URL}/images/icons/${"down_arrow"}.svg`}
-              alt="location icon"
-              style={{ margin: "5px", cursor: "pointer" }}
-            />
-          </span>
-        }
-        autoFocus
-        triggerWhenOpen={
-          <span
-            style={{
-              width: "20px",
-              height: "20px",
-              display: "block ",
-              display: "flex",
-              objectFit: "cover",
-              marginInline: "10px 20px",
-              cursor: "pointer",
-            }}
-          >
-            {text}
-
-            <img
-              width="100%"
-              height="100%"
-              src={`${process.env.PUBLIC_URL}/images/icons/${"up_arrow"}.svg`}
-              alt="location icon"
-              style={{ margin: "5px" }}
-            />
-          </span>
-        }
-        open={open}
-        handleTriggerClick={() => setOpen((old) => !old)}
-      >
-        <div style={{ position: "relative" }}>
-          {items.map((item) => (
-            <div
-              style={{
-                backgroundColor: colors.light_blue,
-                width: "100%",
-                textAlign: "center",
-              }}
-            >
-              <Link
-                to={isFloor ? `/block/${blockId}/${item}` : `/block/${item}`}
-              >
-                <span
-                  style={{ color: "white", textDecoration: "none" }}
-                  onClick={() => setOpen((old) => !old)}
-                >
-                  {isFloor ? getFloorNum(item) : getBlockName(item)}
-                </span>
-              </Link>
-            </div>
-          ))}
-        </div>
-      </Collapsible>
     </div>
   );
 };
@@ -175,16 +96,18 @@ const ImageItem = ({ block, showFloor = false, floorNum, floors, blocks }) => {
   );
 };
 
-const InfoItem = ({ showUnits = false, units, floorNum, block }) => {
+const InfoItem = ({ showUnits = false, units, floorNum, block, flatNum }) => {
   return (
     <div className={styles.info_item_wrapper}>
       <span>{block} Block</span>
-      {showUnits ? units + " Units" : floorNum}
+      {units && <span>units + " Units"</span>}
+      {floorNum && <span>{floorNum}</span>}
+      {flatNum && <span>{flatNum}</span>}
     </div>
   );
 };
 
-const AppartmentsItem = ({ bhk = "3", units = "124", size = [1690, 1865] }) => {
+const AppartmentsItem = ({ bhk = "3", units = false, size = [1690, 1865] }) => {
   return (
     <div
       style={{
@@ -195,20 +118,61 @@ const AppartmentsItem = ({ bhk = "3", units = "124", size = [1690, 1865] }) => {
       }}
     >
       <div>
-        <span>{bhk}BHK Appartments</span>
-        <span
-          style={{
-            marginLeft: "10px",
-            paddingInline: "10px",
-            borderLeft: "3px solid white",
-          }}
-        >
-          {units} Units
+        <span>
+          {bhk}BHK Appartment{units && "s"}
         </span>
+        {units && (
+          <span
+            style={{
+              marginLeft: "10px",
+              paddingInline: "10px",
+              borderLeft: "3px solid white",
+            }}
+          >
+            {units} Units
+          </span>
+        )}
       </div>
       <span style={{ display: "block", padding: "10px 0" }}>
-        {size[0]} Sq.ft - {size[1]} Sq.ft
+        {size[0]} Sq.ft {units && `- ${size[1]} Sq.ft`}
       </span>
+    </div>
+  );
+};
+
+const SpecificationsItem = ({
+  items = { Drawing: "11 x 12", Bed: "50 x 30" },
+}) => {
+  return (
+    <div style={{ paddingBlock: "20px", borderBottom: "2px solid white" }}>
+      <div
+        style={{
+          borderLeft: "5px solid",
+          borderColor: colors.pink,
+          paddingLeft: "10px",
+          fontWeight: 500,
+          textAlign: "left",
+          fontSize: sizes.medium,
+        }}
+      >
+        Specifications
+      </div>
+      <div style={{ textAlign: "left", padding: "20px 20px" }}>
+        {Object.entries(items).map(([key, value]) => (
+          <div
+            style={{
+              marginTop: "10px",
+              fontSize: sizes.medium,
+              fontWeight: 100,
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <span style={{ flex: 1 }}>{key}</span>
+            <span style={{ flex: 1 }}>{value}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
@@ -252,15 +216,13 @@ function BuildingsDetails() {
                 Gopanpally, Gachibowli, Hyderabad.
               </span>
             </h3>
-            <h3 style={{ color: colors.light_red, fontWeight: 400 }}>
-              View Map
-            </h3>
+            <h3 style={{ color: colors.pink, fontWeight: 400 }}>View Map</h3>
           </div>
           <div style={{ margin: "30px 0px" }}>
             <h1
               style={{
                 borderLeft: "5px solid",
-                borderColor: colors.light_red,
+                borderColor: colors.pink,
                 paddingLeft: "20px",
                 fontWeight: 500,
               }}
@@ -345,8 +307,98 @@ const FloorsDetails = ({ floorId, blockId }) => {
   );
 };
 
+const FlatDetails = ({ floorId, blockId, flatId }) => {
+  const alert = useAlert();
+
+  const floorNum = getFloorNum(floorId);
+
+  const [compareItemsIds, setCompareItemsId, showCompare, setShowCompare] =
+    useContext(compareContext);
+
+  console.log(compareItemsIds);
+  const blocks = getBlocks()
+    .map((block) => block.id)
+    .filter((block) => block !== blockId);
+  const floors = getFloors(blockId)
+    .map((floor) => floor.id)
+    .filter((floor) => floor !== floorId);
+
+  const handleAddToCompare = () => {
+    let newFlat = true;
+    compareItemsIds.forEach((element) => {
+      if (element.flatId == flatId && element.blockId == blockId) {
+        newFlat = false;
+        alert.show("flat is already added to compare");
+        return;
+      }
+    });
+    if (newFlat) {
+      if (compareItemsIds.length < 4) {
+        setCompareItemsId([...compareItemsIds, { flatId, blockId }]);
+        alert.show("flat is added for comparison");
+      } else alert.show("selected maximum number of flats, press compare");
+    }
+  };
+
+  const handleComparePressed = () => {
+    if (compareItemsIds.length > 1) setShowCompare(true);
+    else alert.show("select at least 2 flats");
+  };
+
+  return (
+    <>
+      {showCompare ? (
+        <Compare
+          setShowCompare={setShowCompare}
+          compareItemsIds={compareItemsIds}
+          setCompareItemsId={setCompareItemsId}
+        />
+      ) : (
+        <div
+          className={styles.collapsible_wrapper}
+          style={{ top: "100%", transform: "translateY(-100%)" }}
+        >
+          <Collapsible
+            trigger={<ButtonTrigger show />}
+            triggerWhenOpen={<ButtonTrigger />}
+            open
+          >
+            <div className={styles.details_wrapper}>
+              <ImageItem
+                block={blockId}
+                showFloor
+                floorNum={floorNum}
+                floors={floors}
+                blocks={blocks}
+              />
+              <InfoItem
+                floorNum={getFloorName(floorNum)}
+                block={getBlockName(blockId)}
+                flatNum={getFlatNum(flatId)}
+              />
+              <AppartmentsItem bhk={3} size={[3250, 1365]} />
+              <SpecificationsItem />
+              <DetailsButton
+                text="Add to Compare"
+                compareCount={compareItemsIds}
+                onClick={handleAddToCompare}
+              />
+              <DetailsButton
+                text="Compare"
+                compareCount={compareItemsIds.length}
+                onClick={handleComparePressed}
+              />
+            </div>
+          </Collapsible>
+        </div>
+      )}
+    </>
+  );
+};
+
 export {
   BuildingsDetails as BlocksDetails,
   SingleBuildingDetails,
   FloorsDetails,
+  FlatDetails,
 };

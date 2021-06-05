@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { colors } from "../utility";
+import { compareContext } from "./compareContext";
 import styles from "./components.module.css";
 
 function NavigationButton({
@@ -8,24 +9,31 @@ function NavigationButton({
   handleOnClick,
   hasNext = false,
   hasPrev = false,
+  right = "0",
+  left = "0",
 }) {
+  const [compareItemsIds, setCompareItemsId, showCompare, setShowCompare] =
+    useContext(compareContext);
   return (
     <div
       style={{
-        right: next ? "0" : "default",
-        left: prev ? "0" : "default",
+        right: next ? right : "default",
+        left: prev ? left : "default",
         backgroundColor: colors.light_blue,
         borderRadius: "30px",
         width: "50px",
         height: "50px",
         padding: "10px",
         position: "absolute",
-        top: "20%",
+        top: "5%",
         transform: "translateY(-50%)",
         marginInline: "50px",
         cursor: "pointer",
-        zIndex: "9999",
-        display: (prev && hasPrev) || (next && hasNext) ? "block" : "none",
+        zIndex: "2",
+        display:
+          ((prev && hasPrev) || (next && hasNext)) && !showCompare
+            ? "block"
+            : "none",
       }}
       className={styles.nav_button}
       onClick={handleOnClick}

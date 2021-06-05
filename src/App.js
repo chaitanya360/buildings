@@ -5,17 +5,34 @@ import Home from "./pages/Home";
 import Blocks from "./components/Blocks";
 import Floors from "./components/Floors";
 import Flats from "./components/Flats";
+import { CompareProvider } from "./components/compareContext";
+import { Provider as AlertProvider } from "react-alert";
+import AlertTemplate from "react-alert-template-basic";
+
+const alertOptions = {
+  position: "bottom center",
+  timeout: 5000,
+  offset: "30px",
+  transition: "scale",
+};
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/:blockId/:floorId/flat/:flatId" component={Flats}></Route>
-        <Route path="/block/:blockId/:floorId" component={Floors}></Route>
-        <Route path="/block/:id" component={Blocks}></Route>
-      </Switch>
-    </Router>
+    <AlertProvider template={AlertTemplate} {...alertOptions}>
+      <CompareProvider>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route
+              path="/:blockId/:floorId/flat/:flatId"
+              component={Flats}
+            ></Route>
+            <Route path="/block/:blockId/:floorId" component={Floors}></Route>
+            <Route path="/block/:id" component={Blocks}></Route>
+          </Switch>
+        </Router>
+      </CompareProvider>
+    </AlertProvider>
   );
 }
 

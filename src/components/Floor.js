@@ -3,7 +3,7 @@ import Tippy, { useSingleton } from "@tippyjs/react";
 import Info from "./Info";
 import { FloorsDetails } from "./DetailsPanel";
 import Label from "./Label";
-import { getFloorName, getBlockName } from "../utility/functions";
+import { getFloorName, getFloorNum } from "../utility/functions";
 import { Link } from "react-router-dom";
 
 function Floor({
@@ -20,7 +20,7 @@ function Floor({
 
   return (
     <>
-      <Label label={getBlockName(floorId)} />
+      <Label label={getFloorNum(floorId)} />
       <div
         style={{
           height: "100vh",
