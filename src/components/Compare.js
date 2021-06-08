@@ -1,4 +1,5 @@
 import React from "react";
+import { buildings } from "../data";
 import { colors, sizes } from "../utility";
 import { getFlatNum } from "../utility/functions";
 import styles from "./components.module.css";
@@ -40,25 +41,27 @@ const Header = ({ handleClose }) => {
         justifyContent: "space-between",
       }}
     >
-      <div
-        style={{
-          paddingInline: "20px",
-          borderLeft: "5px solid",
-          borderColor: colors.pink,
-        }}
-      >
-        Compare Flats
-      </div>
+      <div className={styles.compare_title}>Compare Flats</div>
       <Icon name="close" onClick={handleClose} />
     </div>
   );
 };
 
-const ItemHeader = ({ handleRemoveItem }) => {
+const ItemHeader = ({ handleRemoveItem, flatNum }) => {
   return (
     <>
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <span
+            style={{
+              fontSize: sizes.large,
+              color: colors.blue,
+              flex: "1",
+              textAlign: "center",
+            }}
+          >
+            Flat No. {flatNum}
+          </span>
           <Icon name="trash" width="30px" onClick={handleRemoveItem} />
         </div>
         <div
@@ -103,16 +106,8 @@ const Item = ({
   handleRemoveItem = { handleRemoveItem },
 }) => {
   return (
-    <div
-      style={{
-        padding: "20px",
-        border: "1px solid grey",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-      }}
-    >
-      <ItemHeader handleRemoveItem={handleRemoveItem} />
+    <div className={styles.compare_item}>
+      <ItemHeader handleRemoveItem={handleRemoveItem} flatNum={flatNum} />
       <div>
         <Image src={`${blockId}/${flatNum}`} />
       </div>
@@ -166,11 +161,10 @@ function Compare({ compareItemsIds, setCompareItemsId, setShowCompare }) {
             <Item
               flatNum={getFlatNum(item.flatId)}
               blockId={item.blockId}
-              details={{
-                Drawing: "11 x 12",
-                Bed: "12 x 13",
-                Kitchen: "14 x 15",
-              }}
+              details={
+                buildings[item.blockId].flats[getFlatNum(item.flatId) - 1]
+                  .specifications
+              }
               handleRemoveItem={() => handleRemoveItem(item)}
             />
           ))}

@@ -4,9 +4,25 @@ import Info from "./Info";
 import { SingleBuildingDetails } from "./DetailsPanel";
 import { Link } from "react-router-dom";
 import Label from "./Label";
-import { getBlockName, getFloorName } from "../utility/functions";
+import {
+  getBlockName,
+  getExtreameFlatSizesInBlock,
+  getFlatsOfTypeInFloor,
+  getFloorName,
+  getFloorNum,
+  getTotalFlatsInFloor,
+} from "../utility/functions";
+import styles from "./components.module.css";
 
-function Block({ id, floors, viewBox = "0 0 824 1293", height = "90%" }) {
+function Block({
+  id,
+  floors,
+  viewBox = "0 0 824 1293",
+  height = "90%",
+
+  openDetails,
+  setOpenDetails,
+}) {
   const [source, target] = useSingleton({
     delay: 0,
     moveTransition: "transform 0.2s ease-out",
@@ -14,20 +30,15 @@ function Block({ id, floors, viewBox = "0 0 824 1293", height = "90%" }) {
 
   return (
     <>
-      <Label label={getBlockName(id)} />
-      <div style={{ height: "100vh" }}>
+      <Label label={"Block " + getBlockName(id)} />
+      <div style={{ height: "100%", bottom: "0" }}>
         <svg
           height={height}
           viewBox={viewBox}
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"
-          style={{
-            position: "fixed",
-            bottom: "0",
-            width: "100vw",
-            display: "flex",
-          }}
+          className={styles.block}
         >
           <g id="Block">
             <image
@@ -40,7 +51,17 @@ function Block({ id, floors, viewBox = "0 0 824 1293", height = "90%" }) {
                 {floors.map((floor, index) => (
                   <Tippy
                     content={
-                      <Info isFloor floorNum={getFloorName(index + 1)} />
+                      <Info
+                        title={getFloorName(getFloorNum(floor.id))}
+                        items={[
+                          "3bhk and 2bhks",
+                          getExtreameFlatSizesInBlock(id)[0] +
+                            " - " +
+                            getExtreameFlatSizesInBlock(id)[1] +
+                            " Sq.Ft.",
+                          getTotalFlatsInFloor(id) + " Flats",
+                        ]}
+                      />
                     }
                     singleton={target}
                     key={index}
@@ -60,7 +81,15 @@ function Block({ id, floors, viewBox = "0 0 824 1293", height = "90%" }) {
           </g>
         </svg>
       </div>
-      <SingleBuildingDetails blockId={id} />
+      <SingleBuildingDetails
+        blockId={id}
+        openDetails={openDetails}
+        setOpenDetails={setOpenDetails}
+        units={[
+          getFlatsOfTypeInFloor("2 BHK", id),
+          getFlatsOfTypeInFloor("3 BHK", id),
+        ]}
+      />
     </>
   );
 }

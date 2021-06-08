@@ -1,10 +1,11 @@
 .btn_trigger {
   right: 0;
-  transform: translate(0, -100%);
+  bottom: 100%;
+  transform: translate(0%, 100%);
   position: absolute;
   height: 20px;
   object-fit: contain;
-  padding-inline: 20px;
+  padding: 0px 20px;
   background-color: rgb(221, 36, 138);
   color: white;
   padding-top: 3px;
@@ -12,20 +13,21 @@
   cursor: pointer;
 }
 
+.nav_button {
+  display: none;
+}
+
 .collapsible_wrapper {
   width: 400px;
   position: absolute;
   right: 0px;
-  top: 100%;
+  top: 0%;
+  left: 100%;
+  transform: translateX(-100%);
   color: white;
-  transform: translateY(-100%);
 }
 
 .details_wrapper {
-  /* width: 400px; */
-  /* position: absolute; */
-  /* right: 0px; */
-  /* top: 30%; */
   background-color: #14348e;
   padding: 20px;
   color: white;
@@ -34,12 +36,12 @@
 .info_item_wrapper {
   font-size: 18px;
   display: flex;
-  padding-block: 20px;
+  padding: 20px 0px;
 }
 
 .info_item_wrapper span {
   border-left: 5px solid rgb(201, 75, 194);
-  padding-inline: 10px;
+  padding: 0px 10px;
 }
 
 .compare_wrapper {
@@ -63,4 +65,112 @@
   border-radius: 5px;
   overflow: scroll;
   text-align: left;
+}
+
+.label {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 10px;
+  background-color: rgba(16, 94, 210, 0.835);
+  color: white;
+  font-size: 25px;
+  padding: 5px 20px;
+  border-radius: 5px;
+  z-index: 0000;
+}
+
+.floor {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: purple;
+  padding: 5%;
+}
+
+.block {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  display: flex;
+  padding: 0px;
+}
+
+.compare_title {
+  padding: 0 20px;
+  border-left: 5px solid;
+  border-color: #ff468f;
+}
+
+.compare_item {
+  padding: 20px;
+  border: 1px solid grey;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.vector_blocks {
+  height: 100%;
+  width: 100%;
+}
+
+.vector_blocks svg {
+  width: 100%;
+}
+
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 600px) {
+  .collapsible_wrapper {
+    width: 100%;
+  }
+
+  .label {
+    font-size: 20px;
+    padding: 3px 15px;
+  }
+
+  .floor {
+    padding: 0;
+  }
+
+  .block {
+    padding: 0%;
+  }
+
+  .compare_title {
+    font-size: 30px;
+  }
+
+  .compare_item {
+    padding: 10px;
+    border: 1px solid grey;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    justify-content: space-between;
+  }
+
+  .vector_blocks {
+    height: 100%;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+
+  .vector_blocks svg {
+    width: 600px;
+  }
+
+  .btn_trigger {
+    height: 25px;
+    border-radius: 10px;
+    width: 90px;
+  }
+
+  .details_wrapper {
+    height: 100vh;
+    overflow: scroll;
+  }
 }

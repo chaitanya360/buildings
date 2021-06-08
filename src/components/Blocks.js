@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { buildings } from "../data";
 import Block from "./Block";
 
@@ -32,12 +32,17 @@ const getIndex = (id) => {
 };
 
 function Blocks({ match }) {
+  const [openDetails, setOpenDetails] = useState(false);
+
   return (
     <div
       style={{
         backgroundImage: `url(${process.env.PUBLIC_URL}/images/blocks/bg.jpg`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
       }}
     >
       <Carousel
@@ -46,6 +51,7 @@ function Blocks({ match }) {
         showIndicators={false}
         showThumbs={false}
         centerMode={false}
+        swipeable={false}
         showStatus={false}
         selectedItem={getIndex(match.params.id)}
         renderArrowPrev={(handleClick, hasPrev) => (
@@ -64,12 +70,15 @@ function Blocks({ match }) {
         )}
       >
         {blocks.map((block) => (
-          <Block
-            id={block.id}
-            floors={block.floors}
-            viewBox={block.viewBox}
-            key={block.id}
-          />
+          <div style={{ height: window.innerHeight }} key={block.id}>
+            <Block
+              id={block.id}
+              floors={block.floors}
+              viewBox={block.viewBox}
+              openDetails={openDetails}
+              setOpenDetails={setOpenDetails}
+            />
+          </div>
         ))}
       </Carousel>
     </div>

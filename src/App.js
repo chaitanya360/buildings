@@ -8,31 +8,33 @@ import Flats from "./components/Flats";
 import { CompareProvider } from "./components/compareContext";
 import { Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
-
+import { getExtreameFlatSizesInBlock } from "./utility/functions";
 const alertOptions = {
   position: "bottom center",
-  timeout: 5000,
+  timeout: 4000,
   offset: "30px",
   transition: "scale",
 };
 
 function App() {
   return (
-    <AlertProvider template={AlertTemplate} {...alertOptions}>
-      <CompareProvider>
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route
-              path="/:blockId/:floorId/flat/:flatId"
-              component={Flats}
-            ></Route>
-            <Route path="/block/:blockId/:floorId" component={Floors}></Route>
-            <Route path="/block/:id" component={Blocks}></Route>
-          </Switch>
-        </Router>
-      </CompareProvider>
-    </AlertProvider>
+    <div>
+      <AlertProvider template={AlertTemplate} {...alertOptions}>
+        <CompareProvider>
+          <Router>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route
+                path="/:blockId/:floorId/flat/:flatId"
+                component={Flats}
+              ></Route>
+              <Route path="/block/:blockId/:floorId" component={Floors}></Route>
+              <Route path="/block/:id" component={Blocks}></Route>
+            </Switch>
+          </Router>
+        </CompareProvider>
+      </AlertProvider>
+    </div>
   );
 }
 

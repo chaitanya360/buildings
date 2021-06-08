@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { colors } from "../utility";
 import { compareContext } from "./compareContext";
-import styles from "./components.module.css";
 
 function NavigationButton({
   prev = false,
@@ -12,8 +11,7 @@ function NavigationButton({
   right = "0",
   left = "0",
 }) {
-  const [compareItemsIds, setCompareItemsId, showCompare, setShowCompare] =
-    useContext(compareContext);
+  const compareValues = useContext(compareContext);
   return (
     <div
       style={{
@@ -25,17 +23,16 @@ function NavigationButton({
         height: "50px",
         padding: "10px",
         position: "absolute",
-        top: "5%",
+        top: "90%",
         transform: "translateY(-50%)",
         marginInline: "50px",
         cursor: "pointer",
         zIndex: "2",
         display:
-          ((prev && hasPrev) || (next && hasNext)) && !showCompare
+          ((prev && hasPrev) || (next && hasNext)) && !compareValues[2]
             ? "block"
             : "none",
       }}
-      className={styles.nav_button}
       onClick={handleOnClick}
     >
       <svg

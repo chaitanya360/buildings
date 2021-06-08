@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import Collapsible from "react-collapsible";
-import { Link } from "react-router-dom";
 import { colors, sizes } from "../utility";
 import Compare from "./Compare";
 import {
+  getAbsoluteFlatNum,
   getBlockName,
   getBlocks,
   getFlatNum,
   getFloorName,
   getFloorNum,
   getFloors,
+  getTotalFlatsInFloor,
 } from "../utility/functions";
 import { compareContext } from "./compareContext";
 import styles from "./components.module.css";
@@ -18,17 +19,24 @@ import DetailsButton from "./DetailsButton";
 import DropDown from "./DropDown";
 import { useAlert } from "react-alert";
 
-const ButtonTrigger = ({ show }) => {
+const ButtonTrigger = ({ show, setShowDetails, onClick }) => {
   return (
-    <div className={styles.btn_trigger}>
-      <img
-        width="100%"
-        height="100%"
-        src={`${process.env.PUBLIC_URL}/images/icons/${
-          show ? "down_arrow" : "up_arrow"
-        }.svg`}
-        alt="location icon"
-      />
+    <div onClick={onClick}>
+      <div
+        className={styles.btn_trigger}
+        onClick={() => {
+          show ? setShowDetails(true) : setShowDetails(false);
+        }}
+      >
+        <img
+          width="100%"
+          height="100%"
+          src={`${process.env.PUBLIC_URL}/images/icons/${
+            show ? "down_arrow" : "up_arrow"
+          }.svg`}
+          alt="location icon"
+        />
+      </div>
     </div>
   );
 };
@@ -77,7 +85,7 @@ const ImageItem = ({ block, showFloor = false, floorNum, floors, blocks }) => {
       {showFloor && (
         <>
           <span
-            style={{ height: "100%", width: "35px", marginInline: "40px 20px" }}
+            style={{ height: "100%", width: "35px", marginInline: "30px 20px" }}
           >
             <img
               width="25px"
@@ -96,18 +104,18 @@ const ImageItem = ({ block, showFloor = false, floorNum, floors, blocks }) => {
   );
 };
 
-const InfoItem = ({ showUnits = false, units, floorNum, block, flatNum }) => {
+const InfoItem = ({ units = false, floorNum, block, flatNum }) => {
   return (
     <div className={styles.info_item_wrapper}>
       <span>{block} Block</span>
-      {units && <span>units + " Units"</span>}
+      {units && <span>{units + " "}Units</span>}
       {floorNum && <span>{floorNum}</span>}
       {flatNum && <span>{flatNum}</span>}
     </div>
   );
 };
 
-const AppartmentsItem = ({ bhk = "3", units = false, size = [1690, 1865] }) => {
+const AppartmentsItem = ({ bhk = "3", units = false, size = false }) => {
   return (
     <div
       style={{
@@ -119,7 +127,7 @@ const AppartmentsItem = ({ bhk = "3", units = false, size = [1690, 1865] }) => {
     >
       <div>
         <span>
-          {bhk}BHK Appartment{units && "s"}
+          {bhk + " "}BHK Appartment{units && "s"}
         </span>
         {units && (
           <span
@@ -133,9 +141,30 @@ const AppartmentsItem = ({ bhk = "3", units = false, size = [1690, 1865] }) => {
           </span>
         )}
       </div>
-      <span style={{ display: "block", padding: "10px 0" }}>
-        {size[0]} Sq.ft {units && `- ${size[1]} Sq.ft`}
-      </span>
+      {size && (
+        <span style={{ display: "block", padding: "10px 0" }}>
+          {size[0]} Sq.ft {units && `- ${size[1]} Sq.ft`}
+        </span>
+      )}
+    </div>
+  );
+};
+
+const FlatDetailsItem = ({ size = "1234 Sq.ft", type = "13bhk" }) => {
+  return (
+    <div
+      style={{
+        padding: "10px 10px",
+        borderBottom: "2px solid white",
+        textAlign: "left",
+        fontWeight: 400,
+        display: "flex",
+      }}
+    >
+      <div>
+        <span>{type}</span>
+      </div>
+      <span style={{ marginLeft: "20px" }}>{size}</span>
     </div>
   );
 };
@@ -177,13 +206,20 @@ const SpecificationsItem = ({
   );
 };
 
-function BuildingsDetails() {
+function BuildingsDetails({ onClick }) {
+  const [showDetails, setShowDetails] = useState(true);
   return (
     <div className={styles.collapsible_wrapper}>
       <Collapsible
-        trigger={<ButtonTrigger show />}
-        triggerWhenOpen={<ButtonTrigger />}
-        open
+        trigger={
+          <ButtonTrigger
+            show
+            setShowDetails={setShowDetails}
+            onClick={onClick}
+          />
+        }
+        triggerWhenOpen={<ButtonTrigger setShowDetails={setShowDetails} />}
+        open={showDetails}
       >
         <div
           style={{
@@ -213,7 +249,7 @@ function BuildingsDetails() {
                 />
               </span>
               <span style={{ margin: "20px" }}>
-                Gopanpally, Gachibowli, Hyderabad.
+                Your, Beutiful, Address Here.
               </span>
             </h3>
             <h3 style={{ color: colors.pink, fontWeight: 400 }}>View Map</h3>
@@ -237,9 +273,9 @@ function BuildingsDetails() {
               justifyContent: "space-between",
             }}
           >
-            <Features value="6" name={"towers"} />
-            <Features value="2B+G+30" name={"Floors"} />
-            <Features value="50,000 Sq.ft" name={"Club House"} />
+            <Features value="5" name={"towers"} />
+            <Features value="60" name={"Floors"} />
+            <Features value="444" name={"Flats"} />
           </div>
         </div>
       </Collapsible>
@@ -247,30 +283,44 @@ function BuildingsDetails() {
   );
 }
 
-function SingleBuildingDetails({ blockId }) {
+function SingleBuildingDetails({
+  blockId,
+  openDetails,
+  setOpenDetails,
+  units = [23, 23],
+}) {
   let blocks = getBlocks()
     .map((block) => block.id)
     .filter((block) => block !== blockId);
   return (
     <div className={styles.collapsible_wrapper}>
       <Collapsible
-        trigger={<ButtonTrigger show />}
-        triggerWhenOpen={<ButtonTrigger />}
-        open
+        trigger={<ButtonTrigger show setShowDetails={setOpenDetails} />}
+        triggerWhenOpen={<ButtonTrigger setShowDetails={setOpenDetails} />}
+        open={openDetails}
         allowFullScreen={false}
       >
         <div className={styles.details_wrapper}>
           <ImageItem block={getBlockName(blockId)} blocks={blocks} />
-          <InfoItem showUnits units={250} block={getBlockName(blockId)} />
-          <AppartmentsItem />
-          <AppartmentsItem bhk={2} units={120} size={[1250, 1365]} />
+          <InfoItem
+            block={getBlockName(blockId)}
+            units={getTotalFlatsInFloor(blockId)}
+          />
+          <AppartmentsItem bhk={2} units={units[0]} />
+          <AppartmentsItem bhk={3} units={units[1]} />
         </div>
       </Collapsible>
     </div>
   );
 }
 
-const FloorsDetails = ({ floorId, blockId }) => {
+const FloorsDetails = ({
+  floorId,
+  blockId,
+  openDetails,
+  setOpenDetails,
+  units,
+}) => {
   const floorNum = getFloorNum(floorId);
 
   const blocks = getBlocks()
@@ -283,9 +333,9 @@ const FloorsDetails = ({ floorId, blockId }) => {
   return (
     <div className={styles.collapsible_wrapper}>
       <Collapsible
-        trigger={<ButtonTrigger show />}
-        triggerWhenOpen={<ButtonTrigger />}
-        open
+        trigger={<ButtonTrigger show setShowDetails={setOpenDetails} />}
+        triggerWhenOpen={<ButtonTrigger setShowDetails={setOpenDetails} />}
+        open={openDetails}
       >
         <div className={styles.details_wrapper}>
           <ImageItem
@@ -299,23 +349,30 @@ const FloorsDetails = ({ floorId, blockId }) => {
             floorNum={getFloorName(floorNum)}
             block={getBlockName(blockId)}
           />
-          <AppartmentsItem bhk={3} units={4} size={[3250, 1365]} />
-          <AppartmentsItem bhk={2} units={2} size={[1250, 1365]} />
+          <AppartmentsItem bhk={2} units={units[0]} />
+          <AppartmentsItem bhk={3} units={units[1]} />
         </div>
       </Collapsible>
     </div>
   );
 };
 
-const FlatDetails = ({ floorId, blockId, flatId }) => {
+const FlatDetails = ({
+  floorId,
+  blockId,
+  flatId,
+  showDetails,
+  setShowDetails,
+  specifications,
+  size,
+  type,
+}) => {
   const alert = useAlert();
-
   const floorNum = getFloorNum(floorId);
 
   const [compareItemsIds, setCompareItemsId, showCompare, setShowCompare] =
     useContext(compareContext);
 
-  console.log(compareItemsIds);
   const blocks = getBlocks()
     .map((block) => block.id)
     .filter((block) => block !== blockId);
@@ -326,7 +383,7 @@ const FlatDetails = ({ floorId, blockId, flatId }) => {
   const handleAddToCompare = () => {
     let newFlat = true;
     compareItemsIds.forEach((element) => {
-      if (element.flatId == flatId && element.blockId == blockId) {
+      if (element.flatId === flatId && element.blockId === blockId) {
         newFlat = false;
         alert.show("flat is already added to compare");
         return;
@@ -354,14 +411,11 @@ const FlatDetails = ({ floorId, blockId, flatId }) => {
           setCompareItemsId={setCompareItemsId}
         />
       ) : (
-        <div
-          className={styles.collapsible_wrapper}
-          style={{ top: "100%", transform: "translateY(-100%)" }}
-        >
+        <div className={styles.collapsible_wrapper}>
           <Collapsible
-            trigger={<ButtonTrigger show />}
-            triggerWhenOpen={<ButtonTrigger />}
-            open
+            trigger={<ButtonTrigger show setShowDetails={setShowDetails} />}
+            triggerWhenOpen={<ButtonTrigger setShowDetails={setShowDetails} />}
+            open={showDetails}
           >
             <div className={styles.details_wrapper}>
               <ImageItem
@@ -374,10 +428,10 @@ const FlatDetails = ({ floorId, blockId, flatId }) => {
               <InfoItem
                 floorNum={getFloorName(floorNum)}
                 block={getBlockName(blockId)}
-                flatNum={getFlatNum(flatId)}
+                flatNum={getAbsoluteFlatNum(blockId, floorId, flatId)}
               />
-              <AppartmentsItem bhk={3} size={[3250, 1365]} />
-              <SpecificationsItem />
+              <FlatDetailsItem size={size} type={type} />
+              <SpecificationsItem items={specifications} />
               <DetailsButton
                 text="Add to Compare"
                 compareCount={compareItemsIds}

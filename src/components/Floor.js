@@ -3,8 +3,16 @@ import Tippy, { useSingleton } from "@tippyjs/react";
 import Info from "./Info";
 import { FloorsDetails } from "./DetailsPanel";
 import Label from "./Label";
-import { getFloorName, getFloorNum } from "../utility/functions";
+import {
+  getAbsoluteFlatNum,
+  getFlatNum,
+  getFlatsOfTypeInFloor,
+  getFloorName,
+  getFloorNum,
+} from "../utility/functions";
 import { Link } from "react-router-dom";
+import styles from "./components.module.css";
+import { buildings } from "../data";
 
 function Floor({
   floorId,
@@ -12,6 +20,8 @@ function Floor({
   viewBox = "0 0 824 1293",
   height = "90%",
   blockId = "blocka",
+  openDetails,
+  setOpenDetails,
 }) {
   const [source, target] = useSingleton({
     delay: 0,
@@ -20,18 +30,8 @@ function Floor({
 
   return (
     <>
-      <Label label={getFloorNum(floorId)} />
-      <div
-        style={{
-          height: "100vh",
-          padding: "5%",
-          display: "flex",
-          justifyContent: "flex-start",
-          paddingLeft: "10vw",
-          alignItems: "center",
-          backgroundColor: "purple",
-        }}
-      >
+      <Label label={getFloorName(getFloorNum(floorId))} />
+      <div className={styles.floor}>
         <svg
           height={height}
           viewBox={viewBox}
@@ -47,19 +47,27 @@ function Floor({
 
             <Tippy singleton={source} placement={"left-end"} delay={[100, 0]}>
               <>
-                {flats.map((floor, index) => (
+                {flats.map((flat, index) => (
                   <Tippy
                     content={
-                      <Info isFloor floorNum={getFloorName(index + 1)} />
+                      <Info
+                        title={getAbsoluteFlatNum(blockId, floorId, flat.id)}
+                        items={[
+                          buildings[blockId].flats[getFlatNum(flat.id) - 1]
+                            .type,
+                          buildings[blockId].flats[getFlatNum(flat.id) - 1]
+                            .size,
+                        ]}
+                      />
                     }
                     singleton={target}
                     key={index}
                   >
                     <Link to={`/${blockId}/${floorId}/flat/${index + 1}`}>
                       <path
-                        className="floor"
-                        id={floor.id}
-                        d={floor.d}
+                        className="flat"
+                        id={flat.id}
+                        d={flat.d}
                         fill="transparent"
                       />
                     </Link>
@@ -70,7 +78,16 @@ function Floor({
           </g>
         </svg>
       </div>
-      <FloorsDetails floorId={floorId} blockId={blockId} />
+      <FloorsDetails
+        units={[
+          getFlatsOfTypeInFloor("2 BHK", blockId),
+          getFlatsOfTypeInFloor("3 BHK", blockId),
+        ]}
+        floorId={floorId}
+        blockId={blockId}
+        openDetails={openDetails}
+        setOpenDetails={setOpenDetails}
+      />
     </>
   );
 }

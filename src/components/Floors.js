@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { buildings } from "../data";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
@@ -8,10 +8,11 @@ import { colors } from "../utility";
 import Floor from "./Floor";
 import { getFloorNum } from "../utility/functions";
 
-let floors = buildings.blocka.floors;
-let flats = buildings.blocka.flats;
-
 function Floors({ match }) {
+  let floors = buildings[match.params.blockId].floors;
+  let flats = buildings[match.params.blockId].flats;
+
+  const [openDetails, setOpenDetails] = useState(false);
   return (
     <div
       style={{
@@ -23,6 +24,7 @@ function Floors({ match }) {
         autoPlay={false}
         showIndicators={false}
         showThumbs={false}
+        swipeable={false}
         centerMode={false}
         showStatus={false}
         selectedItem={getFloorNum(match.params.floorId) - 1}
@@ -49,6 +51,8 @@ function Floors({ match }) {
             flats={flats}
             viewBox={"0 0 1500 870"}
             height="90%"
+            openDetails={openDetails}
+            setOpenDetails={setOpenDetails}
           />
         ))}
       </Carousel>

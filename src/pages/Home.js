@@ -6,7 +6,6 @@ import styles from "./pages.module.css";
 function home(props) {
   return (
     <div className={styles.home}>
-      <BlocksDetails />
       <VectorBlocks />
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { buildings } from "../data";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
@@ -6,18 +6,17 @@ import { Carousel } from "react-responsive-carousel";
 import NavigationButton from "./NavigationButton";
 import { colors } from "../utility";
 import Flat from "./Flat";
-import { compareContext } from "./compareContext";
-
-let floors = buildings.blocka.floors;
-let flats = buildings.blocka.flats;
 
 function Flats({ match }) {
+  const flats = buildings[match.params.blockId].flats;
+
   const blockId = match.params.blockId;
   const flatId = match.params.flatId;
   const floorId = match.params.floorId;
-  const [compareItemsIds, setCompareItemsId, showCompare, setShowCompare] =
-    useContext(compareContext);
-  console.log(showCompare);
+  const [openDetails, setOpenDetails] = useState(
+    window.innerWidth < 900 ? false : true
+  );
+
   return (
     <div
       style={{
@@ -31,6 +30,7 @@ function Flats({ match }) {
         showThumbs={false}
         centerMode={false}
         showStatus={false}
+        swipeable={false}
         selectedItem={flatId - 1}
         renderArrowPrev={(handleClick, hasPrev) => (
           <NavigationButton
@@ -48,7 +48,16 @@ function Flats({ match }) {
         )}
       >
         {flats.map((flat) => (
-          <Flat blockId={blockId} flatId={flat.id} floorId={floorId} />
+          <Flat
+            blockId={blockId}
+            flatId={flat.id}
+            floorId={floorId}
+            showDetails={openDetails}
+            setShowDetails={setOpenDetails}
+            specifications={flat.specifications}
+            size={flat.size}
+            type={flat.type}
+          />
         ))}
       </Carousel>
     </div>

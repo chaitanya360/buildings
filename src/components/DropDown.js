@@ -66,6 +66,7 @@ const DropDown = ({ items, text, isFloor, blockId }) => {
         <div style={{ position: "relative" }}>
           {items.map((item) => (
             <div
+              key={item}
               style={{
                 backgroundColor: colors.light_blue,
                 width: "100%",

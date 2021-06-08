@@ -1,20 +1,29 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { colors, sizes } from "../utility";
-import { getBlockName } from "../utility/functions";
+import {
+  getBlockName,
+  getExtreameFlatSizesInBlock,
+  getTotalFlatsInFloor,
+} from "../utility/functions";
 
 function Info({
-  title = "Block A",
-  items = ["3bhk and 2bhks", "234Sqft - 3023Sqft", "234 units"],
+  title = "blocka",
+  items = ["detail1", "detail2", "detail3"],
+  style,
 }) {
+  console.log(title);
   return (
     <div
       style={{
         backgroundColor: colors.light_blue,
-        paddingInline: "20px",
-        paddingBlock: "10px",
+        paddingInline: "10px",
+        paddingBlock: "5px",
         color: "white",
-        display: "block",
+        display: window.innerWidth < 900 && !title ? "none" : "block",
         borderRadius: "3px",
+        transform: "translateX(10%)",
+        ...style,
       }}
     >
       <div
@@ -40,9 +49,35 @@ function Info({
           {title}
         </div>
       </div>
-      {items.map((item) => (
-        <div style={{ marginBlock: "10px" }}>{item}</div>
-      ))}
+      <div>
+        {items.map((item) => (
+          <div style={{ margin: "10px 10px" }} key={item}>
+            {item}
+          </div>
+        ))}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Link to={`/block/${title}`}>
+          <div
+            style={{
+              width: "fit-content",
+              backgroundColor: colors.pink,
+              padding: "0px 10px",
+              display: window.innerWidth < 900 ? "block" : "none",
+              textDecoration: "none",
+              color: "white",
+            }}
+          >
+            View
+          </div>
+        </Link>
+      </div>
     </div>
   );
 }
