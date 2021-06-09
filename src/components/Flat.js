@@ -1,8 +1,13 @@
 import React from "react";
-import { getAbsoluteFlatNum, getFlatNum } from "../utility/functions";
+import {
+  getAbsoluteFlatNum,
+  getFlatNum,
+  isFlatAvailable,
+} from "../utility/functions";
 import { FlatDetails, FloorsDetails } from "./DetailsPanel";
 import Image from "./Image";
 import Label from "./Label";
+import NotAvailable from "./NotAvailable";
 
 function Flat({
   blockId,
@@ -14,7 +19,7 @@ function Flat({
   size,
   type,
 }) {
-  return (
+  return isFlatAvailable(getAbsoluteFlatNum(blockId, floorId, flatId)) ? (
     <div
       style={{
         height: window.innerHeight,
@@ -40,6 +45,8 @@ function Flat({
         type={type}
       />
     </div>
+  ) : (
+    <NotAvailable title={"Flat"} />
   );
 }
 

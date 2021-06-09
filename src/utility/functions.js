@@ -1,4 +1,4 @@
-import { buildings, buildingsArray } from "../data";
+import { buildings, buildingsArray, availableFlats } from "../data";
 
 const getFloorName = (floorNum) => {
   switch (floorNum) {
@@ -102,6 +102,35 @@ const getFlatsOfTypeInFloor = (type = "3 BHK", blockId) => {
   return count;
 };
 
+const isFlatAvailable = (flatNum) => {
+  return availableFlats.indexOf(flatNum) === -1 ? false : true;
+};
+
+const isFloorBooked = (blockId, floorId) => {
+  let lb = getAbsoluteFlatNum(blockId, floorId, "flat1");
+  let ub = getAbsoluteFlatNum(
+    blockId,
+    floorId,
+    "flat" + getTotalFlatsInFloor(blockId)
+  );
+
+  console.log(lb, ub);
+  while (lb <= ub) if (isFlatAvailable(lb++)) return false;
+  return true;
+};
+
+const isBlockBooked = (blockId) => {
+  let lb = getAbsoluteFlatNum(blockId, "floor1", "flat1");
+  let ub = getAbsoluteFlatNum(
+    blockId,
+    "floor12",
+    "flat" + getTotalFlatsInFloor(blockId)
+  );
+
+  while (lb <= ub) if (isFlatAvailable(lb++)) return false;
+  return true;
+};
+
 export {
   getFloorName,
   getFloorNum,
@@ -113,4 +142,7 @@ export {
   getTotalFlatsInFloor,
   getExtreameFlatSizesInBlock,
   getFlatsOfTypeInFloor,
+  isFlatAvailable,
+  isFloorBooked,
+  isBlockBooked,
 };

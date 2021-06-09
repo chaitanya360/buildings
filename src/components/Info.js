@@ -11,12 +11,12 @@ function Info({
   title = "blocka",
   items = ["detail1", "detail2", "detail3"],
   style,
+  isBooked = false,
 }) {
-  console.log(title);
   return (
     <div
       style={{
-        backgroundColor: colors.light_blue,
+        backgroundColor: isBooked ? colors.booked : colors.light_blue,
         paddingInline: "10px",
         paddingBlock: "5px",
         color: "white",
@@ -49,13 +49,17 @@ function Info({
           {title}
         </div>
       </div>
-      <div>
-        {items.map((item) => (
-          <div style={{ margin: "10px 10px" }} key={item}>
-            {item}
-          </div>
-        ))}
-      </div>
+      {isBooked ? (
+        <div>Not Available</div>
+      ) : (
+        <div>
+          {items.map((item) => (
+            <div style={{ margin: "10px 10px" }} key={item}>
+              {item}
+            </div>
+          ))}
+        </div>
+      )}
       <div
         style={{
           display: "flex",
@@ -63,20 +67,22 @@ function Info({
           alignItems: "center",
         }}
       >
-        <Link to={`/block/${title}`}>
-          <div
-            style={{
-              width: "fit-content",
-              backgroundColor: colors.pink,
-              padding: "0px 10px",
-              display: window.innerWidth < 900 ? "block" : "none",
-              textDecoration: "none",
-              color: "white",
-            }}
-          >
-            View
-          </div>
-        </Link>
+        {!isBooked && (
+          <Link to={`/block/${title}`}>
+            <div
+              style={{
+                width: "fit-content",
+                backgroundColor: colors.pink,
+                padding: "0px 10px",
+                display: window.innerWidth < 900 ? "block" : "none",
+                textDecoration: "none",
+                color: "white",
+              }}
+            >
+              View
+            </div>
+          </Link>
+        )}
       </div>
     </div>
   );

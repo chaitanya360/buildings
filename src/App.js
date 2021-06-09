@@ -8,7 +8,8 @@ import Flats from "./components/Flats";
 import { CompareProvider } from "./components/compareContext";
 import { Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
-import { getExtreameFlatSizesInBlock } from "./utility/functions";
+import { isBlockBooked } from "./utility/functions";
+
 const alertOptions = {
   position: "bottom center",
   timeout: 4000,

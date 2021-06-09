@@ -7,7 +7,6 @@ import {
   getAbsoluteFlatNum,
   getBlockName,
   getBlocks,
-  getFlatNum,
   getFloorName,
   getFloorNum,
   getFloors,

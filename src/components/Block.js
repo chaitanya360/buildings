@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Tippy, { useSingleton } from "@tippyjs/react";
 import Info from "./Info";
 import { SingleBuildingDetails } from "./DetailsPanel";
@@ -11,8 +11,14 @@ import {
   getFloorName,
   getFloorNum,
   getTotalFlatsInFloor,
+  isBlockBooked,
+  isFlatAvailable,
+  isFloorBooked,
 } from "../utility/functions";
 import styles from "./components.module.css";
+import { colors } from "../utility";
+import VectorFloor from "./VectorFloor";
+import NotAvailable from "./NotAvailable";
 
 function Block({
   id,
@@ -28,7 +34,9 @@ function Block({
     moveTransition: "transform 0.2s ease-out",
   });
 
-  return (
+  return isBlockBooked(id) ? (
+    <NotAvailable title="Block" />
+  ) : (
     <>
       <Label label={"Block " + getBlockName(id)} />
       <div style={{ height: "100%", bottom: "0" }}>
@@ -46,7 +54,12 @@ function Block({
               xlinkHref={`${process.env.PUBLIC_URL}/images/blocks/${id}.png`}
             />
 
-            <Tippy singleton={source} placement={"left-end"} delay={[100, 0]}>
+            <Tippy
+              singleton={source}
+              placement={"left-end"}
+              delay={[100, 0]}
+              interactive={window.innerWidth < 900 ? true : false}
+            >
               <>
                 {floors.map((floor, index) => (
                   <Tippy
@@ -61,19 +74,13 @@ function Block({
                             " Sq.Ft.",
                           getTotalFlatsInFloor(id) + " Flats",
                         ]}
+                        isBooked={isFloorBooked(id, floor.id)}
                       />
                     }
                     singleton={target}
                     key={index}
                   >
-                    <Link to={`/block/${id}/${floor.id}`}>
-                      <path
-                        className="floor"
-                        id={floor.id}
-                        d={floor.d}
-                        fill="transparent"
-                      />
-                    </Link>
+                    <VectorFloor blockId={id} floorId={floor.id} d={floor.d} />
                   </Tippy>
                 ))}
               </>

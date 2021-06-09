@@ -10,10 +10,13 @@ import {
   getBlockName,
   getExtreameFlatSizesInBlock,
   getTotalFlatsInFloor,
+  isBlockBooked,
 } from "../utility/functions";
+import { colors } from "../utility";
 
 function VectorBlocks(props) {
   const [details, setDetails] = useState(false);
+  const [items, setItems] = useState(false);
 
   const [source, target] = useSingleton({
     delay: 0,
@@ -32,7 +35,16 @@ function VectorBlocks(props) {
             left: "5%",
             padding: "10px 30px",
           }}
-          title={details}
+          title={"Block " + getBlockName(details)}
+          isBooked={isBlockBooked(details)}
+          items={[
+            "3bhk and 2bhks",
+            getExtreameFlatSizesInBlock(details)[0] +
+              " - " +
+              getExtreameFlatSizesInBlock(details)[1] +
+              " Sq.Ft.",
+            getTotalFlatsInFloor(details) * 12 + " Flats",
+          ]}
         />
       )}
       <svg
@@ -43,7 +55,7 @@ function VectorBlocks(props) {
         xmlnsXlink="http://www.w3.org/1999/xlink"
         preserveAspectRatio="xMidYMid slice"
       >
-        <g id="blocks">
+        <g>
           <image
             width="100%"
             xlinkHref={`${process.env.PUBLIC_URL}/images/bg.jpg`}
@@ -70,6 +82,7 @@ function VectorBlocks(props) {
                           " Sq.Ft.",
                         getTotalFlatsInFloor(building.id) * 12 + " Flats",
                       ]}
+                      isBooked={isBlockBooked(building.id)}
                     />
                   }
                   singleton={target}
@@ -81,6 +94,7 @@ function VectorBlocks(props) {
                     d={building.d}
                     key={building.id}
                     handleOnClick={() => setDetails(building.id)}
+                    isBooked={isBlockBooked(building.id)}
                   />
                 </Tippy>
               ))}

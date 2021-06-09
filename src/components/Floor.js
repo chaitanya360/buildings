@@ -9,10 +9,14 @@ import {
   getFlatsOfTypeInFloor,
   getFloorName,
   getFloorNum,
+  isFlatAvailable,
+  isFloorBooked,
 } from "../utility/functions";
 import { Link } from "react-router-dom";
 import styles from "./components.module.css";
 import { buildings } from "../data";
+import VectorFlat from "./VectorFlat";
+import NotAvailable from "./NotAvailable";
 
 function Floor({
   floorId,
@@ -28,7 +32,9 @@ function Floor({
     moveTransition: "transform 0.2s ease-out",
   });
 
-  return (
+  return isFloorBooked(blockId, floorId) ? (
+    <NotAvailable title="Floor" />
+  ) : (
     <>
       <Label label={getFloorName(getFloorNum(floorId))} />
       <div className={styles.floor}>
@@ -58,19 +64,22 @@ function Floor({
                           buildings[blockId].flats[getFlatNum(flat.id) - 1]
                             .size,
                         ]}
+                        isBooked={
+                          !isFlatAvailable(
+                            getAbsoluteFlatNum(blockId, floorId, flat.id)
+                          )
+                        }
                       />
                     }
                     singleton={target}
                     key={index}
                   >
-                    <Link to={`/${blockId}/${floorId}/flat/${index + 1}`}>
-                      <path
-                        className="flat"
-                        id={flat.id}
-                        d={flat.d}
-                        fill="transparent"
-                      />
-                    </Link>
+                    <VectorFlat
+                      blockId={blockId}
+                      floorId={floorId}
+                      floorIndex={index}
+                      flat={flat}
+                    />
                   </Tippy>
                 ))}
               </>

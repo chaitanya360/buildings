@@ -13,27 +13,25 @@ a {
   text-decoration: none;
 }
 
-.floor,
-#blocks path {
-  fill: transparent;
-  fill-opacity: 0;
-  cursor: pointer;
-}
+/* 
 
-#blocks path:hover {
+
+*/
+
+/* #blocks path:hover {
   fill-opacity: 0.2;
   fill: rgb(0, 255, 0);
   stroke: rgba(0, 0, 0, 0.616);
   stroke-width: 2px;
-}
+} */
 
-.floor:hover,
-.flat:hover {
-  fill-opacity: 0.3;
-  fill: rgb(0, 255, 0);
-  stroke: rgba(0, 0, 0, 0.534);
-  stroke-width: 1px;
-}
+/* .floor:hover,
+  .flat:hover {
+    fill-opacity: 0.3;
+    fill: rgb(0, 255, 0);
+    stroke: rgba(0, 0, 0, 0.534);
+    stroke-width: 1px;
+  } */
 
 path:focus {
   outline: none;
