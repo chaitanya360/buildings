@@ -5,6 +5,7 @@ import Block from "./Block";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import NavigationButton from "./NavigationButton";
+import HomeButton from "./HomeButton";
 
 let blocks = [
   buildings.blocka,
@@ -37,14 +38,16 @@ function Blocks({ match }) {
   return (
     <div
       style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL}/images/blocks/bg.jpg`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "100%",
+        background: "rgb(0,134,255)",
+        background:
+          "linear-gradient(180deg, rgba(0,134,255,1) 8%, rgba(246,246,246,1) 85%)",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
       }}
     >
+      <HomeButton />
+
       <Carousel
         // dynamicHeight
         autoPlay={false}

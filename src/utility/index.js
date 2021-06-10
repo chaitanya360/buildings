@@ -3,6 +3,7 @@ let colors = {
   yellow: "#FBBC05",
   blue: "#105ED2",
   pink: "#FF468F",
+  purple: "rgba(179, 7, 179, 0.384)",
   green: "#38A910",
   white: "#FFFFFF",
   light_green: "#52D8BB",

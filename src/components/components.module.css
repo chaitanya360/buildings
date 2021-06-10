@@ -72,7 +72,7 @@
   left: 50%;
   transform: translateX(-50%);
   top: 10px;
-  background-color: rgba(16, 94, 210, 0.835);
+  background-color: #ff468f;
   color: white;
   font-size: 25px;
   padding: 5px 20px;
@@ -118,6 +118,10 @@
 
 .vector_blocks svg {
   width: 100%;
+}
+
+.home_btn:hover {
+  background-color: rgb(139, 55, 69);
 }
 
 /* On screens that are 992px or less, set the background color to blue */
@@ -172,5 +176,9 @@
   .details_wrapper {
     height: 100vh;
     overflow: scroll;
+  }
+
+  .compare_body {
+    padding-bottom: 30px;
   }
 }

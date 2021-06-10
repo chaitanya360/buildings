@@ -114,7 +114,6 @@ const isFloorBooked = (blockId, floorId) => {
     "flat" + getTotalFlatsInFloor(blockId)
   );
 
-  console.log(lb, ub);
   while (lb <= ub) if (isFlatAvailable(lb++)) return false;
   return true;
 };

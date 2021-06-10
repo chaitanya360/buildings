@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import Collapsible from "react-collapsible";
 import { Link } from "react-router-dom";
 import { colors } from "../utility";
-import { getBlockName, getFloorName, getFloorNum } from "../utility/functions";
+import { getBlockName, getFloorNum } from "../utility/functions";
 
 const DropDown = ({ items, text, isFloor, blockId }) => {
   const [open, setOpen] = useState(false);
+
   return (
     <div
       style={{

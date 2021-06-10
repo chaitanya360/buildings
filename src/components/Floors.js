@@ -7,6 +7,7 @@ import NavigationButton from "./NavigationButton";
 import { colors } from "../utility";
 import Floor from "./Floor";
 import { getFloorNum } from "../utility/functions";
+import HomeButton from "./HomeButton";
 
 function Floors({ match }) {
   let floors = buildings[match.params.blockId].floors;
@@ -14,49 +15,53 @@ function Floors({ match }) {
 
   const [openDetails, setOpenDetails] = useState(false);
   return (
-    <div
-      style={{
-        backgroundColor: colors.light_blue,
-      }}
-    >
-      <Carousel
-        // dynamicHeight
-        autoPlay={false}
-        showIndicators={false}
-        showThumbs={false}
-        swipeable={false}
-        centerMode={false}
-        showStatus={false}
-        selectedItem={getFloorNum(match.params.floorId) - 1}
-        renderArrowPrev={(handleClick, hasPrev) => (
-          <NavigationButton
-            prev
-            handleOnClick={handleClick}
-            hasPrev={hasPrev}
-          />
-        )}
-        renderArrowNext={(handleClick, hasNext) => (
-          <NavigationButton
-            next
-            handleOnClick={handleClick}
-            hasNext={hasNext}
-          />
-        )}
+    <>
+      {(!openDetails || window.innerWidth > 900) && <HomeButton />}
+      <div
+        style={{
+          backgroundColor: colors.light_blue,
+        }}
       >
-        {floors.map((floor) => (
-          <Floor
-            blockId={match.params.blockId}
-            floorId={floor.id}
-            floors={buildings[match.params.blockId]}
-            flats={flats}
-            viewBox={"0 0 1500 870"}
-            height="90%"
-            openDetails={openDetails}
-            setOpenDetails={setOpenDetails}
-          />
-        ))}
-      </Carousel>
-    </div>
+        <Carousel
+          // dynamicHeight
+          autoPlay={false}
+          showIndicators={false}
+          showThumbs={false}
+          swipeable={false}
+          centerMode={false}
+          showStatus={false}
+          selectedItem={getFloorNum(match.params.floorId) - 1}
+          renderArrowPrev={(handleClick, hasPrev) => (
+            <NavigationButton
+              prev
+              handleOnClick={handleClick}
+              hasPrev={hasPrev}
+            />
+          )}
+          renderArrowNext={(handleClick, hasNext) => (
+            <NavigationButton
+              next
+              handleOnClick={handleClick}
+              hasNext={hasNext}
+            />
+          )}
+        >
+          {floors.map((floor) => (
+            <Floor
+              blockId={match.params.blockId}
+              floorId={floor.id}
+              floors={buildings[match.params.blockId]}
+              flats={flats}
+              viewBox={"0 0 1500 870"}
+              height="90%"
+              openDetails={openDetails}
+              setOpenDetails={setOpenDetails}
+              key={floor.id}
+            />
+          ))}
+        </Carousel>
+      </div>
+    </>
   );
 }
 

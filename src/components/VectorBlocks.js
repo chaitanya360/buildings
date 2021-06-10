@@ -6,17 +6,16 @@ import { buildingsArray as buildings } from "../data";
 import styles from "./components.module.css";
 import { useState } from "react";
 import { BlocksDetails } from "./DetailsPanel";
+
 import {
   getBlockName,
   getExtreameFlatSizesInBlock,
   getTotalFlatsInFloor,
   isBlockBooked,
 } from "../utility/functions";
-import { colors } from "../utility";
 
 function VectorBlocks(props) {
   const [details, setDetails] = useState(false);
-  const [items, setItems] = useState(false);
 
   const [source, target] = useSingleton({
     delay: 0,
@@ -32,8 +31,8 @@ function VectorBlocks(props) {
           style={{
             position: "absolute",
             top: "10px",
-            left: "5%",
-            padding: "10px 30px",
+            left: "10%",
+            padding: "10px 20px",
           }}
           title={"Block " + getBlockName(details)}
           isBooked={isBlockBooked(details)}

@@ -1,11 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { colors, sizes } from "../utility";
-import {
-  getBlockName,
-  getExtreameFlatSizesInBlock,
-  getTotalFlatsInFloor,
-} from "../utility/functions";
 
 function Info({
   title = "blocka",

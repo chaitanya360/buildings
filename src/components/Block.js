@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Tippy, { useSingleton } from "@tippyjs/react";
 import Info from "./Info";
 import { SingleBuildingDetails } from "./DetailsPanel";
-import { Link } from "react-router-dom";
 import Label from "./Label";
 import {
   getBlockName,
@@ -12,23 +11,24 @@ import {
   getFloorNum,
   getTotalFlatsInFloor,
   isBlockBooked,
-  isFlatAvailable,
   isFloorBooked,
 } from "../utility/functions";
 import styles from "./components.module.css";
-import { colors } from "../utility";
 import VectorFloor from "./VectorFloor";
 import NotAvailable from "./NotAvailable";
+import BuildingInfo from "./BuildingInfo";
 
 function Block({
   id,
   floors,
   viewBox = "0 0 824 1293",
-  height = "90%",
+  height = window.innerWidth < 900 ? "70%" : "90%",
 
   openDetails,
   setOpenDetails,
 }) {
+  const [details, setDetails] = useState(false);
+
   const [source, target] = useSingleton({
     delay: 0,
     moveTransition: "transform 0.2s ease-out",
@@ -40,6 +40,16 @@ function Block({
     <>
       <Label label={"Block " + getBlockName(id)} />
       <div style={{ height: "100%", bottom: "0" }}>
+        {details && !openDetails && (
+          <BuildingInfo
+            title={getFloorName(getFloorNum(details.floorId))}
+            isBooked={false}
+            items={["3bhk and 2bhks", getTotalFlatsInFloor(id) + " Units"]}
+            blockId={id}
+            floorId={details.floorId}
+          />
+        )}
+        {/* <HomeButton /> */}
         <svg
           height={height}
           viewBox={viewBox}
@@ -80,7 +90,14 @@ function Block({
                     singleton={target}
                     key={index}
                   >
-                    <VectorFloor blockId={id} floorId={floor.id} d={floor.d} />
+                    <VectorFloor
+                      blockId={id}
+                      floorId={floor.id}
+                      d={floor.d}
+                      handleOnClick={() => {
+                        setDetails({ floorId: floor.id });
+                      }}
+                    />
                   </Tippy>
                 ))}
               </>
@@ -91,6 +108,7 @@ function Block({
       <SingleBuildingDetails
         blockId={id}
         openDetails={openDetails}
+        setDetails={setDetails}
         setOpenDetails={setOpenDetails}
         units={[
           getFlatsOfTypeInFloor("2 BHK", id),

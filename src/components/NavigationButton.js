@@ -21,40 +21,46 @@ function NavigationButton({
         borderRadius: "30px",
         width: "50px",
         height: "50px",
-        padding: "10px",
+        // padding: "10px",
         position: "absolute",
         top: "90%",
         transform: "translateY(-50%)",
         marginInline: "50px",
         cursor: "pointer",
+
         zIndex: "2",
         display:
           ((prev && hasPrev) || (next && hasNext)) && !compareValues[2]
-            ? "block"
+            ? "flex"
             : "none",
+        justifyContent: "center",
+        alignItems: "center",
+        objectFit: "cover",
       }}
       onClick={handleOnClick}
     >
-      <svg
-        width="100%"
-        height="100%"
-        viewBox="0 0 30 30"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <div>
         {prev && (
-          <path
-            d="M25 13.75H9.7875L16.775 6.7625L15 5L5 15L15 25L16.7625 23.2375L9.7875 16.25H25V13.75Z"
-            fill="white"
-          />
+          <div style={{ height: "100%", transform: "translate(-3px,2px)" }}>
+            <img
+              width="100%"
+              src={`${process.env.PUBLIC_URL}/images/icons/prev.svg`}
+              alt="location icon"
+              height="100%"
+            />
+          </div>
         )}
         {next && (
-          <path
-            d="M15 5L13.2375 6.7625L20.2125 13.75H5V16.25H20.2125L13.2375 23.2375L15 25L25 15L15 5Z"
-            fill="white"
-          />
+          <div style={{ height: "100%", transform: "translate(2px,2px)" }}>
+            <img
+              width="100%"
+              src={`${process.env.PUBLIC_URL}/images/icons/next.svg`}
+              alt="location icon"
+              height="100%"
+            />
+          </div>
         )}
-      </svg>
+      </div>
     </div>
   );
 }

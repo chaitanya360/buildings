@@ -1,7 +1,7 @@
 import React from "react";
 import { buildings } from "../data";
 import { colors, sizes } from "../utility";
-import { getFlatNum } from "../utility/functions";
+import { getAbsoluteFlatNum, getFlatNum } from "../utility/functions";
 import styles from "./components.module.css";
 import Image from "./Image";
 
@@ -101,15 +101,19 @@ const DetailItem = ({ detailKey = "Fruit", value = "Mango" }) => {
 
 const Item = ({
   blockId,
-  flatNum,
+  flatId,
+  floorId,
   details,
   handleRemoveItem = { handleRemoveItem },
 }) => {
   return (
     <div className={styles.compare_item}>
-      <ItemHeader handleRemoveItem={handleRemoveItem} flatNum={flatNum} />
+      <ItemHeader
+        handleRemoveItem={handleRemoveItem}
+        flatNum={getAbsoluteFlatNum(blockId, floorId, flatId)}
+      />
       <div>
-        <Image src={`${blockId}/${flatNum}`} />
+        <Image src={`${blockId}/${getFlatNum(flatId)}`} />
       </div>
       <div
         style={{
@@ -129,7 +133,7 @@ const Item = ({
           Flat Details
         </div>
         {Object.entries(details).map(([key, value]) => (
-          <DetailItem detailKey={key} value={value} />
+          <DetailItem detailKey={key} value={value} key={key} />
         ))}
       </div>
     </div>
@@ -159,8 +163,10 @@ function Compare({ compareItemsIds, setCompareItemsId, setShowCompare }) {
         >
           {compareItemsIds.map((item) => (
             <Item
-              flatNum={getFlatNum(item.flatId)}
+              key={getAbsoluteFlatNum(item.blockId, item.floorId, item.flatId)}
+              flatId={item.flatId}
               blockId={item.blockId}
+              floorId={item.floorId}
               details={
                 buildings[item.blockId].flats[getFlatNum(item.flatId) - 1]
                   .specifications

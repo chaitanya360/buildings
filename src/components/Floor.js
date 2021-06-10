@@ -12,11 +12,11 @@ import {
   isFlatAvailable,
   isFloorBooked,
 } from "../utility/functions";
-import { Link } from "react-router-dom";
 import styles from "./components.module.css";
 import { buildings } from "../data";
 import VectorFlat from "./VectorFlat";
 import NotAvailable from "./NotAvailable";
+import { colors } from "../utility";
 
 function Floor({
   floorId,
@@ -37,7 +37,7 @@ function Floor({
   ) : (
     <>
       <Label label={getFloorName(getFloorNum(floorId))} />
-      <div className={styles.floor}>
+      <div className={styles.floor} style={{ backgroundColor: colors.purple }}>
         <svg
           height={height}
           viewBox={viewBox}

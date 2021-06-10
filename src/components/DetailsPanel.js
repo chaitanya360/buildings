@@ -18,7 +18,8 @@ import DetailsButton from "./DetailsButton";
 import DropDown from "./DropDown";
 import { useAlert } from "react-alert";
 
-const ButtonTrigger = ({ show, setShowDetails, onClick }) => {
+const ButtonTrigger = ({ show, setShowDetails, onClick, setDetails }) => {
+  !show && setDetails && setDetails(false);
   return (
     <div onClick={onClick}>
       <div
@@ -122,6 +123,7 @@ const AppartmentsItem = ({ bhk = "3", units = false, size = false }) => {
         borderBottom: "2px solid white",
         textAlign: "left",
         fontWeight: 300,
+        fontSize: sizes.medium,
       }}
     >
       <div>
@@ -158,6 +160,7 @@ const FlatDetailsItem = ({ size = "1234 Sq.ft", type = "13bhk" }) => {
         textAlign: "left",
         fontWeight: 400,
         display: "flex",
+        fontSize: sizes.medium,
       }}
     >
       <div>
@@ -195,6 +198,7 @@ const SpecificationsItem = ({
               display: "flex",
               justifyContent: "space-between",
             }}
+            key={key}
           >
             <span style={{ flex: 1 }}>{key}</span>
             <span style={{ flex: 1 }}>{value}</span>
@@ -287,15 +291,26 @@ function SingleBuildingDetails({
   openDetails,
   setOpenDetails,
   units = [23, 23],
+  setDetails,
 }) {
-  let blocks = getBlocks()
-    .map((block) => block.id)
-    .filter((block) => block !== blockId);
+  let blocks = getBlocks().map((block) => block.id);
+  // .filter((block) => block !== blockId);
   return (
     <div className={styles.collapsible_wrapper}>
       <Collapsible
-        trigger={<ButtonTrigger show setShowDetails={setOpenDetails} />}
-        triggerWhenOpen={<ButtonTrigger setShowDetails={setOpenDetails} />}
+        trigger={
+          <ButtonTrigger
+            show
+            setShowDetails={setOpenDetails}
+            setDetails={setDetails}
+          />
+        }
+        triggerWhenOpen={
+          <ButtonTrigger
+            setShowDetails={setOpenDetails}
+            setDetails={setDetails}
+          />
+        }
         open={openDetails}
         allowFullScreen={false}
       >
@@ -322,12 +337,10 @@ const FloorsDetails = ({
 }) => {
   const floorNum = getFloorNum(floorId);
 
-  const blocks = getBlocks()
-    .map((block) => block.id)
-    .filter((block) => block !== blockId);
-  const floors = getFloors(blockId)
-    .map((floor) => floor.id)
-    .filter((floor) => floor !== floorId);
+  const blocks = getBlocks().map((block) => block.id);
+  // .filter((block) => block !== blockId);
+  const floors = getFloors(blockId).map((floor) => floor.id);
+  // .filter((floor) => floor !== floorId);
 
   return (
     <div className={styles.collapsible_wrapper}>
@@ -365,6 +378,7 @@ const FlatDetails = ({
   specifications,
   size,
   type,
+  setShowHomeBtn,
 }) => {
   const alert = useAlert();
   const floorNum = getFloorNum(floorId);
@@ -372,12 +386,10 @@ const FlatDetails = ({
   const [compareItemsIds, setCompareItemsId, showCompare, setShowCompare] =
     useContext(compareContext);
 
-  const blocks = getBlocks()
-    .map((block) => block.id)
-    .filter((block) => block !== blockId);
-  const floors = getFloors(blockId)
-    .map((floor) => floor.id)
-    .filter((floor) => floor !== floorId);
+  const blocks = getBlocks().map((block) => block.id);
+  // .filter((block) => block !== blockId);
+  const floors = getFloors(blockId).map((floor) => floor.id);
+  // .filter((floor) => floor !== floorId);
 
   const handleAddToCompare = () => {
     let newFlat = true;
@@ -390,7 +402,7 @@ const FlatDetails = ({
     });
     if (newFlat) {
       if (compareItemsIds.length < 4) {
-        setCompareItemsId([...compareItemsIds, { flatId, blockId }]);
+        setCompareItemsId([...compareItemsIds, { flatId, blockId, floorId }]);
         alert.show("flat is added for comparison");
       } else alert.show("selected maximum number of flats, press compare");
     }
@@ -400,6 +412,8 @@ const FlatDetails = ({
     if (compareItemsIds.length > 1) setShowCompare(true);
     else alert.show("select at least 2 flats");
   };
+
+  showCompare ? setShowHomeBtn(false) : setShowHomeBtn(true);
 
   return (
     <>

@@ -8,7 +8,10 @@ import Flats from "./components/Flats";
 import { CompareProvider } from "./components/compareContext";
 import { Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
-import { isBlockBooked } from "./utility/functions";
+import { setBookedFlats } from "./data";
+import { useEffect } from "react";
+import { db } from "./firebase_config";
+import VirtualTour from "./components/VirtualTour";
 
 const alertOptions = {
   position: "bottom center",
@@ -18,6 +21,26 @@ const alertOptions = {
 };
 
 function App() {
+  useEffect(() => {
+    // Retriving the flats information from db
+
+    db.collection("BookedFlats")
+      .get()
+      .then((snap) => {
+        snap.forEach((value) => {
+          const data = value.data();
+          if (data) {
+            const flats = [];
+            Object.keys(data).forEach(function (key) {
+              if (data[key]) flats.push(parseInt(key));
+            });
+            setBookedFlats(flats);
+          }
+        });
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
   return (
     <div>
       <AlertProvider template={AlertTemplate} {...alertOptions}>
@@ -26,11 +49,12 @@ function App() {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route
-                path="/:blockId/:floorId/flat/:flatId"
-                component={Flats}
-              ></Route>
-              <Route path="/block/:blockId/:floorId" component={Floors}></Route>
-              <Route path="/block/:id" component={Blocks}></Route>
+                path="/:blockId/:floorId/:flatId/virtual_tour"
+                component={VirtualTour}
+              />
+              <Route path="/:blockId/:floorId/flat/:flatId" component={Flats} />
+              <Route path="/block/:blockId/:floorId" component={Floors} />
+              <Route path="/block/:id" component={Blocks} />
             </Switch>
           </Router>
         </CompareProvider>

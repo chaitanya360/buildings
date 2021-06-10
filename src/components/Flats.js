@@ -6,6 +6,7 @@ import { Carousel } from "react-responsive-carousel";
 import NavigationButton from "./NavigationButton";
 import { colors } from "../utility";
 import Flat from "./Flat";
+import HomeButton from "./HomeButton";
 
 function Flats({ match }) {
   const flats = buildings[match.params.blockId].flats;
@@ -17,12 +18,17 @@ function Flats({ match }) {
     window.innerWidth < 900 ? false : true
   );
 
+  const [showHomeBtn, setShowHomeBtn] = useState(true);
+
   return (
     <div
       style={{
         backgroundColor: colors.light_blue,
       }}
     >
+      {(!openDetails || window.innerWidth > 900) && showHomeBtn && (
+        <HomeButton />
+      )}
       <Carousel
         // dynamicHeight
         autoPlay={false}
@@ -57,6 +63,8 @@ function Flats({ match }) {
             specifications={flat.specifications}
             size={flat.size}
             type={flat.type}
+            key={flat.id}
+            setShowHomeBtn={setShowHomeBtn}
           />
         ))}
       </Carousel>
