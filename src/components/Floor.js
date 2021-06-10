@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Tippy, { useSingleton } from "@tippyjs/react";
 import Info from "./Info";
 import { FloorsDetails } from "./DetailsPanel";
@@ -17,6 +17,7 @@ import { buildings } from "../data";
 import VectorFlat from "./VectorFlat";
 import NotAvailable from "./NotAvailable";
 import { colors } from "../utility";
+import Loading from "./Loading";
 
 function Floor({
   floorId,
@@ -32,10 +33,13 @@ function Floor({
     moveTransition: "transform 0.2s ease-out",
   });
 
+  const [loading, setLoading] = useState(true);
+
   return isFloorBooked(blockId, floorId) ? (
     <NotAvailable title="Floor" />
   ) : (
     <>
+      {loading && <Loading />}
       <Label label={getFloorName(getFloorNum(floorId))} />
       <div className={styles.floor} style={{ backgroundColor: colors.purple }}>
         <svg
@@ -44,11 +48,14 @@ function Floor({
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"
+          display={loading ? "none" : "default"}
         >
           <g id="blocka">
             <image
               width="100%"
               xlinkHref={`${process.env.PUBLIC_URL}/images/floors/${blockId}.png`}
+              onLoad={() => setLoading(false)}
+              visibility={loading ? "hidden" : "visible"}
             />
 
             <Tippy singleton={source} placement={"left-end"} delay={[100, 0]}>

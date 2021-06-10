@@ -17,6 +17,7 @@ import styles from "./components.module.css";
 import VectorFloor from "./VectorFloor";
 import NotAvailable from "./NotAvailable";
 import BuildingInfo from "./BuildingInfo";
+import Loading from "./Loading";
 
 function Block({
   id,
@@ -28,7 +29,7 @@ function Block({
   setOpenDetails,
 }) {
   const [details, setDetails] = useState(false);
-
+  const [loading, setLoading] = useState(true);
   const [source, target] = useSingleton({
     delay: 0,
     moveTransition: "transform 0.2s ease-out",
@@ -39,6 +40,7 @@ function Block({
   ) : (
     <>
       <Label label={"Block " + getBlockName(id)} />
+      {loading && <Loading />}
       <div style={{ height: "100%", bottom: "0" }}>
         {details && !openDetails && (
           <BuildingInfo
@@ -57,11 +59,14 @@ function Block({
           xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"
           className={styles.block}
+          display={loading ? "none" : "default"}
         >
           <g id="Block">
             <image
               width="100%"
               xlinkHref={`${process.env.PUBLIC_URL}/images/blocks/${id}.png`}
+              onLoad={() => setLoading(false)}
+              visibility={loading ? "hidden" : "visible"}
             />
 
             <Tippy

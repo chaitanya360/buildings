@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { colors } from "../utility";
 import {
   getAbsoluteFlatNum,
@@ -8,6 +8,7 @@ import {
 import { FlatDetails } from "./DetailsPanel";
 import Image from "./Image";
 import Label from "./Label";
+import Loading from "./Loading";
 import NotAvailable from "./NotAvailable";
 import VirtualTourButton from "./VirtualTourButton";
 
@@ -22,6 +23,8 @@ function Flat({
   type,
   setShowHomeBtn,
 }) {
+  const [loading, setLoading] = useState(true);
+
   return isFlatAvailable(getAbsoluteFlatNum(blockId, floorId, flatId)) ? (
     <>
       <div
@@ -33,10 +36,13 @@ function Flat({
           backgroundColor: colors.purple,
         }}
       >
+        {loading && <Loading />}
         <Label label={"Flat " + getAbsoluteFlatNum(blockId, floorId, flatId)} />
         <Image
           src={`${blockId}/${getFlatNum(flatId)}`}
           style={{ padding: "10%" }}
+          onLoad={() => setLoading(false)}
+          visibility={loading ? "hidden" : "visible"}
         />
         {(!showDetails || window.innerWidth > 900) && (
           <VirtualTourButton

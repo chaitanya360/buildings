@@ -1,6 +1,6 @@
 import React from "react";
 
-const Image = ({ src, style }) => {
+const Image = ({ src, onLoad, style }) => {
   return (
     <div
       style={{
@@ -17,6 +17,7 @@ const Image = ({ src, style }) => {
         height="100%"
         src={`${process.env.PUBLIC_URL}/images/flats/${src}.png`}
         alt="flat plan"
+        onLoad={onLoad}
       />
     </div>
   );

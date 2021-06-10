@@ -14,8 +14,12 @@ import {
   isBlockBooked,
 } from "../utility/functions";
 
+import Loading from "./Loading";
+
 function VectorBlocks(props) {
   const [details, setDetails] = useState(false);
+
+  const [loading, setLoading] = useState(true);
 
   const [source, target] = useSingleton({
     delay: 0,
@@ -25,7 +29,7 @@ function VectorBlocks(props) {
   return (
     <div className={styles.vector_blocks}>
       <BlocksDetails onClick={() => setDetails(false)} />
-
+      {loading && <Loading />}
       {details && (
         <Info
           style={{
@@ -53,13 +57,17 @@ function VectorBlocks(props) {
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         preserveAspectRatio="xMidYMid slice"
+        display={loading ? "none" : "default"}
       >
         <g>
           <image
             width="100%"
             xlinkHref={`${process.env.PUBLIC_URL}/images/bg.jpg`}
             onClick={() => setDetails(false)}
+            onLoad={() => setLoading(false)}
+            visibility={loading ? "hidden" : "visible"}
           />
+
           <Tippy
             singleton={source}
             placement={window.innerWidth < 900 ? "top-start" : "left-start"}
