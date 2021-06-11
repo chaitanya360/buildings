@@ -11,6 +11,7 @@ function NotAvailable({ title }) {
         height: "100vh",
         display: "block",
         color: "white",
+        paddingTop: "100px",
         fontSize: sizes.large,
       }}
     >

@@ -33,6 +33,8 @@ function Floor({
     moveTransition: "transform 0.2s ease-out",
   });
 
+  const [details, setDetails] = useState(false);
+
   const [loading, setLoading] = useState(true);
 
   return isFloorBooked(blockId, floorId) ? (
@@ -42,6 +44,28 @@ function Floor({
       {loading && <Loading />}
       <Label label={getFloorName(getFloorNum(floorId))} />
       <div className={styles.floor} style={{ backgroundColor: colors.purple }}>
+        {details && !openDetails && (
+          <Info
+            style={{
+              position: "absolute",
+              top: "10vh",
+              left: "10px",
+              zIndex: "999",
+            }}
+            title={getAbsoluteFlatNum(blockId, floorId, details.id)}
+            items={[
+              buildings[blockId].flats[getFlatNum(details.id) - 1].type,
+              buildings[blockId].flats[getFlatNum(details.id) - 1].size,
+            ]}
+            isBooked={
+              !isFlatAvailable(getAbsoluteFlatNum(blockId, floorId, details.id))
+            }
+            blockId={blockId}
+            floorId={floorId}
+            flatId={details.id}
+            isFlat
+          />
+        )}
         <svg
           height={height}
           viewBox={viewBox}
@@ -58,7 +82,12 @@ function Floor({
               visibility={loading ? "hidden" : "visible"}
             />
 
-            <Tippy singleton={source} placement={"left-end"} delay={[100, 0]}>
+            <Tippy
+              singleton={source}
+              placement={"left-end"}
+              delay={[100, 0]}
+              interactive={window.innerWidth < 900}
+            >
               <>
                 {flats.map((flat, index) => (
                   <Tippy
@@ -86,6 +115,9 @@ function Floor({
                       floorId={floorId}
                       floorIndex={index}
                       flat={flat}
+                      handleOnClick={() => {
+                        setDetails({ id: flat.id });
+                      }}
                     />
                   </Tippy>
                 ))}
@@ -103,6 +135,7 @@ function Floor({
         blockId={blockId}
         openDetails={openDetails}
         setOpenDetails={setOpenDetails}
+        setDetails={setDetails}
       />
     </>
   );

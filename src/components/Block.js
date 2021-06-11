@@ -24,7 +24,6 @@ function Block({
   floors,
   viewBox = "0 0 824 1293",
   height = window.innerWidth < 900 ? "70%" : "90%",
-
   openDetails,
   setOpenDetails,
 }) {

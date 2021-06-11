@@ -36,7 +36,7 @@ function Flats({ match }) {
         showThumbs={false}
         centerMode={false}
         showStatus={false}
-        swipeable={false}
+        swipeable={showHomeBtn}
         selectedItem={flatId - 1}
         renderArrowPrev={(handleClick, hasPrev) => (
           <NavigationButton

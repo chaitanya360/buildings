@@ -27,7 +27,7 @@ function Floors({ match }) {
           autoPlay={false}
           showIndicators={false}
           showThumbs={false}
-          swipeable={false}
+          // swipeable={false}
           centerMode={false}
           showStatus={false}
           selectedItem={getFloorNum(match.params.floorId) - 1}

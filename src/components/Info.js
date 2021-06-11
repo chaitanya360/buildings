@@ -1,12 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { colors, sizes } from "../utility";
+import { getFlatNum } from "../utility/functions";
 
 function Info({
   title = "blocka",
   items = ["detail1", "detail2", "detail3"],
   style,
   isBooked = false,
+  isFlat = false,
+  blockId,
+  floorId,
+  flatId,
 }) {
   return (
     <div
@@ -30,18 +35,20 @@ function Info({
           paddingRight: "50px",
         }}
       >
-        <img
-          width="15px"
-          src={`${process.env.PUBLIC_URL}/images/icons/location.svg`}
-          alt="location icon"
-        />
+        {!isFlat && (
+          <img
+            width="15px"
+            src={`${process.env.PUBLIC_URL}/images/icons/location.svg`}
+            alt="location icon"
+          />
+        )}
         <div
           style={{
             fontSize: sizes.medium,
             marginInline: "10px",
           }}
         >
-          {title}
+          {isFlat && "Flat"} {" " + title}
         </div>
       </div>
       {isBooked ? (
@@ -63,7 +70,13 @@ function Info({
         }}
       >
         {!isBooked && (
-          <Link to={`/block/${title}`}>
+          <Link
+            to={
+              isFlat
+                ? `/${blockId}/${floorId}/flat/${getFlatNum(flatId)}`
+                : `/block/${title}`
+            }
+          >
             <div
               style={{
                 width: "fit-content",

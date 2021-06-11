@@ -46,7 +46,7 @@ function Blocks({ match }) {
         justifyContent: "center",
       }}
     >
-      <HomeButton />
+      {!openDetails && <HomeButton />}
 
       <Carousel
         // dynamicHeight
@@ -54,7 +54,7 @@ function Blocks({ match }) {
         showIndicators={false}
         showThumbs={false}
         centerMode={false}
-        swipeable={false}
+        // swipeable={false}
         showStatus={false}
         selectedItem={getIndex(match.params.id)}
         renderArrowPrev={(handleClick, hasPrev) => (

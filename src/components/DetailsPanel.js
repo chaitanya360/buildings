@@ -43,7 +43,7 @@ const ButtonTrigger = ({ show, setShowDetails, onClick, setDetails }) => {
 
 const Features = ({ value, name }) => {
   return (
-    <div>
+    <div style={{ textAlign: "center" }}>
       <div>{value}</div>
       <div style={{ color: colors.font_light }}>{name}</div>
     </div>
@@ -252,10 +252,24 @@ function BuildingsDetails({ onClick }) {
                 />
               </span>
               <span style={{ margin: "20px" }}>
-                Your, Beutiful, Address Here.
+                Bachupally, Hyderabad, Telangana
               </span>
             </h3>
-            <h3 style={{ color: colors.pink, fontWeight: 400 }}>View Map</h3>
+            <a
+              href="https://www.google.com/maps?q=17.544620513916016,78.3711929321289&z=17&hl=en"
+              style={{ textDecoration: "none" }}
+              target="_blank"
+            >
+              <h3
+                style={{
+                  color: colors.pink,
+                  fontWeight: 500,
+                  textAlign: "center",
+                }}
+              >
+                View Map
+              </h3>
+            </a>
           </div>
           <div style={{ margin: "30px 0px" }}>
             <h1
@@ -277,7 +291,7 @@ function BuildingsDetails({ onClick }) {
             }}
           >
             <Features value="5" name={"towers"} />
-            <Features value="60" name={"Floors"} />
+            <Features value="12" name={"Floors Each"} />
             <Features value="444" name={"Flats"} />
           </div>
         </div>
@@ -334,6 +348,7 @@ const FloorsDetails = ({
   openDetails,
   setOpenDetails,
   units,
+  setDetails,
 }) => {
   const floorNum = getFloorNum(floorId);
 
@@ -341,7 +356,7 @@ const FloorsDetails = ({
   // .filter((block) => block !== blockId);
   const floors = getFloors(blockId).map((floor) => floor.id);
   // .filter((floor) => floor !== floorId);
-
+  openDetails && setDetails(false);
   return (
     <div className={styles.collapsible_wrapper}>
       <Collapsible
