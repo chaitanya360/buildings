@@ -10,6 +10,7 @@ function NavigationButton({
   hasPrev = false,
   right = "0",
   left = "0",
+  isBlocks = false,
 }) {
   const compareValues = useContext(compareContext);
   return (
@@ -23,9 +24,9 @@ function NavigationButton({
         height: "50px",
         // padding: "10px",
         position: "absolute",
-        top: "90%",
+        top: isBlocks ? "20%" : "90%",
         transform: "translateY(-50%)",
-        marginInline: "50px",
+        marginInline: isBlocks ? "10px" : "50px",
         cursor: "pointer",
 
         zIndex: "2",

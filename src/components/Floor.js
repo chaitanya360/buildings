@@ -16,7 +16,6 @@ import styles from "./components.module.css";
 import { buildings } from "../data";
 import VectorFlat from "./VectorFlat";
 import NotAvailable from "./NotAvailable";
-import { colors } from "../utility";
 import Loading from "./Loading";
 
 function Floor({
@@ -36,26 +35,30 @@ function Floor({
   const [details, setDetails] = useState(false);
 
   const [loading, setLoading] = useState(true);
-
+  console.log(floorId);
   return isFloorBooked(blockId, floorId) ? (
     <NotAvailable title="Floor" />
   ) : (
     <>
       {loading && <Loading />}
-      <Label label={getFloorName(getFloorNum(floorId))} />
-      <div className={styles.floor} style={{ backgroundColor: colors.purple }}>
+      <Label label={getFloorName(getFloorNum(floorId))} blockId={blockId} />
+      <div className={styles.floor} style={{ backgroundColor: "#fcac5d" }}>
         {details && !openDetails && (
           <Info
             style={{
               position: "absolute",
-              top: "10vh",
+              top: "12vh",
               left: "10px",
               zIndex: "999",
             }}
             title={getAbsoluteFlatNum(blockId, floorId, details.id)}
             items={[
               buildings[blockId].flats[getFlatNum(details.id) - 1].type,
-              buildings[blockId].flats[getFlatNum(details.id) - 1].size,
+
+              floorId === "floor1"
+                ? buildings[blockId].flats[getFlatNum(details.id) - 1].size
+                : buildings[blockId].flats[getFlatNum(details.id) - 1]
+                    .typicalSize,
             ]}
             isBooked={
               !isFlatAvailable(getAbsoluteFlatNum(blockId, floorId, details.id))
@@ -97,8 +100,11 @@ function Floor({
                         items={[
                           buildings[blockId].flats[getFlatNum(flat.id) - 1]
                             .type,
-                          buildings[blockId].flats[getFlatNum(flat.id) - 1]
-                            .size,
+                          floorId === "floor1"
+                            ? buildings[blockId].flats[getFlatNum(flat.id) - 1]
+                                .size
+                            : buildings[blockId].flats[getFlatNum(flat.id) - 1]
+                                .typicalSize,
                         ]}
                         isBooked={
                           !isFlatAvailable(

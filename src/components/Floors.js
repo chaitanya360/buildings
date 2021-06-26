@@ -4,7 +4,6 @@ import { buildings } from "../data";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import NavigationButton from "./NavigationButton";
-import { colors } from "../utility";
 import Floor from "./Floor";
 import { getFloorNum } from "../utility/functions";
 import HomeButton from "./HomeButton";
@@ -17,17 +16,13 @@ function Floors({ match }) {
   return (
     <>
       {(!openDetails || window.innerWidth > 900) && <HomeButton />}
-      <div
-        style={{
-          backgroundColor: colors.light_blue,
-        }}
-      >
+      <div>
         <Carousel
           // dynamicHeight
           autoPlay={false}
           showIndicators={false}
           showThumbs={false}
-          // swipeable={false}
+          swipeable={false}
           centerMode={false}
           showStatus={false}
           selectedItem={getFloorNum(match.params.floorId) - 1}

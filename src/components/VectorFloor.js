@@ -29,6 +29,7 @@ const VectorFloor = forwardRef(
           }
           onMouseLeave={() => setHoverColor("transparent")}
           fill={hoverColor}
+          stroke={hoverColor !== "transparent" && "black"}
           onClick={
             isFloorBooked(blockId, floorId)
               ? () => alert.show("Floor is not available")

@@ -46,7 +46,7 @@ function Blocks({ match }) {
         justifyContent: "center",
       }}
     >
-      {!openDetails && <HomeButton />}
+      {(!openDetails || window.innerWidth > 900) && <HomeButton />}
 
       <Carousel
         // dynamicHeight
@@ -54,7 +54,7 @@ function Blocks({ match }) {
         showIndicators={false}
         showThumbs={false}
         centerMode={false}
-        // swipeable={false}
+        swipeable={false}
         showStatus={false}
         selectedItem={getIndex(match.params.id)}
         renderArrowPrev={(handleClick, hasPrev) => (
@@ -62,6 +62,7 @@ function Blocks({ match }) {
             prev
             handleOnClick={handleClick}
             hasPrev={hasPrev}
+            isBlocks={window.innerWidth < 900 && !openDetails}
           />
         )}
         renderArrowNext={(handleClick, hasNext) => (
@@ -69,6 +70,7 @@ function Blocks({ match }) {
             next
             handleOnClick={handleClick}
             hasNext={hasNext}
+            isBlocks={window.innerWidth < 900 && !openDetails}
           />
         )}
       >

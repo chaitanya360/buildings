@@ -1,4 +1,9 @@
-import { buildings, buildingsArray, availableFlats } from "../data";
+import {
+  buildings,
+  buildingsArray,
+  availableFlats,
+  underConstructionBlocks,
+} from "../data";
 
 const getFloorName = (floorNum) => {
   switch (floorNum) {
@@ -88,8 +93,8 @@ const getExtreameFlatSizesInBlock = (blockId) => {
       smallestSize = parseInt(flat.size.substr(0, 4));
     }
 
-    if (parseInt(flat.size.substr(0, 4)) > biggestFlatSizeInBlock) {
-      biggestFlatSizeInBlock = parseInt(flat.size.substr(0, 4));
+    if (parseInt(flat.typicalSize.substr(0, 4)) > biggestFlatSizeInBlock) {
+      biggestFlatSizeInBlock = parseInt(flat.typicalSize.substr(0, 4));
     }
   });
 
@@ -100,6 +105,10 @@ const getFlatsOfTypeInFloor = (type = "3 BHK", blockId) => {
   let count = 0;
   buildings[blockId].flats.forEach((flat) => flat.type === type && count++);
   return count;
+};
+
+const isBlockUnderConstruction = (blockId) => {
+  return underConstructionBlocks.indexOf(blockId) !== -1;
 };
 
 const isFlatAvailable = (flatNum) => {
@@ -144,4 +153,5 @@ export {
   isFlatAvailable,
   isFloorBooked,
   isBlockBooked,
+  isBlockUnderConstruction,
 };

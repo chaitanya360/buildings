@@ -31,10 +31,13 @@ const ButtonTrigger = ({ show, setShowDetails, onClick, setDetails }) => {
         <img
           width="100%"
           height="100%"
-          src={`${process.env.PUBLIC_URL}/images/icons/${
-            show ? "down_arrow" : "up_arrow"
-          }.svg`}
+          src={`${process.env.PUBLIC_URL}/images/icons/${"up_arrow"}.svg`}
           alt="location icon"
+          style={{
+            transformOrigin: "center",
+            transform: show && "rotate(180deg)",
+            transition: "transform 0.5s",
+          }}
         />
       </div>
     </div>
@@ -43,7 +46,7 @@ const ButtonTrigger = ({ show, setShowDetails, onClick, setDetails }) => {
 
 const Features = ({ value, name }) => {
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: "center", marginInline: "15px" }}>
       <div>{value}</div>
       <div style={{ color: colors.font_light }}>{name}</div>
     </div>
@@ -225,63 +228,66 @@ function BuildingsDetails({ onClick }) {
         open={showDetails}
       >
         <div
-          style={{
-            backgroundColor: colors.light_blue,
-            padding: "40px 40px",
-            color: "white",
-            fontWeight: 400,
-          }}
+          style={{ backgroundColor: colors.light_blue, paddingBottom: "40px" }}
         >
-          <h2
+          <div
             style={{
-              borderBottom: "2px solid white",
+              padding: "40px 40px 0px 40px",
+              color: "white",
               fontWeight: 400,
-              paddingBottom: "20px",
             }}
           >
-            2 and 3 BHK Premium High-Rise Gated Community Appartments
-          </h2>
-          <div style={{ margin: "40px 0px", fontWeight: 400 }}>
-            <h3 style={{ fontWeight: 400, display: "flex" }}>
-              <span>
-                <img
-                  width="15px"
-                  height="100%"
-                  src={`${process.env.PUBLIC_URL}/images/icons/location.svg`}
-                  alt="location icon"
-                />
-              </span>
-              <span style={{ margin: "20px" }}>
-                Bachupally, Hyderabad, Telangana
-              </span>
-            </h3>
-            <a
-              href="https://www.google.com/maps?q=17.544620513916016,78.3711929321289&z=17&hl=en"
-              style={{ textDecoration: "none" }}
-              target="_blank"
-            >
-              <h3
-                style={{
-                  color: colors.pink,
-                  fontWeight: 500,
-                  textAlign: "center",
-                }}
-              >
-                View Map
-              </h3>
-            </a>
-          </div>
-          <div style={{ margin: "30px 0px" }}>
-            <h1
+            <h2
               style={{
-                borderLeft: "5px solid",
-                borderColor: colors.pink,
-                paddingLeft: "20px",
-                fontWeight: 500,
+                borderBottom: "2px solid white",
+                fontWeight: 400,
+                paddingBottom: "20px",
               }}
             >
-              We Bring you
-            </h1>
+              2, 3 and 3.5 BHK Premium Apartments
+            </h2>
+            <div style={{ margin: "40px 0px", fontWeight: 400 }}>
+              <h3 style={{ fontWeight: 400, display: "flex" }}>
+                <span>
+                  <img
+                    width="15px"
+                    height="100%"
+                    src={`${process.env.PUBLIC_URL}/images/icons/location.svg`}
+                    alt="location icon"
+                  />
+                </span>
+                <span style={{ margin: "20px" }}>
+                  Bachupally, Hyderabad, Telangana
+                </span>
+              </h3>
+              <a
+                href="https://www.google.com/maps?q=17.544620513916016,78.3711929321289&z=17&hl=en"
+                style={{ textDecoration: "none" }}
+                target="_blank"
+              >
+                <h3
+                  style={{
+                    color: colors.pink,
+                    fontWeight: 500,
+                    textAlign: "center",
+                  }}
+                >
+                  View Map
+                </h3>
+              </a>
+            </div>
+            <div style={{ margin: "30px 0px" }}>
+              <h1
+                style={{
+                  borderLeft: "5px solid",
+                  borderColor: colors.pink,
+                  paddingLeft: "20px",
+                  fontWeight: 500,
+                }}
+              >
+                We Bring you
+              </h1>
+            </div>
           </div>
           <div
             style={{
@@ -290,9 +296,10 @@ function BuildingsDetails({ onClick }) {
               justifyContent: "space-between",
             }}
           >
-            <Features value="5" name={"towers"} />
-            <Features value="12" name={"Floors Each"} />
+            <Features value="5" name={"Towers"} />
+            <Features value="12" name={"Floors"} />
             <Features value="444" name={"Flats"} />
+            <Features value="30,000 Sq.ft." name={"Clubhouse"} />
           </div>
         </div>
       </Collapsible>

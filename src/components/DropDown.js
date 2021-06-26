@@ -4,6 +4,24 @@ import { Link } from "react-router-dom";
 import { colors } from "../utility";
 import { getBlockName, getFloorNum } from "../utility/functions";
 
+const Icon = ({ open = false }) => {
+  return (
+    <img
+      width="100%"
+      height="100%"
+      src={`${process.env.PUBLIC_URL}/images/icons/${"up_arrow"}.svg`}
+      alt="location icon"
+      style={{
+        transformOrigin: "center",
+
+        transition: "transform 0.5s",
+        margin: "5px",
+        transform: open && "rotate(180deg)",
+      }}
+    />
+  );
+};
+
 const DropDown = ({ items, text, isFloor, blockId }) => {
   const [open, setOpen] = useState(false);
 
@@ -28,13 +46,7 @@ const DropDown = ({ items, text, isFloor, blockId }) => {
             }}
           >
             {text}
-            <img
-              width="100%"
-              height="100%"
-              src={`${process.env.PUBLIC_URL}/images/icons/${"down_arrow"}.svg`}
-              alt="location icon"
-              style={{ margin: "5px", cursor: "pointer" }}
-            />
+            <Icon open />
           </span>
         }
         autoFocus
@@ -52,13 +64,7 @@ const DropDown = ({ items, text, isFloor, blockId }) => {
           >
             {text}
 
-            <img
-              width="100%"
-              height="100%"
-              src={`${process.env.PUBLIC_URL}/images/icons/${"up_arrow"}.svg`}
-              alt="location icon"
-              style={{ margin: "5px" }}
-            />
+            <Icon />
           </span>
         }
         open={open}

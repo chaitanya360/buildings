@@ -21,7 +21,7 @@ function VirtualTourButton({
           transform: "translate(-50%)",
 
           position: "absolute",
-          top: "90%",
+          top: "87%",
           zIndex: "2",
           borderRadius: "5px",
           fontSize: sizes.regular,

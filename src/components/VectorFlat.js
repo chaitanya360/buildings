@@ -31,6 +31,7 @@ const VectorFlat = forwardRef(
           }
           onMouseLeave={() => setHoverColor("transparent")}
           fill={hoverColor}
+          stroke={hoverColor !== "transparent" && "black"}
           onClick={
             !isFlatAvailable(getAbsoluteFlatNum(blockId, floorId, flat.id))
               ? () => alert.show("Flat is not available")

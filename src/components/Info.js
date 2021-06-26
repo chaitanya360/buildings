@@ -12,6 +12,7 @@ function Info({
   blockId,
   floorId,
   flatId,
+  isUnderConstruction,
 }) {
   return (
     <div
@@ -22,7 +23,7 @@ function Info({
         color: "white",
         display: window.innerWidth < 900 && !title ? "none" : "block",
         borderRadius: "3px",
-        transform: "translateX(10%)",
+        transform: "translateX(2%)",
         ...style,
       }}
     >
@@ -53,7 +54,7 @@ function Info({
       </div>
       {isBooked ? (
         <div>Not Available</div>
-      ) : (
+      ) : !isUnderConstruction ? (
         <div>
           {items.map((item) => (
             <div style={{ margin: "10px 10px" }} key={item}>
@@ -61,6 +62,8 @@ function Info({
             </div>
           ))}
         </div>
+      ) : (
+        <div style={{ padding: "10px" }}>Not Open for Sale</div>
       )}
       <div
         style={{
@@ -74,7 +77,7 @@ function Info({
             to={
               isFlat
                 ? `/${blockId}/${floorId}/flat/${getFlatNum(flatId)}`
-                : `/block/${title}`
+                : `/block/${blockId}`
             }
           >
             <div

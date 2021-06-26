@@ -1,6 +1,6 @@
 {
   "name": "buildings",
-  "homepage": "http://chaitanya360.github.io/buildings/",
+  "homepage": "https://buildings-app.herokuapp.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

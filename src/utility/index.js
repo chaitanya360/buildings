@@ -3,7 +3,7 @@ let colors = {
   yellow: "#FBBC05",
   blue: "#105ED2",
   pink: "#FF468F",
-  purple: "rgba(179, 7, 179, 0.384)",
+  purple: "pastel",
   green: "#38A910",
   white: "#FFFFFF",
   light_green: "#52D8BB",
@@ -13,7 +13,8 @@ let colors = {
   font_medium: "#636363",
   font_light: "#C4C4C4",
   available: "rgba(0,255,0,0.3)",
-  booked: "rgba(255,5,0,0.4)",
+  booked: "rgba(255,0,0,0.3)",
+  unavailable: "rgba(255,215,0,0.3)",
 };
 
 let sizes = {

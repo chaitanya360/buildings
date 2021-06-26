@@ -81,7 +81,7 @@ function Block({
                       <Info
                         title={getFloorName(getFloorNum(floor.id))}
                         items={[
-                          "3bhk and 2bhks",
+                          id === "blockc" ? "3 and 2bhks" : "3, 3.5 and 2bhks",
                           getExtreameFlatSizesInBlock(id)[0] +
                             " - " +
                             getExtreameFlatSizesInBlock(id)[1] +

@@ -12,6 +12,7 @@ import {
   getExtreameFlatSizesInBlock,
   getTotalFlatsInFloor,
   isBlockBooked,
+  isBlockUnderConstruction,
 } from "../utility/functions";
 
 import Loading from "./Loading";
@@ -39,9 +40,11 @@ function VectorBlocks(props) {
             padding: "10px 20px",
           }}
           title={"Block " + getBlockName(details)}
+          blockId={details}
           isBooked={isBlockBooked(details)}
+          isUnderConstruction={isBlockUnderConstruction(details)}
           items={[
-            "3bhk and 2bhks",
+            "2 BHK, 3 BHK and 3.5 BHK ",
             getExtreameFlatSizesInBlock(details)[0] +
               " - " +
               getExtreameFlatSizesInBlock(details)[1] +
@@ -82,7 +85,9 @@ function VectorBlocks(props) {
                     <Info
                       title={getBlockName(building.id) + " Block"}
                       items={[
-                        "3bhk and 2bhks",
+                        building.id === "blockc"
+                          ? "2 BHK and 3 BHK"
+                          : "2 BHK, 3 BHK and 3.5 BHK ",
                         getExtreameFlatSizesInBlock(building.id)[0] +
                           " - " +
                           getExtreameFlatSizesInBlock(building.id)[1] +
@@ -90,6 +95,9 @@ function VectorBlocks(props) {
                         getTotalFlatsInFloor(building.id) * 12 + " Flats",
                       ]}
                       isBooked={isBlockBooked(building.id)}
+                      isUnderConstruction={isBlockUnderConstruction(
+                        building.id
+                      )}
                     />
                   }
                   singleton={target}
@@ -102,6 +110,7 @@ function VectorBlocks(props) {
                     key={building.id}
                     handleOnClick={() => setDetails(building.id)}
                     isBooked={isBlockBooked(building.id)}
+                    isUnderConstruction={isBlockUnderConstruction(building.id)}
                   />
                 </Tippy>
               ))}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { colors } from "../utility";
+import { colors, sizes } from "../utility";
 import {
   getAbsoluteFlatNum,
   getFlatNum,
@@ -11,6 +11,8 @@ import Label from "./Label";
 import Loading from "./Loading";
 import NotAvailable from "./NotAvailable";
 import VirtualTourButton from "./VirtualTourButton";
+import ISOview from "./ISOview";
+import ISOButton from "./ISOButton";
 
 function Flat({
   blockId,
@@ -24,6 +26,7 @@ function Flat({
   setShowHomeBtn,
 }) {
   const [loading, setLoading] = useState(true);
+  const [showIso, setShowIso] = useState(false);
 
   return isFlatAvailable(getAbsoluteFlatNum(blockId, floorId, flatId)) ? (
     <>
@@ -38,18 +41,29 @@ function Flat({
       >
         {loading && <Loading />}
         <Label label={"Flat " + getAbsoluteFlatNum(blockId, floorId, flatId)} />
+        {showIso && (
+          <ISOview
+            blockId={blockId}
+            flatId={flatId}
+            floorId={floorId}
+            handleClose={() => setShowIso(false)}
+          />
+        )}
         <Image
-          src={`${blockId}/${getFlatNum(flatId)}`}
+          src={
+            floorId == "floor1"
+              ? `${blockId}/first/${getFlatNum(flatId)}`
+              : `${blockId}/typical/${getFlatNum(flatId)}`
+          }
           style={{ padding: "10%" }}
           onLoad={() => setLoading(false)}
           visibility={loading ? "hidden" : "visible"}
         />
         {(!showDetails || window.innerWidth > 900) && (
-          <VirtualTourButton
-            blockId={blockId}
-            flatId={flatId}
-            floorId={floorId}
-          />
+          <div style={{ display: "flex" }}>
+            <VirtualTourButton flatId={flatId} floorId={floorId} />
+            <ISOButton handleOnClick={() => setShowIso(true)} />
+          </div>
         )}
 
         <FlatDetails

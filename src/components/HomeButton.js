@@ -7,7 +7,7 @@ function HomeButton({ zIndex = 2 }) {
     <Link to="/">
       <div
         style={{
-          padding: "5px 20px",
+          padding: "4px 15px",
           color: "white",
           position: "fixed",
           top: "10px",
@@ -18,7 +18,7 @@ function HomeButton({ zIndex = 2 }) {
         }}
         className={styles.home_btn}
       >
-        Home
+        Go To Site
       </div>
     </Link>
   );

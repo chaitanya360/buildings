@@ -4,7 +4,6 @@ import { buildings } from "../data";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import NavigationButton from "./NavigationButton";
-import { colors } from "../utility";
 import Flat from "./Flat";
 import HomeButton from "./HomeButton";
 
@@ -23,7 +22,7 @@ function Flats({ match }) {
   return (
     <div
       style={{
-        backgroundColor: colors.light_blue,
+        backgroundColor: "#fcac5d",
       }}
     >
       {(!openDetails || window.innerWidth > 900) && showHomeBtn && (
@@ -36,7 +35,7 @@ function Flats({ match }) {
         showThumbs={false}
         centerMode={false}
         showStatus={false}
-        swipeable={showHomeBtn}
+        swipeable={false}
         selectedItem={flatId - 1}
         renderArrowPrev={(handleClick, hasPrev) => (
           <NavigationButton
@@ -61,7 +60,7 @@ function Flats({ match }) {
             showDetails={openDetails}
             setShowDetails={setOpenDetails}
             specifications={flat.specifications}
-            size={flat.size}
+            size={floorId == "floor1" ? flat.size : flat.typicalSize}
             type={flat.type}
             key={flat.id}
             setShowHomeBtn={setShowHomeBtn}
