@@ -113,7 +113,13 @@ const Item = ({
         flatNum={getAbsoluteFlatNum(blockId, floorId, flatId)}
       />
       <div>
-        <Image src={`${blockId}/${getFlatNum(flatId)}`} />
+        <Image
+          src={
+            floorId == "floor1"
+              ? `${blockId}/first/${getFlatNum(flatId)}`
+              : `${blockId}/typical/${getFlatNum(flatId)}`
+          }
+        />
       </div>
       <div
         style={{
