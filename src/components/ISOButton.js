@@ -6,7 +6,9 @@ function ISOButton({ handleOnClick }) {
     <div
       onClick={handleOnClick}
       style={{
-        backgroundColor: colors.pink,
+        // backgroundColor: colors.pink,
+        backgroundColor: "#2352d4e0",
+
         padding: "5px 20px",
         color: "white",
         margin: "10px",

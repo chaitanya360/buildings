@@ -3,25 +3,68 @@ import { Link } from "react-router-dom";
 import { colors } from "../utility";
 import styles from "./components.module.css";
 
-function HomeButton({ zIndex = 2 }) {
+const Icon = ({ open = false }) => {
   return (
-    <Link to="/">
+    <img
+      src={`${process.env.PUBLIC_URL}/images/icons/${"up_arrow"}.svg`}
+      alt="location icon"
+      style={{
+        zIndex: 3,
+        transformOrigin: "center",
+        transition: "transform 0.5s",
+        transform: open ? "rotate(270deg)" : "rotate(90deg)",
+        width: "auto",
+        height: "10px",
+      }}
+    />
+  );
+};
+
+function HomeButton({ zIndex = 2 }) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div
+      style={{
+        display: "flex",
+        top: "0px",
+        left: 0,
+        width: "fit-content",
+        position: "fixed",
+        alignItems: "center",
+        zIndex: 1,
+        transition: "transform 0.4s",
+        cursor: "pointer",
+
+        transform: isOpen ? "translateX(0%)" : "translateX(-90%)",
+      }}
+    >
+      <Link to="/">
+        <span
+          style={{
+            display: "block",
+            width: "fit-content",
+            position: "relative",
+            backgroundColor: colors.blue,
+            color: "white",
+            padding: "10px 10px",
+            // margin: "0px 2px",
+          }}
+        >
+          Go to Master Layout
+        </span>
+      </Link>
       <div
         style={{
-          padding: "4px 15px",
-          position: "fixed",
-          top: "10px",
-          left: "1vw",
-          zIndex: 1,
-          borderRadius: "5px",
-          border: "2px solid white",
-          maxWidth: "90px",
+          padding: "10px 2px",
+          backgroundColor: "tomato",
+          color: "white",
         }}
         className={styles.home_btn}
+        onClick={() => setIsOpen((old) => !old)}
       >
-        Go To Master Layout
+        <Icon open={isOpen} />
       </div>
-    </Link>
+    </div>
   );
 }
 
