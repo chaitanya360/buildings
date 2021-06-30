@@ -22,7 +22,7 @@ function Flats({ match }) {
   return (
     <div
       style={{
-        backgroundColor: "#fcac5d",
+        backgroundColor: "#8df0f7",
       }}
     >
       {(!openDetails || window.innerWidth > 900) && showHomeBtn && (

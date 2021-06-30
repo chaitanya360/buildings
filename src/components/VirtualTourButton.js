@@ -17,11 +17,7 @@ function VirtualTourButton({
           backgroundColor: colors.pink,
           padding: "5px 20px",
           color: "white",
-          left: "50%",
-          transform: "translate(-50%)",
-
-          position: "absolute",
-          top: "87%",
+          margin: "10px",
           zIndex: "2",
           borderRadius: "5px",
           fontSize: sizes.regular,

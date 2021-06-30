@@ -76,14 +76,16 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 10px;
-  background-color: var(--pink);
-  color: whitesmoke;
+  top: 0px;
+  background-color: #2352d4e0;
+  color: rgb(255, 239, 239);
+  font-variant: small-caps;
   font-size: 25px;
   padding: 5px 20px;
-  border-radius: 5px;
+  border-radius: 0px 0px 5px 5px;
   z-index: 1;
-  box-shadow: 1px 1px 2px rgba(82, 81, 81, 0.603);
+  font-weight: 600;
+  box-shadow: 1px 2px 2px 1px rgba(82, 81, 81, 0.603);
 }
 
 .floor {
@@ -127,7 +129,8 @@
 }
 
 .home_btn:hover {
-  background-color: rgb(139, 55, 69);
+  color: white;
+  background-color: rgb(228, 158, 169);
 }
 
 /* On screens that are 992px or less, set the background color to blue */

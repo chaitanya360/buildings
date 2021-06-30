@@ -55,12 +55,21 @@ function Flat({
               ? `${blockId}/first/${getFlatNum(flatId)}`
               : `${blockId}/typical/${getFlatNum(flatId)}`
           }
-          style={{ padding: "10%" }}
+          style={{ padding: window.innerWidth > 900 ? "50px" : "0" }}
           onLoad={() => setLoading(false)}
           visibility={loading ? "hidden" : "visible"}
         />
         {(!showDetails || window.innerWidth > 900) && (
-          <div style={{ display: "flex" }}>
+          <div
+            style={{
+              display: "flex",
+              position: "absolute",
+              bottom: "10px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              justifyContent: "space-evenly",
+            }}
+          >
             <VirtualTourButton flatId={flatId} floorId={floorId} />
             <ISOButton handleOnClick={() => setShowIso(true)} />
           </div>

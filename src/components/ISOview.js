@@ -41,7 +41,7 @@ const Header = ({ handleClose, title }) => {
         justifyContent: "space-between",
       }}
     >
-      <div className={styles.compare_title}>{title + " "} ISO</div>
+      <div className={styles.compare_title}>{title + " "} (ISO)</div>
       <Icon name="close" onClick={handleClose} />
     </div>
   );
@@ -54,14 +54,20 @@ function ISOview({
   floorId = "floor1",
 }) {
   const [loading, setLoading] = useState(true);
+  const src =
+    floorId == "floor1"
+      ? `${blockId}/first/iso/${getFlatNum(flatId)}`
+      : `${blockId}/typical/iso/${getFlatNum(flatId)}`;
 
   return (
     <div className={styles.compare_wrapper}>
       <div
         className={styles.compare_body}
         style={{
-          marginTop: window.innerWidth > 900 ? "0" : "70px",
-          width: window.innerWidth > 900 ? "800px" : "100%",
+          marginTop: window.innerWidth > 900 ? "0px" : "0px",
+          width: window.innerWidth > 900 ? "900px" : "100%",
+          height: window.innerWidth > 900 ? "95%" : "fit-content",
+          overflow: "unset",
         }}
       >
         <Header
@@ -69,15 +75,22 @@ function ISOview({
           title={"Flat " + getAbsoluteFlatNum(blockId, floorId, flatId)}
         />
         {loading && <Loading />}
-        <Image
-          src={`${blockId}/${getFlatNum(flatId)}`}
+        <div
           style={{
-            padding: "10px",
-            margin: "auto",
+            height: window.innerWidth > 900 ? "90%" : "50vh",
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
-          onLoad={() => setLoading(false)}
-          visibility={loading ? "hidden" : "visible"}
-        />
+        >
+          <img
+            src={`${process.env.PUBLIC_URL}/images/flats/${src}.png`}
+            onLoad={() => setLoading(false)}
+            visibility={loading ? "hidden" : "visible"}
+            style={{ height: "80%", width: "auto", margin: "auto" }}
+          />
+        </div>
       </div>
     </div>
   );

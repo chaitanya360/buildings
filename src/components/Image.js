@@ -18,6 +18,10 @@ const Image = ({ src, onLoad, style }) => {
         src={`${process.env.PUBLIC_URL}/images/flats/${src}.png`}
         alt="flat plan"
         onLoad={onLoad}
+        style={{
+          maxHeight: "80vh",
+          width: window.innerWidth > 900 ? "auto" : "100%",
+        }}
       />
     </div>
   );

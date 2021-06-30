@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { colors } from "../utility";
 import styles from "./components.module.css";
 
 function HomeButton({ zIndex = 2 }) {
@@ -8,17 +9,17 @@ function HomeButton({ zIndex = 2 }) {
       <div
         style={{
           padding: "4px 15px",
-          color: "white",
           position: "fixed",
           top: "10px",
           left: "1vw",
-          zIndex: zIndex,
+          zIndex: 1,
           borderRadius: "5px",
           border: "2px solid white",
+          maxWidth: "90px",
         }}
         className={styles.home_btn}
       >
-        Go To Site
+        Go To Master Layout
       </div>
     </Link>
   );

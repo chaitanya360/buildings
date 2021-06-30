@@ -26,7 +26,7 @@ function NavigationButton({
         position: "absolute",
         top: isBlocks ? "20%" : "90%",
         transform: "translateY(-50%)",
-        marginInline: isBlocks ? "10px" : "50px",
+        marginInline: isBlocks || window.innerWidth < 900 ? "10px" : "50px",
         cursor: "pointer",
 
         zIndex: "2",

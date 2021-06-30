@@ -42,7 +42,7 @@ function Floor({
     <>
       {loading && <Loading />}
       <Label label={getFloorName(getFloorNum(floorId))} blockId={blockId} />
-      <div className={styles.floor} style={{ backgroundColor: "#fcac5d" }}>
+      <div className={styles.floor} style={{ backgroundColor: "#8df0f7" }}>
         {details && !openDetails && (
           <Info
             style={{
