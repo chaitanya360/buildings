@@ -19,6 +19,7 @@ function Floors({ match }) {
       <div>
         <Carousel
           // dynamicHeight
+          width={window.innerWidth}
           autoPlay={false}
           showIndicators={false}
           showThumbs={false}
@@ -47,7 +48,7 @@ function Floors({ match }) {
               floorId={floor.id}
               floors={buildings[match.params.blockId]}
               flats={flats}
-              viewBox={"0 0 1500 870"}
+              viewBox={"0 0 1500 1000"}
               height="90%"
               openDetails={openDetails}
               setOpenDetails={setOpenDetails}

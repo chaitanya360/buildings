@@ -35,7 +35,6 @@ function Floor({
   const [details, setDetails] = useState(false);
 
   const [loading, setLoading] = useState(true);
-  console.log(floorId);
   return isFloorBooked(blockId, floorId) ? (
     <NotAvailable title="Floor" />
   ) : (
@@ -80,7 +79,11 @@ function Floor({
           <g id="blocka">
             <image
               width="100%"
-              xlinkHref={`${process.env.PUBLIC_URL}/images/floors/${blockId}.png`}
+              xlinkHref={
+                floorId == "floor1"
+                  ? `${process.env.PUBLIC_URL}/images/floors/first/${blockId}.png`
+                  : `${process.env.PUBLIC_URL}/images/floors/typical/${blockId}.png`
+              }
               onLoad={() => setLoading(false)}
               visibility={loading ? "hidden" : "visible"}
             />

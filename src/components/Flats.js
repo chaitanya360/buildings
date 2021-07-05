@@ -6,6 +6,8 @@ import { Carousel } from "react-responsive-carousel";
 import NavigationButton from "./NavigationButton";
 import Flat from "./Flat";
 import HomeButton from "./HomeButton";
+import { useHistory } from "react-router-dom";
+import { getFlatNum } from "../utility/functions";
 
 function Flats({ match }) {
   const flats = buildings[match.params.blockId].flats;
@@ -18,6 +20,7 @@ function Flats({ match }) {
   );
 
   const [showHomeBtn, setShowHomeBtn] = useState(true);
+  const history = useHistory();
 
   return (
     <div

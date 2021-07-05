@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { colors, sizes } from "../utility";
 import {
   getAbsoluteFlatNum,
@@ -70,7 +70,11 @@ function Flat({
               justifyContent: "space-evenly",
             }}
           >
-            <VirtualTourButton flatId={flatId} floorId={floorId} />
+            <VirtualTourButton
+              flatId={flatId}
+              floorId={floorId}
+              blockId={blockId}
+            />
             <ISOButton handleOnClick={() => setShowIso(true)} />
           </div>
         )}

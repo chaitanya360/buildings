@@ -50,6 +50,7 @@ function Blocks({ match }) {
 
       <Carousel
         // dynamicHeight
+        width={window.innerWidth}
         autoPlay={false}
         showIndicators={false}
         showThumbs={false}
