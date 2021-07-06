@@ -49,8 +49,7 @@ function Blocks({ match }) {
       {(!openDetails || window.innerWidth > 900) && <HomeButton />}
 
       <Carousel
-        // dynamicHeight
-        width={window.innerWidth}
+        width="100%"
         autoPlay={false}
         showIndicators={false}
         showThumbs={false}

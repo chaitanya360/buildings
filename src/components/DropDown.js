@@ -70,13 +70,14 @@ const DropDown = ({ items, text, isFloor, blockId }) => {
         open={open}
         handleTriggerClick={() => setOpen((old) => !old)}
       >
-        <div style={{ position: "relative" }}>
+        <div style={{ position: "relative", marginTop: "10px" }}>
           {items.map((item) => (
             <div
               key={item}
               style={{
                 backgroundColor: colors.light_blue,
                 width: "100%",
+                height: "100%",
                 textAlign: "center",
               }}
             >

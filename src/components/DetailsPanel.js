@@ -141,7 +141,7 @@ const AppartmentsItem = ({ bhk = "3", units = false, size = false }) => {
               borderLeft: "3px solid white",
             }}
           >
-            {units} Units
+            {units} {units !== "NA" && "Units"}
           </span>
         )}
       </div>
@@ -261,7 +261,7 @@ function BuildingsDetails({ onClick }) {
                 </span>
               </h3>
               <a
-                href="https://www.google.com/maps?q=17.544620513916016,78.3711929321289&z=17&hl=en"
+                href="https://www.google.com/maps/place/Gothic+Living+Spaces/@17.5445009,78.3704341,299m/data=!3m1!1e3!4m13!1m7!3m6!1s0x0:0x0!2zMTfCsDMyJzQwLjYiTiA3OMKwMjInMTYuMyJF!3b1!8m2!3d17.5446205!4d78.3711929!3m4!1s0x3bcb8dad96cf6afb:0x4aa81dec5b9e78fa!8m2!3d17.544992!4d78.3709538?hl=en"
                 style={{ textDecoration: "none" }}
                 target="_blank"
               >
@@ -316,6 +316,7 @@ function SingleBuildingDetails({
 }) {
   let blocks = getBlocks().map((block) => block.id);
   // .filter((block) => block !== blockId);
+
   return (
     <div className={styles.collapsible_wrapper}>
       <Collapsible
@@ -339,10 +340,20 @@ function SingleBuildingDetails({
           <ImageItem block={getBlockName(blockId)} blocks={blocks} />
           <InfoItem
             block={getBlockName(blockId)}
-            units={getTotalFlatsInFloor(blockId)}
+            units={getTotalFlatsInFloor(blockId) * 12}
           />
-          <AppartmentsItem bhk={2} units={units[0]} />
-          <AppartmentsItem bhk={3} units={units[1]} />
+          <AppartmentsItem bhk={2} units={units[0] * 12} />
+          <AppartmentsItem bhk={3} units={units[1] * 12} />
+
+          <AppartmentsItem
+            bhk={3.5}
+            units={
+              parseInt(getTotalFlatsInFloor(blockId)) ===
+              parseInt(units[0]) + parseInt(units[1])
+                ? "NA"
+                : (getTotalFlatsInFloor(blockId) - (units[0] + units[1])) * 12
+            }
+          />
         </div>
       </Collapsible>
     </div>
@@ -385,6 +396,16 @@ const FloorsDetails = ({
           />
           <AppartmentsItem bhk={2} units={units[0]} />
           <AppartmentsItem bhk={3} units={units[1]} />
+
+          <AppartmentsItem
+            bhk={3.5}
+            units={
+              parseInt(getTotalFlatsInFloor(blockId)) ===
+              parseInt(units[0]) + parseInt(units[1])
+                ? "NA"
+                : getTotalFlatsInFloor(blockId) - (units[0] + units[1])
+            }
+          />
         </div>
       </Collapsible>
     </div>
