@@ -30,10 +30,10 @@ function Info({
       <div
         style={{
           borderBottom: "2px solid white",
-          paddingBlock: window.innerWidth > 900 ? "10px" : "5px",
+          paddingBlock: "10px",
           display: "flex",
-          paddingLeft: window.innerWidth > 900 ? "10px" : "0px",
-          paddingRight: window.innerWidth > 900 ? "50px" : "0px",
+          paddingLeft: window.innerWidth > 900 ? "10px" : "10px",
+          paddingRight: window.innerWidth > 900 ? "50px" : "20px",
         }}
       >
         {!isFlat && (

@@ -2,7 +2,6 @@ import React from "react";
 
 function VirtualTour(props) {
   const { blockId, floorId, flatId } = props.match.params;
-  console.log(blockId, floorId, flatId);
 
   const GetVirtualTourFlat = () => {
     if (
