@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { colors, sizes } from "../utility";
-import { getAbsoluteFlatNum, getFlatNum } from "../utility/functions";
+import {
+  getAbsoluteFlatNum,
+  getFlatNum,
+  hideElement,
+} from "../utility/functions";
 import styles from "./components.module.css";
 import Loading from "./Loading";
-import Image from "./Image";
 
 const Icon = ({ name, width = "40px", onClick }) => {
   return (
@@ -36,13 +39,18 @@ const Header = ({ handleClose, title }) => {
         display: "flex",
         backgroundColor: colors.blue,
         fontSize: sizes.ex_large,
-        padding: "10px",
+        padding: "5px",
         color: "white",
         justifyContent: "space-between",
+        alignItems: "center",
       }}
     >
-      <div className={styles.compare_title}>{title + " "} (ISO)</div>
-      <Icon name="close" onClick={handleClose} />
+      <div className={styles.compare_title} style={{ fontSize: "22px" }}>
+        {title + " "} (ISO)
+      </div>
+      <div style={{ marginRight: "10px" }}>
+        <Icon name="close" onClick={handleClose} width="30px" />
+      </div>
     </div>
   );
 };
@@ -54,6 +62,10 @@ function ISOview({
   floorId = "floor1",
 }) {
   const [loading, setLoading] = useState(true);
+
+  hideElement("nav_btn");
+  hideElement("home_btn");
+
   const src =
     floorId == "floor1"
       ? `${blockId}/first/iso/${getFlatNum(flatId)}`
@@ -64,10 +76,9 @@ function ISOview({
       <div
         className={styles.compare_body}
         style={{
-          marginTop: window.innerWidth > 900 ? "0px" : "0px",
-          width: window.innerWidth > 900 ? "900px" : "100%",
-          height: window.innerWidth > 900 ? "95%" : "fit-content",
-          overflow: "unset",
+          width: window.innerWidth,
+          height: window.innerHeight,
+          overflow: "hidden",
         }}
       >
         <Header
@@ -77,7 +88,7 @@ function ISOview({
         {loading && <Loading />}
         <div
           style={{
-            height: window.innerWidth > 900 ? "90%" : "50vh",
+            height: "100%",
             width: "100%",
             display: "flex",
             justifyContent: "center",
@@ -88,7 +99,10 @@ function ISOview({
             src={`${process.env.PUBLIC_URL}/images/flats/${src}.png`}
             onLoad={() => setLoading(false)}
             visibility={loading ? "hidden" : "visible"}
-            style={{ height: "80%", width: "auto", margin: "auto" }}
+            style={{
+              width: "auto",
+              height: window.innerWidth > 900 ? "80%" : "50vh",
+            }}
           />
         </div>
       </div>

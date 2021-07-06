@@ -4,6 +4,7 @@ import {
   getAbsoluteFlatNum,
   getFlatNum,
   isFlatAvailable,
+  showElement,
 } from "../utility/functions";
 import { FlatDetails } from "./DetailsPanel";
 import Image from "./Image";
@@ -13,6 +14,7 @@ import NotAvailable from "./NotAvailable";
 import VirtualTourButton from "./VirtualTourButton";
 import ISOview from "./ISOview";
 import ISOButton from "./ISOButton";
+import VirtualTour from "./VirtualTour";
 
 function Flat({
   blockId,
@@ -27,6 +29,7 @@ function Flat({
 }) {
   const [loading, setLoading] = useState(true);
   const [showIso, setShowIso] = useState(false);
+  const [showVirtualTour, setShowVirtualTour] = useState(false);
 
   return isFlatAvailable(getAbsoluteFlatNum(blockId, floorId, flatId)) ? (
     <>
@@ -46,7 +49,23 @@ function Flat({
             blockId={blockId}
             flatId={flatId}
             floorId={floorId}
-            handleClose={() => setShowIso(false)}
+            handleClose={() => {
+              showElement("nav_btn");
+              showElement("home_btn");
+              setShowIso(false);
+            }}
+          />
+        )}
+        {showVirtualTour && (
+          <VirtualTour
+            blockId={blockId}
+            flatId={flatId}
+            floorId={floorId}
+            handleClose={() => {
+              showElement("nav_btn");
+              showElement("home_btn");
+              setShowVirtualTour(false);
+            }}
           />
         )}
         <Image
@@ -70,11 +89,7 @@ function Flat({
               justifyContent: "space-evenly",
             }}
           >
-            <VirtualTourButton
-              flatId={flatId}
-              floorId={floorId}
-              blockId={blockId}
-            />
+            <VirtualTourButton handleOnclick={() => setShowVirtualTour(true)} />
             <ISOButton handleOnClick={() => setShowIso(true)} />
           </div>
         )}

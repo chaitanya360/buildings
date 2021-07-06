@@ -157,6 +157,16 @@ const isBlockBooked = (blockId) => {
   return true;
 };
 
+const hideElement = (id) => {
+  let element = document.getElementsByClassName(id);
+  for (let i = 0; i < element.length; i++) element[i].style.display = "none";
+};
+
+const showElement = (id) => {
+  let element = document.getElementsByClassName(id);
+  for (let i = 0; i < element.length; i++) element[i].style.display = "block";
+};
+
 export {
   getFloorName,
   getFloorNum,
@@ -172,4 +182,6 @@ export {
   isFloorBooked,
   isBlockBooked,
   isBlockUnderConstruction,
+  hideElement,
+  showElement,
 };

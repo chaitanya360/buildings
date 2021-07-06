@@ -48,10 +48,7 @@ function App() {
           <Router>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route
-                path="/:blockId/:floorId/:flatId/virtual_tour"
-                component={VirtualTour}
-              />
+
               <Route path="/:blockId/:floorId/flat/:flatId" component={Flats} />
               <Route path="/block/:blockId/:floorId" component={Floors} />
               <Route path="/block/:id" component={Blocks} />
