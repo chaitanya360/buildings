@@ -17,7 +17,7 @@ function BuildingInfo({
         top: "50px",
         left: "50%",
         transform: "translateX(-50%)",
-        backgroundColor: colors.light_blue,
+        backgroundColor: colors.light_green,
         color: "white",
         borderRadius: "5px",
       }}
@@ -50,7 +50,6 @@ function BuildingInfo({
               lineHeight: "150%",
               alignItems: "center",
               borderRadius: "10px",
-
               marginLeft: "50%",
               transform: "translateX(-50%)",
               marginBlock: "10px",

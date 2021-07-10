@@ -1,19 +1,22 @@
 :root {
   --pink: #ff7171;
+  --light_green: #2e7a7be1;
+  --gold: #ffc700;
 }
 
 .btn_trigger {
-  right: 0;
+  right: 30px;
+  border-radius: 10px;
   bottom: 100%;
   transform: translate(0%, 100%);
   position: absolute;
-  height: 20px;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   object-fit: contain;
-  padding: 0px 20px;
-  background-color: var(--pink);
-  color: white;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  background-color: var(--light_green);
   cursor: pointer;
 }
 
@@ -33,9 +36,10 @@
 }
 
 .details_wrapper {
-  background-color: #14348e;
+  background-color: #216666ee;
   padding: 20px;
   color: white;
+  border-radius: 10px;
 }
 
 .info_item_wrapper {
@@ -45,7 +49,7 @@
 }
 
 .info_item_wrapper span {
-  border-left: 5px solid var(--pink);
+  border-left: 3px solid var(--gold);
   padding: 0px 10px;
 }
 
@@ -68,7 +72,6 @@
   width: 95%;
   height: 95%;
   border-radius: 5px;
-  overflow: scroll;
   text-align: left;
 }
 
@@ -77,15 +80,13 @@
   left: 50%;
   transform: translateX(-50%);
   top: 0px;
-  background-color: #2352d4e0;
-  color: rgb(255, 239, 239);
-  font-variant: small-caps;
+  background-color: #276768e1;
+  color: rgb(253, 244, 244);
   font-size: 25px;
   padding: 5px 20px;
   border-radius: 0px 0px 5px 5px;
   z-index: 1;
-  font-weight: 600;
-  box-shadow: 1px 2px 2px 1px rgba(82, 81, 81, 0.603);
+  font-weight: 400;
 }
 
 .floor {
@@ -107,12 +108,11 @@
 .compare_title {
   padding: 0 20px;
   border-left: 5px solid;
-  border-color: var(--pink);
+  border-color: var(--gold);
 }
 
 .compare_item {
   padding: 20px;
-  border: 1px solid grey;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -129,13 +129,28 @@
 
 .home_btn:hover {
   color: white;
-  background-color: rgb(228, 158, 169);
+  background-color: var(--light_green);
+}
+
+/* width */
+.no_scroll::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* Track */
+.no_scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.no_scroll::-webkit-scrollbar-thumb {
+  background: #888;
 }
 
 /* On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 600px) {
   .collapsible_wrapper {
-    width: 100%;
+    width: 100vw;
   }
 
   .label {
@@ -157,7 +172,6 @@
 
   .compare_item {
     padding: 10px;
-    border: 1px solid grey;
     display: flex;
     flex-direction: column;
     max-width: 300px;
@@ -189,4 +203,33 @@
   .compare_body {
     padding-bottom: 30px;
   }
+}
+
+/* width */
+.list::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* Track */
+.list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.list::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.list::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.list {
+  box-shadow: 1px 1px 1px 1px rgba(32, 32, 32, 0.726);
+  border-radius: 0px 0px 2px 2px;
+}
+
+.list_item:hover {
+  background-color: rgba(9, 92, 57, 0.74) !important;
 }

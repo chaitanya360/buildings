@@ -42,3 +42,13 @@ body {
   position: relative;
   height: 50%;
 }
+
+.gredient_bg,
+#gredient_bg {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    315deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(70, 162, 163, 0.9391106784510679) 100%
+  );
+}

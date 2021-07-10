@@ -37,7 +37,7 @@ const Header = ({ handleClose, title }) => {
     <div
       style={{
         display: "flex",
-        backgroundColor: colors.blue,
+        backgroundColor: colors.light_green,
         fontSize: sizes.ex_large,
         padding: "5px",
         color: "white",
@@ -94,6 +94,7 @@ function ISOview({
             justifyContent: "center",
             alignItems: "center",
           }}
+          className="gredient_bg"
         >
           <img
             src={`${process.env.PUBLIC_URL}/images/flats/${src}.png`}

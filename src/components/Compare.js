@@ -34,7 +34,7 @@ const Header = ({ handleClose }) => {
     <div
       style={{
         display: "flex",
-        backgroundColor: colors.blue,
+        backgroundColor: "#005E5F",
         fontSize: sizes.ex_large,
         padding: "20px",
         color: "white",
@@ -55,21 +55,25 @@ const ItemHeader = ({ handleRemoveItem, flatNum }) => {
           <span
             style={{
               fontSize: sizes.large,
-              color: colors.blue,
+              color: "#003E3F",
+
               flex: "1",
               textAlign: "center",
+              fontWeight: 500,
             }}
           >
-            Flat No. {flatNum}
+            Flat no. {flatNum}
           </span>
           <Icon name="trash" width="30px" onClick={handleRemoveItem} />
         </div>
         <div
           style={{
-            fontSize: sizes.large,
-            color: colors.blue,
-            fontWeight: 300,
-            paddingBlock: "10px",
+            fontSize: "1.9rem",
+            color: "#003E3F",
+            fontWeight: 400,
+            paddingBlock: "5px",
+            textAlign: "center",
+            marginTop: "40px",
           }}
         >
           Flat Plan
@@ -85,16 +89,16 @@ const DetailItem = ({ detailKey = "Fruit", value = "Mango" }) => {
       style={{
         marginBlock: "10px",
         fontSize: sizes.medium,
-        borderBottom: "1px solid grey",
         paddingInline: "10px",
         paddingBottom: "10px",
         display: "flex",
         justifyContent: "space-between",
         maxWidth: "400px",
+        color: "white",
       }}
     >
-      <div style={{ color: colors.font_medium }}>{detailKey}</div>
-      <div>{value}</div>
+      <div>{detailKey}</div>
+      <div style={{ marginLeft: "10vw" }}>{value}</div>
     </div>
   );
 };
@@ -125,22 +129,36 @@ const Item = ({
         style={{
           borderTop: "1px solid black",
           paddingTop: "20px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
         <div
           style={{
             fontSize: sizes.large,
-            color: colors.blue,
-            fontWeight: 300,
+            color: colors.light_green,
+            fontWeight: 400,
             paddingBlock: "10px",
             width: "fit-content",
+            margin: "auto",
           }}
         >
           Flat Details
         </div>
-        {Object.entries(details).map(([key, value]) => (
-          <DetailItem detailKey={key} value={value} key={key} />
-        ))}
+        <div
+          style={{
+            width: "fit-content",
+            padding: "10px 20px",
+            backgroundColor: colors.light_green,
+            borderRadius: "10px",
+            marginBottom: "40px",
+          }}
+        >
+          {Object.entries(details).map(([key, value]) => (
+            <DetailItem detailKey={key} value={value} key={key} />
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -158,28 +176,48 @@ function Compare({ compareItemsIds, setCompareItemsId, setShowCompare }) {
   };
 
   return (
-    <div className={styles.compare_wrapper}>
-      <div className={styles.compare_body}>
-        <Header handleClose={() => setShowCompare(false)} />
+    <div className={styles.list}>
+      <div
+        className={styles.compare_wrapper}
+        style={{ backgroundColor: colors.light_green }}
+      >
         <div
+          className={styles.compare_body}
+          id="gredient_bg"
           style={{
-            display: "flex",
-            overflow: "scroll",
+            width: "90%",
+            height: "100%",
+            paddingBottom: "50px",
+            marginTop: "20px",
           }}
         >
-          {compareItemsIds.map((item) => (
-            <Item
-              key={getAbsoluteFlatNum(item.blockId, item.floorId, item.flatId)}
-              flatId={item.flatId}
-              blockId={item.blockId}
-              floorId={item.floorId}
-              details={
-                buildings[item.blockId].flats[getFlatNum(item.flatId) - 1]
-                  .specifications
-              }
-              handleRemoveItem={() => handleRemoveItem(item)}
-            />
-          ))}
+          <Header handleClose={() => setShowCompare(false)} />
+          <div
+            style={{
+              display: "flex",
+              overflow: "scroll",
+              height: "100%",
+            }}
+            className={styles.no_scroll}
+          >
+            {compareItemsIds.map((item) => (
+              <Item
+                key={getAbsoluteFlatNum(
+                  item.blockId,
+                  item.floorId,
+                  item.flatId
+                )}
+                flatId={item.flatId}
+                blockId={item.blockId}
+                floorId={item.floorId}
+                details={
+                  buildings[item.blockId].flats[getFlatNum(item.flatId) - 1]
+                    .specifications
+                }
+                handleRemoveItem={() => handleRemoveItem(item)}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

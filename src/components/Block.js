@@ -38,7 +38,7 @@ function Block({
     <NotAvailable title="Block" />
   ) : (
     <>
-      <Label label={"Block " + getBlockName(id)} />
+      <Label label={getBlockName(id) + " Block"} />
       {loading && <Loading />}
       <div style={{ height: "100%", bottom: "0" }}>
         {details && !openDetails && (
@@ -79,6 +79,7 @@ function Block({
                   <Tippy
                     content={
                       <Info
+                        isBuilding={true}
                         title={getFloorName(getFloorNum(floor.id))}
                         items={[
                           id === "blockc" ? "3 and 2bhks" : "3, 3.5 and 2bhks",

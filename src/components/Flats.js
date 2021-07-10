@@ -24,6 +24,7 @@ function Flats({ match }) {
 
   return (
     <div
+      className="gredient_bg"
       style={{
         backgroundColor: "#8df0f7",
       }}

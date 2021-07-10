@@ -1,84 +1,88 @@
 import React, { useState } from "react";
 import Collapsible from "react-collapsible";
 import { Link } from "react-router-dom";
-import { colors } from "../utility";
 import { getBlockName, getFloorNum } from "../utility/functions";
+import styles from "./components.module.css";
 
 const Icon = ({ open = false }) => {
   return (
     <img
-      width="100%"
-      height="100%"
-      src={`${process.env.PUBLIC_URL}/images/icons/${"up_arrow"}.svg`}
+      src={`${process.env.PUBLIC_URL}/images/icons/${"up_arrow_white"}.svg`}
       alt="location icon"
       style={{
         transformOrigin: "center",
-
         transition: "transform 0.5s",
-        margin: "5px",
         transform: open && "rotate(180deg)",
+        width: "30px",
+        height: "auto",
+        display: "inline-block",
       }}
     />
   );
 };
 
 const DropDown = ({ items, text, isFloor, blockId }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   return (
     <div
       style={{
-        position: "absolute",
-        top: "0%",
-        marginTop: "7%",
+        position: "relative",
+        display: "inline-block",
       }}
     >
       <Collapsible
         trigger={
-          <span
+          <div
             style={{
-              width: "20px",
-              height: "20px",
-              display: "block ",
-              display: "flex",
-              marginInline: "10px 20px",
               cursor: "pointer",
+              display: "flex",
             }}
           >
-            {text}
-            <Icon open />
-          </span>
+            <span style={{ margin: "0px 10px" }}>{text}</span>
+            <Icon />
+          </div>
         }
         autoFocus
         triggerWhenOpen={
-          <span
+          <div
             style={{
-              width: "20px",
-              height: "20px",
-              display: "block ",
               display: "flex",
-              objectFit: "cover",
-              marginInline: "10px 20px",
               cursor: "pointer",
             }}
           >
-            {text}
+            <span style={{ margin: "0px 10px" }}>{text}</span>
 
-            <Icon />
-          </span>
+            <Icon open />
+          </div>
         }
         open={open}
         handleTriggerClick={() => setOpen((old) => !old)}
       >
-        <div style={{ position: "relative", marginTop: "10px" }}>
+        <div
+          className={styles.list}
+          style={{
+            position: "absolute",
+            left: "30px",
+            maxHeight: "235px",
+            transition: "transform 0.35s linear",
+            overflowX: "hidden",
+            overflowY: "scroll",
+            transform: !open ? "scaleY(1)" : "scaleY(0)",
+            transformOrigin: "top",
+            backgroundColor: "rgba(46,182,123,1)",
+          }}
+        >
           {items.map((item) => (
             <div
+              className={styles.list_item}
               key={item}
               style={{
-                backgroundColor: colors.light_blue,
                 width: "100%",
                 height: "100%",
                 textAlign: "center",
+                padding: "3px 10px",
+                fontSize: "18px",
               }}
             >
               <Link

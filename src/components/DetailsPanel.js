@@ -27,13 +27,14 @@ const ButtonTrigger = ({ show, setShowDetails, onClick, setDetails }) => {
         onClick={() => {
           show ? setShowDetails(true) : setShowDetails(false);
         }}
+        style={{ backgroundColor: !show ? "transparent" : "#2e7a7be1" }}
       >
         <img
-          width="100%"
-          height="100%"
           src={`${process.env.PUBLIC_URL}/images/icons/${"up_arrow"}.svg`}
           alt="location icon"
           style={{
+            width: "30px",
+            height: "auto",
             transformOrigin: "center",
             transform: show && "rotate(180deg)",
             transition: "transform 0.5s",
@@ -59,27 +60,22 @@ const ImageItem = ({ block, showFloor = false, floorNum, floors, blocks }) => {
       style={{
         fontWeight: 400,
         textAlign: "left",
-        fontSize: sizes.regular,
+        fontSize: "25px",
         display: "flex",
-        borderBottom: "2px solid white",
-        paddingLeft: "10px",
-        alignItems: "center",
-        paddingBottom: "10px",
+        width: "100%",
+        margin: "10px 0",
       }}
     >
-      <span style={{ height: "100%", width: "35px", marginRight: "20px" }}>
-        <img
-          width="25px"
-          src={`${process.env.PUBLIC_URL}/images/icons/building.svg`}
-          alt="location icon"
-          height="100%"
-        />
-      </span>
-      <span>Block: </span>
+      <img
+        style={{ width: "25px", height: "auto", marginRight: "10px" }}
+        src={`${process.env.PUBLIC_URL}/images/icons/building.svg`}
+        alt="location icon"
+      />
+      <div>Block </div>
       <div
         style={{
           position: "relative",
-          marginTop: "-20px",
+          display: "inline-block",
           marginRight: "40px",
         }}
       >
@@ -87,18 +83,19 @@ const ImageItem = ({ block, showFloor = false, floorNum, floors, blocks }) => {
       </div>
       {showFloor && (
         <>
-          <span
-            style={{ height: "100%", width: "35px", marginInline: "30px 20px" }}
+          <img
+            style={{ width: "40px", height: "auto", marginRight: "10px" }}
+            src={`${process.env.PUBLIC_URL}/images/icons/layers.svg`}
+            alt="location icon"
+          />
+          <div>Floor</div>
+          <div
+            style={{
+              position: "relative",
+              display: "inline-block",
+              marginRight: "40px",
+            }}
           >
-            <img
-              width="25px"
-              src={`${process.env.PUBLIC_URL}/images/icons/floors.svg`}
-              alt="location icon"
-              height="100%"
-            />
-          </span>
-          <span>Floor:</span>
-          <div style={{ position: "relative", marginTop: "-20px" }}>
             <DropDown items={floors} text={floorNum} blockId={block} isFloor />
           </div>
         </>
@@ -122,8 +119,10 @@ const AppartmentsItem = ({ bhk = "3", units = false, size = false }) => {
   return (
     <div
       style={{
-        padding: "20px 10px",
-        borderBottom: "2px solid white",
+        padding: "10px 10px",
+        margin: "20px 0px",
+        border: "1px solid #4AA5A6",
+        borderRadius: "8px",
         textAlign: "left",
         fontWeight: 300,
         fontSize: sizes.medium,
@@ -138,7 +137,8 @@ const AppartmentsItem = ({ bhk = "3", units = false, size = false }) => {
             style={{
               marginLeft: "10px",
               paddingInline: "10px",
-              borderLeft: "3px solid white",
+              borderLeft: "3px solid",
+              borderColor: colors.gold,
             }}
           >
             {units} {units !== "NA" && "Units"}
@@ -178,37 +178,40 @@ const SpecificationsItem = ({
   items = { Drawing: "11 x 12", Bed: "50 x 30" },
 }) => {
   return (
-    <div style={{ paddingBlock: "20px", borderBottom: "2px solid white" }}>
-      <div
-        style={{
-          borderLeft: "5px solid",
-          borderColor: colors.pink,
-          paddingLeft: "10px",
-          fontWeight: 500,
-          textAlign: "left",
-          fontSize: sizes.medium,
-        }}
-      >
-        Specifications
+    <>
+      <div style={{ paddingBlock: "20px", borderBottom: "2px solid white" }}>
+        <div
+          style={{
+            width: "fit-content",
+            borderLeft: "3px solid",
+            borderColor: colors.gold,
+            paddingLeft: "10px",
+            fontWeight: 500,
+            textAlign: "left",
+            fontSize: sizes.medium,
+          }}
+        >
+          Specifications
+        </div>
+        <div style={{ textAlign: "left", padding: "20px 20px" }}>
+          {Object.entries(items).map(([key, value]) => (
+            <div
+              style={{
+                marginTop: "10px",
+                fontSize: "1.3rem",
+                fontWeight: 300,
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+              key={key}
+            >
+              <span style={{ flex: 1 }}>{key}</span>
+              <span style={{ flex: 1 }}>{value}</span>
+            </div>
+          ))}
+        </div>
       </div>
-      <div style={{ textAlign: "left", padding: "20px 20px" }}>
-        {Object.entries(items).map(([key, value]) => (
-          <div
-            style={{
-              marginTop: "10px",
-              fontSize: sizes.medium,
-              fontWeight: 100,
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-            key={key}
-          >
-            <span style={{ flex: 1 }}>{key}</span>
-            <span style={{ flex: 1 }}>{value}</span>
-          </div>
-        ))}
-      </div>
-    </div>
+    </>
   );
 };
 
@@ -228,30 +231,41 @@ function BuildingsDetails({ onClick }) {
         open={showDetails}
       >
         <div
-          style={{ backgroundColor: colors.light_blue, paddingBottom: "40px" }}
+          style={{
+            backgroundColor: colors.light_green,
+            paddingBottom: "40px",
+            borderRadius: "0px 0px 0px 10px",
+          }}
         >
           <div
             style={{
-              padding: "40px 40px 0px 40px",
+              padding: "40px 40px 0px 30px",
               color: "white",
               fontWeight: 400,
             }}
           >
             <h2
               style={{
-                borderBottom: "2px solid white",
                 fontWeight: 400,
-                paddingBottom: "20px",
+                marginBottom: "20px",
+                borderLeft: "4px solid",
+                borderColor: colors.gold,
+                paddingLeft: "20px",
               }}
             >
               2, 3 and 3.5 BHK Premium Apartments
             </h2>
             <div style={{ margin: "40px 0px", fontWeight: 400 }}>
               <h3 style={{ fontWeight: 400, display: "flex" }}>
-                <span>
+                <span
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
                   <img
-                    width="15px"
-                    height="100%"
+                    style={{ height: "30px", width: "auto" }}
                     src={`${process.env.PUBLIC_URL}/images/icons/location.svg`}
                     alt="location icon"
                   />
@@ -267,7 +281,7 @@ function BuildingsDetails({ onClick }) {
               >
                 <h3
                   style={{
-                    color: colors.pink,
+                    color: colors.gold,
                     fontWeight: 500,
                     textAlign: "center",
                   }}
@@ -279,9 +293,9 @@ function BuildingsDetails({ onClick }) {
             <div style={{ margin: "30px 0px" }}>
               <h1
                 style={{
-                  borderLeft: "5px solid",
-                  borderColor: colors.pink,
-                  paddingLeft: "20px",
+                  borderLeft: "4px solid",
+                  borderColor: colors.gold,
+                  paddingLeft: "15px",
                   fontWeight: 500,
                 }}
               >
@@ -376,13 +390,13 @@ const FloorsDetails = ({
   // .filter((floor) => floor !== floorId);
   openDetails && setDetails(false);
   return (
-    <div className={styles.collapsible_wrapper}>
+    <div className={styles.collapsible_wrapper} style={{ width: "400px" }}>
       <Collapsible
         trigger={<ButtonTrigger show setShowDetails={setOpenDetails} />}
         triggerWhenOpen={<ButtonTrigger setShowDetails={setOpenDetails} />}
         open={openDetails}
       >
-        <div className={styles.details_wrapper}>
+        <div className={styles.details_wrapper} style={{ paddingTop: "40px" }}>
           <ImageItem
             block={blockId}
             showFloor
@@ -474,30 +488,32 @@ const FlatDetails = ({
             open={showDetails}
           >
             <div className={styles.details_wrapper}>
-              <ImageItem
-                block={blockId}
-                showFloor
-                floorNum={floorNum}
-                floors={floors}
-                blocks={blocks}
-              />
-              <InfoItem
-                floorNum={getFloorName(floorNum)}
-                block={getBlockName(blockId)}
-                flatNum={getAbsoluteFlatNum(blockId, floorId, flatId)}
-              />
-              <FlatDetailsItem size={size} type={type} />
-              <SpecificationsItem items={specifications} />
-              <DetailsButton
-                text="Add to Compare"
-                compareCount={compareItemsIds}
-                onClick={handleAddToCompare}
-              />
-              <DetailsButton
-                text="Compare"
-                compareCount={compareItemsIds.length}
-                onClick={handleComparePressed}
-              />
+              <div style={{ marginTop: "20px" }}>
+                <ImageItem
+                  block={blockId}
+                  showFloor
+                  floorNum={floorNum}
+                  floors={floors}
+                  blocks={blocks}
+                />
+                <InfoItem
+                  floorNum={getFloorName(floorNum)}
+                  block={getBlockName(blockId)}
+                  flatNum={getAbsoluteFlatNum(blockId, floorId, flatId)}
+                />
+                <FlatDetailsItem size={size} type={type} />
+                <SpecificationsItem items={specifications} />
+                <DetailsButton
+                  text="Add to Compare"
+                  compareCount={compareItemsIds}
+                  onClick={handleAddToCompare}
+                />
+                <DetailsButton
+                  text="Compare"
+                  compareCount={compareItemsIds.length}
+                  onClick={handleComparePressed}
+                />
+              </div>
             </div>
           </Collapsible>
         </div>

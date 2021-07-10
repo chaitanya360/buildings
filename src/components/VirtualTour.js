@@ -33,7 +33,7 @@ const Header = ({ handleClose, title }) => {
     <div
       style={{
         display: "flex",
-        backgroundColor: colors.blue,
+        backgroundColor: "#005E5F",
         opacity: "0.9",
         padding: "5px",
         color: "white",

@@ -37,10 +37,8 @@ function Blocks({ match }) {
 
   return (
     <div
+      className="gredient_bg"
       style={{
-        background: "rgb(0,134,255)",
-        background:
-          "linear-gradient(180deg, rgba(0,134,255,1) 8%, rgba(246,246,246,1) 85%)",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",

@@ -7,14 +7,14 @@ const Icon = ({ open = false }) => {
   return (
     <img
       src={`${process.env.PUBLIC_URL}/images/icons/${"up_arrow"}.svg`}
-      alt="location icon"
+      alt="nav icon"
       style={{
         zIndex: 3,
         transformOrigin: "center",
         transition: "transform 0.5s",
         transform: open ? "rotate(270deg)" : "rotate(90deg)",
-        width: "auto",
-        height: "10px",
+        width: "20px",
+        height: "auto",
       }}
     />
   );
@@ -35,7 +35,6 @@ function HomeButton({ zIndex = 2 }) {
           zIndex: 1,
           transition: "transform 0.4s",
           cursor: "pointer",
-
           transform: isOpen ? "translateX(0%)" : "translateX(-90%)",
         }}
       >
@@ -45,7 +44,7 @@ function HomeButton({ zIndex = 2 }) {
               display: "block",
               width: "fit-content",
               position: "relative",
-              backgroundColor: colors.blue,
+              backgroundColor: colors.light_green,
               color: "white",
               padding: "10px 10px",
               // margin: "0px 2px",
@@ -57,8 +56,9 @@ function HomeButton({ zIndex = 2 }) {
         <div
           style={{
             padding: "10px 2px",
-            backgroundColor: "tomato",
+            backgroundColor: colors.light_green,
             color: "white",
+            borderRadius: "0px 10px 10px 0px",
           }}
           className={styles.home_btn}
           onClick={() => setIsOpen((old) => !old)}

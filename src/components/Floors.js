@@ -16,7 +16,7 @@ function Floors({ match }) {
   return (
     <>
       {(!openDetails || window.innerWidth > 900) && <HomeButton />}
-      <div>
+      <div className="gredient_bg">
         <Carousel
           // dynamicHeight
           width={window.innerWidth}

@@ -19,13 +19,13 @@ function NavigationButton({
         style={{
           right: next ? right : "default",
           left: prev ? left : "default",
-          backgroundColor: colors.light_blue,
-          borderRadius: "30px",
+          backgroundColor: colors.light_green,
+          borderRadius: "10px",
           width: "50px",
           height: "50px",
           // padding: "10px",
           position: "absolute",
-          top: isBlocks ? "20%" : "90%",
+          top: isBlocks ? "20%" : "95%",
           transform: "translateY(-50%)",
           marginInline: isBlocks || window.innerWidth < 900 ? "10px" : "50px",
           cursor: "pointer",
@@ -43,22 +43,28 @@ function NavigationButton({
       >
         <div>
           {prev && (
-            <div style={{ height: "100%", transform: "translate(-3px,2px)" }}>
+            <div style={{ transform: "translate(-1px,1px)" }}>
               <img
-                width="100%"
-                src={`${process.env.PUBLIC_URL}/images/icons/prev.svg`}
+                style={{
+                  transform: "rotate(-90deg)",
+                  height: "100%",
+                  width: "auto",
+                }}
+                src={`${process.env.PUBLIC_URL}/images/icons/up_arrow.svg`}
                 alt="location icon"
-                height="100%"
               />
             </div>
           )}
           {next && (
-            <div style={{ height: "100%", transform: "translate(2px,2px)" }}>
+            <div style={{ transform: "translate(2px,2px)" }}>
               <img
-                width="100%"
-                src={`${process.env.PUBLIC_URL}/images/icons/next.svg`}
+                style={{
+                  transform: "rotate(90deg)",
+                  height: "100%",
+                  width: "auto",
+                }}
+                src={`${process.env.PUBLIC_URL}/images/icons/up_arrow.svg`}
                 alt="location icon"
-                height="100%"
               />
             </div>
           )}

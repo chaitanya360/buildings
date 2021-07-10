@@ -10,8 +10,7 @@ function VirtualTourButton({ handleOnclick }) {
     <div
       onClick={handleOnclick}
       style={{
-        // backgroundColor: colors.pink,
-        backgroundColor: "#2352d4e0",
+        backgroundColor: colors.light_green,
         cursor: "pointer",
         padding: "5px 20px",
         color: "white",

@@ -9,55 +9,67 @@ function Info({
   style,
   isBooked = false,
   isFlat = false,
+  isBuilding = false,
   blockId,
   floorId,
   flatId,
   isUnderConstruction,
 }) {
+  console.log(isBuilding);
   return (
     <div
       style={{
-        backgroundColor: isBooked ? colors.booked : colors.light_blue,
+        backgroundColor: isBooked ? colors.booked : colors.light_green,
         paddingInline: "10px",
         paddingBlock: "5px",
-        color: "white",
+        color: "rgba(255,255,255,0.9)",
         display: window.innerWidth < 900 && !title ? "none" : "block",
-        borderRadius: "3px",
+        borderRadius: "8px",
         transform: "translateX(2%)",
+        zIndex: "999",
+
         ...style,
       }}
     >
       <div
         style={{
-          borderBottom: "2px solid white",
-          paddingBlock: "10px",
+          padding: "0px",
           display: "flex",
           paddingLeft: window.innerWidth > 900 ? "10px" : "10px",
-          paddingRight: window.innerWidth > 900 ? "50px" : "20px",
+          paddingRight: window.innerWidth > 900 ? "30px" : "20px",
+          borderLeft: isBuilding || isFlat ? "0px" : "3px solid",
+          borderColor: colors.gold,
+          margin: "5px 20px",
         }}
       >
-        {!isFlat && (
-          <img
-            width="15px"
-            src={`${process.env.PUBLIC_URL}/images/icons/location.svg`}
-            alt="location icon"
-          />
-        )}
         <div
           style={{
-            fontSize: sizes.medium,
-            marginInline: "10px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          {isFlat && "Flat"} {" " + title}
+          <img
+            src={`${process.env.PUBLIC_URL}/images/icons/location.svg`}
+            alt="location icon"
+            style={{ marginLeft: "5px", height: "25px", width: "auto" }}
+          />
+        </div>
+        <div
+          style={{
+            fontSize: "1.4rem",
+            margin: "0px 10px",
+          }}
+        >
+          {title}
         </div>
       </div>
       {isBooked ? (
         <div>Not Available</div>
       ) : !isUnderConstruction ? (
-        <div>
+        <div style={{ marginTop: "20px", fontWeight: 400, fontSize: "1rem" }}>
           {items.map((item) => (
-            <div style={{ margin: "10px 10px" }} key={item}>
+            <div style={{ margin: "15px 10px" }} key={item}>
               {item}
             </div>
           ))}
@@ -83,11 +95,14 @@ function Info({
             <div
               style={{
                 width: "fit-content",
-                backgroundColor: colors.pink,
-                padding: "0px 10px",
+                backgroundColor: colors.light_green,
+                padding: "5px 10px",
                 display: window.innerWidth < 900 ? "block" : "none",
                 textDecoration: "none",
-                color: "white",
+                color: colors.gold,
+                border: "1px solid",
+                borderColor: colors.gold,
+                borderRadius: "5px",
               }}
             >
               View

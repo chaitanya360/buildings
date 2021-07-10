@@ -6,16 +6,14 @@ function ISOButton({ handleOnClick }) {
     <div
       onClick={handleOnClick}
       style={{
-        // backgroundColor: colors.pink,
-        backgroundColor: "#2352d4e0",
-
+        backgroundColor: colors.light_green,
+        cursor: "pointer",
         padding: "5px 20px",
         color: "white",
         margin: "10px",
         zIndex: "2",
         borderRadius: "5px",
         fontSize: sizes.regular,
-        cursor: "pointer",
       }}
     >
       ISO View

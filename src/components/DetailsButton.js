@@ -8,7 +8,7 @@ const DetailsButton = ({ text, compareCount = 0, onClick }) => {
         textAlign: "left",
         margin: "10px",
         padding: "5px 10px",
-        border: "2px solid white",
+        border: "2px solid #4AA5A6",
         width: "fit-content",
         borderRadius: "5px",
         fontSize: sizes.medium,
@@ -22,7 +22,7 @@ const DetailsButton = ({ text, compareCount = 0, onClick }) => {
         <span
           style={{
             fontSize: sizes.small,
-            backgroundColor: "white",
+            backgroundColor: "gold",
             borderRadius: "15px",
             color: "black",
             margin: "5px",

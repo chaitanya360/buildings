@@ -41,7 +41,7 @@ function Floor({
     <>
       {loading && <Loading />}
       <Label label={getFloorName(getFloorNum(floorId))} blockId={blockId} />
-      <div className={styles.floor} style={{ backgroundColor: "#8df0f7" }}>
+      <div className={styles.floor} style={{ maxWidth: "100vw" }}>
         {details && !openDetails && (
           <Info
             style={{
@@ -99,6 +99,8 @@ function Floor({
                   <Tippy
                     content={
                       <Info
+                        isFlat
+                        flatId={flat.id}
                         title={getAbsoluteFlatNum(blockId, floorId, flat.id)}
                         items={[
                           buildings[blockId].flats[getFlatNum(flat.id) - 1]
