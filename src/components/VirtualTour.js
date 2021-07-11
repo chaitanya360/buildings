@@ -55,67 +55,33 @@ const Header = ({ handleClose, title }) => {
   );
 };
 
-const GetVirtualTourFlat = ({ blockId, floorId, flatId }) => {
-  if (
-    blockId === "blocka" &&
-    floorId === "floor8" &&
-    (flatId === "flat2" || flatId === "flat3")
-  )
-    return (
-      <iframe
-        width="100%"
-        height="100%"
-        style={{
-          width: "100%",
-          height: "100%",
-          border: "none",
-          maxWidth: "100%",
-          margin: "0px",
-        }}
-        frameBorder="0"
-        allowFullScreen
-        allow="xr-spatial-tracking; gyroscope; accelerometer"
-        scrolling="no"
-        src="https://btvrprojects.s3.ap-south-1.amazonaws.com/2+BHK+Merge/index.htm"
-      ></iframe>
-    );
-  else if (
-    blockId === "blocka" &&
-    floorId === "floor8" &&
-    (flatId === "flat1" || flatId === "flat8")
-  )
-    return (
-      <iframe
-        width="100%"
-        height="100%"
-        style={{
-          width: "100%",
-          height: "100%",
-          border: "none",
-          maxWidth: "100%",
-          margin: "0px",
-        }}
-        frameBorder="0"
-        allowFullScreen
-        allow="xr-spatial-tracking; gyroscope; accelerometer"
-        scrolling="no"
-        src="https://btvrprojects.s3.ap-south-1.amazonaws.com/RUNWAL_MERGE+TOURS/index.htm"
-      ></iframe>
-    );
-  else
-    return (
-      <center>
-        <h1 style={{ margin: "20px", color: "rgba(0,0,0,0.9)  " }}>
-          Currently only available in{" "}
-          <span style={{ color: "tomato" }}>A801,A802,A803,A808</span>
-        </h1>
-      </center>
-    );
+const getSrc = (modelId) => {
+  switch (modelId) {
+    case 1:
+      return "https://kuula.co/share/collection/7kmcW?fs=1&vr=1&sd=1&autorotate=0.16&thumbs=1&info=0&logo=bWVkaWEvMTE1NjUyLzYwZWEtZTQwYS1jYWMwLTExOTEucG5n";
+
+    case 2:
+      return "https://kuula.co/share/collection/7kmcQ?fs=1&vr=1&sd=1&autorotate=0.16&thumbs=1&info=0&logo=bWVkaWEvMTE1NjUyLzYwZWEtZTQwYS1jYWMwLTExOTEucG5n";
+
+    case 3:
+      return "https://kuula.co/share/collection/7kmKh?fs=1&vr=1&sd=1&autorotate=0.16&thumbs=1&info=0&logo=bWVkaWEvMTE1NjUyLzYwZWEtZTQwYS1jYWMwLTExOTEucG5n";
+
+    case 4:
+      return "https://kuula.co/share/collection/7kmK4?fs=1&vr=1&sd=1&autorotate=0.16&thumbs=1&info=0&logo=bWVkaWEvMTE1NjUyLzYwZWEtZTQwYS1jYWMwLTExOTEucG5n";
+
+    case 5:
+      return "https://kuula.co/share/collection/7kmKm?fs=1&vr=1&sd=1&autorotate=0.16&thumbs=1&info=0&logo=bWVkaWEvMTE1NjUyLzYwZWEtZTQwYS1jYWMwLTExOTEucG5n";
+
+    case 6:
+      return "https://kuula.co/share/collection/7kmKf?fs=1&vr=1&sd=1&autorotate=0.16&thumbs=1&info=0&logo=bWVkaWEvMTE1NjUyLzYwZWEtZTQwYS1jYWMwLTExOTEucG5n";
+  }
 };
 
-function VirtualTour({ blockId, floorId, flatId, handleClose }) {
+function VirtualTour({ blockId, floorId, flatId, handleClose, modelId }) {
   hideElement("nav_btn");
   hideElement("home_btn");
+
+  const [loading, setLoading] = useState(true);
 
   return (
     <div
@@ -126,6 +92,7 @@ function VirtualTour({ blockId, floorId, flatId, handleClose }) {
         height: "100%",
       }}
     >
+      {loading && <Loading />}
       <div
         className={styles.compare_body}
         style={{
@@ -145,14 +112,27 @@ function VirtualTour({ blockId, floorId, flatId, handleClose }) {
             display: "block",
             margin: 0,
             marginTop: "40px",
-            paddingBottom: window.innerWidth > 900 ? "5vh" : "1vh",
+            // paddingBottom: window.innerWidth > 900 ? "5vh" : "1vh",
+            backgroundColor: "black",
           }}
         >
-          <GetVirtualTourFlat
-            blockId={blockId}
-            flatId={flatId}
-            floorId={floorId}
-          />
+          <iframe
+            style={{
+              width: "100vw",
+              height: "100%",
+              border: "none",
+              maxWidth: "100%",
+              margin: "0px",
+              paddingBottom: "40px",
+              visibility: loading ? "hidden" : "unset",
+            }}
+            onLoad={() => setLoading(false)}
+            frameBorder="0"
+            allowFullScreen
+            allow="xr-spatial-tracking; gyroscope; accelerometer"
+            scrolling="no"
+            src={getSrc(modelId)}
+          ></iframe>
         </div>
       </div>
     </div>

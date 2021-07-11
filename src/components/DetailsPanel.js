@@ -59,7 +59,7 @@ const ButtonTrigger = ({ show, setShowDetails, onClick, setDetails }) => {
 
 const Features = ({ value, name }) => {
   return (
-    <div style={{ textAlign: "center", marginInline: "15px" }}>
+    <div style={{ textAlign: "center", margin: "0px 15px" }}>
       <div>{value}</div>
       <div style={{ color: colors.font_light }}>{name}</div>
     </div>
@@ -148,7 +148,7 @@ const AppartmentsItem = ({ bhk = "3", units = false, size = false }) => {
           <span
             style={{
               marginLeft: "10px",
-              paddingInline: "10px",
+              padding: "0px 10px",
               borderLeft: "3px solid",
               borderColor: colors.gold,
             }}
@@ -191,7 +191,7 @@ const SpecificationsItem = ({
 }) => {
   return (
     <>
-      <div style={{ paddingBlock: "20px", borderBottom: "2px solid white" }}>
+      <div style={{ padding: "20px 0px", borderBottom: "2px solid white" }}>
         <div
           style={{
             width: "fit-content",

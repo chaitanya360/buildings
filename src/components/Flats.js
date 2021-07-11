@@ -20,7 +20,6 @@ function Flats({ match }) {
   );
 
   const [showHomeBtn, setShowHomeBtn] = useState(true);
-  const history = useHistory();
 
   return (
     <div
@@ -68,6 +67,7 @@ function Flats({ match }) {
             type={flat.type}
             key={flat.id}
             setShowHomeBtn={setShowHomeBtn}
+            modelId={flat.modelId}
           />
         ))}
       </Carousel>

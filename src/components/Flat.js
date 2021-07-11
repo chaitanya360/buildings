@@ -26,6 +26,7 @@ function Flat({
   size,
   type,
   setShowHomeBtn,
+  modelId,
 }) {
   const [loading, setLoading] = useState(true);
   const [showIso, setShowIso] = useState(false);
@@ -58,6 +59,7 @@ function Flat({
         )}
         {showVirtualTour && (
           <VirtualTour
+            modelId={modelId}
             blockId={blockId}
             flatId={flatId}
             floorId={floorId}
