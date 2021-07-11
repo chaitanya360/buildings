@@ -74,7 +74,13 @@ function Flat({
               ? `${blockId}/first/${getFlatNum(flatId)}`
               : `${blockId}/typical/${getFlatNum(flatId)}`
           }
-          style={{ padding: window.innerWidth > 900 ? "50px" : "0" }}
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            opacity: loading ? "0" : "1",
+          }}
           onLoad={() => setLoading(false)}
           visibility={loading ? "hidden" : "visible"}
         />
@@ -83,7 +89,7 @@ function Flat({
             style={{
               display: "flex",
               position: "absolute",
-              bottom: "10px",
+              bottom: window.innerHeight < 500 ? "0px" : "10px",
               left: "50%",
               transform: "translateX(-50%)",
               justifyContent: "space-evenly",

@@ -14,27 +14,52 @@ function BuildingInfo({
       style={{
         zIndex: 999,
         position: "absolute",
-        top: "50px",
-        left: "50%",
+        bottom: "5%",
+        left: "15%",
         transform: "translateX(-50%)",
         backgroundColor: colors.light_green,
         color: "white",
         borderRadius: "5px",
+        padding: "10px 20px",
+        paddingTop: "20px",
       }}
     >
       <div
         style={{
-          paddingInline: "20px",
-          borderBottom: "2px solid white",
-          paddingBlock: "10px",
-          fontSize: sizes.medium,
+          display: "flex",
+          justifyContent: "center",
         }}
       >
-        {title}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src={`${process.env.PUBLIC_URL}/images/icons/location.svg`}
+            alt="location icon"
+            style={{
+              marginRight: "10px",
+              height: "25px",
+              width: "auto",
+            }}
+          />
+        </div>
+        <div
+          style={{
+            fontSize: sizes.medium,
+          }}
+        >
+          {title}
+        </div>
       </div>
-      <div style={{ paddingInline: "20px" }}>
+      <div style={{ marginTop: "20px", fontWeight: 400, fontSize: "1rem" }}>
         {items.map((item) => (
-          <div>{item}</div>
+          <div style={{ margin: "10px 10px" }} key={item}>
+            {item}
+          </div>
         ))}
       </div>
       {!isBooked ? (
@@ -42,17 +67,15 @@ function BuildingInfo({
           <div
             style={{
               width: "fit-content",
-              backgroundColor: colors.pink,
-              padding: "0px 10px",
-              display: window.innerWidth < 900 ? "flex" : "none",
+              backgroundColor: colors.light_green,
+              padding: "5px 10px",
+              display: window.innerWidth < 900 ? "block" : "none",
               textDecoration: "none",
-              color: "white",
-              lineHeight: "150%",
-              alignItems: "center",
-              borderRadius: "10px",
-              marginLeft: "50%",
-              transform: "translateX(-50%)",
-              marginBlock: "10px",
+              color: colors.gold,
+              border: "1px solid",
+              borderColor: colors.gold,
+              borderRadius: "5px",
+              margin: "auto",
             }}
           >
             <div> View</div>

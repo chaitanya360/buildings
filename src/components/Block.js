@@ -23,7 +23,7 @@ function Block({
   id,
   floors,
   viewBox = "0 0 824 1293",
-  height = window.innerWidth < 900 ? "70%" : "90%",
+  height = "90%",
   openDetails,
   setOpenDetails,
 }) {
@@ -40,7 +40,7 @@ function Block({
     <>
       <Label label={getBlockName(id) + " Block"} />
       {loading && <Loading />}
-      <div style={{ height: "100%", bottom: "0" }}>
+      <div>
         {details && !openDetails && (
           <BuildingInfo
             title={getFloorName(getFloorNum(details.floorId))}
@@ -67,19 +67,17 @@ function Block({
               onLoad={() => setLoading(false)}
               visibility={loading ? "hidden" : "visible"}
             />
-
             <Tippy
               singleton={source}
               placement={"left-end"}
               delay={[100, 0]}
-              interactive={window.innerWidth < 900 ? true : false}
+              interactive={window.innerWidth < 900}
             >
               <>
                 {floors.map((floor, index) => (
                   <Tippy
                     content={
                       <Info
-                        isBuilding={true}
                         title={getFloorName(getFloorNum(floor.id))}
                         items={[
                           id === "blockc" ? "3 and 2bhks" : "3, 3.5 and 2bhks",

@@ -102,7 +102,8 @@ function ISOview({
             visibility={loading ? "hidden" : "visible"}
             style={{
               width: "auto",
-              height: window.innerWidth > 900 ? "80%" : "50vh",
+              height: window.innerHeight > 500 ? "80%" : "80vh",
+              transform: window.innerHeight > 500 ? "none" : "translateY(-5%)",
             }}
           />
         </div>

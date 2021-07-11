@@ -35,6 +35,21 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <div
+      id="rotate"
+      style="
+        display: none;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      "
+    >
+      <div style="margin-top: 130px; font-size: 1.6rem">Rotate Your Device</div>
+      <img
+        src="%PUBLIC_URL%/gifs/rotate.gif"
+        style="height: 100%; width: auto"
+      />
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -46,4 +61,25 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <style>
+    @media screen and (orientation: portrait) {
+      #root {
+        display: none;
+      }
+      #rotate {
+        display: flex !important;
+        width: 100vw;
+        height: auto;
+      }
+    }
+
+    @media screen and (orientation: landscape) {
+      #rotate {
+        display: none !important;
+      }
+      #root {
+        display: block !important;
+      }
+    }
+  </style>
 </html>

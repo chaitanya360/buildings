@@ -20,6 +20,32 @@ const alertOptions = {
   transition: "scale",
 };
 
+function openFullscreen() {
+  const elem = document.getElementById("root");
+
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) {
+    /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) {
+    /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+
+window.onorientationchange = function () {
+  var orientation = window.orientation;
+  switch (orientation) {
+    case 0:
+    case 90:
+    case -90:
+      window.location.reload();
+      console.log("-90");
+      break;
+  }
+};
+
 function App() {
   useEffect(() => {
     // Retriving the flats information from db

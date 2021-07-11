@@ -10,7 +10,7 @@ function ISOButton({ handleOnClick }) {
         cursor: "pointer",
         padding: "5px 20px",
         color: "white",
-        margin: "10px",
+        margin: "0px 10px",
         zIndex: "2",
         borderRadius: "5px",
         fontSize: sizes.regular,

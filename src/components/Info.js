@@ -9,13 +9,11 @@ function Info({
   style,
   isBooked = false,
   isFlat = false,
-  isBuilding = false,
   blockId,
   floorId,
   flatId,
   isUnderConstruction,
 }) {
-  console.log(isBuilding);
   return (
     <div
       style={{
@@ -37,7 +35,7 @@ function Info({
           display: "flex",
           paddingLeft: window.innerWidth > 900 ? "10px" : "10px",
           paddingRight: window.innerWidth > 900 ? "30px" : "20px",
-          borderLeft: isBuilding || isFlat ? "0px" : "3px solid",
+          borderLeft: isFlat ? "0px" : "3px solid",
           borderColor: colors.gold,
           margin: "5px 20px",
         }}

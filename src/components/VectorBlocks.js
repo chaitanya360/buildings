@@ -35,9 +35,9 @@ function VectorBlocks(props) {
         <Info
           style={{
             position: "absolute",
-            top: "10px",
-            left: "10%",
-            padding: "10px 20px",
+            bottom: "10px",
+            left: "0%",
+            padding: "10px 5px",
           }}
           title={"Block " + getBlockName(details)}
           blockId={details}

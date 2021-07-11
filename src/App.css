@@ -52,3 +52,23 @@ body {
     rgba(70, 162, 163, 0.9391106784510679) 100%
   );
 }
+
+@media screen and (orientation: portrait) {
+  #root {
+    display: none;
+  }
+  #rotate {
+    display: flex;
+    width: 100vw;
+    height: auto;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  #rotate {
+    display: none !important;
+  }
+  #root {
+    display: block;
+  }
+}

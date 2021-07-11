@@ -27,7 +27,7 @@ const VectorBlock = forwardRef(({ id, d, handleOnClick, isBooked }, ref) => {
       fill={hoverColor}
       onClick={(id) => handleOnClick(id)}
       strokeWidth={"2px"}
-      stroke={hoverColor !== "transparent" && "black"}
+      stroke={hoverColor !== "transparent" ? "black" : "none"}
     />
   ) : (
     <Link to={isBooked ? "" : `/block/${id}`}>

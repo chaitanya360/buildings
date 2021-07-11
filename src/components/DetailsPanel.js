@@ -11,12 +11,24 @@ import {
   getFloorNum,
   getFloors,
   getTotalFlatsInFloor,
+  hideElement,
+  showElement,
 } from "../utility/functions";
 import { compareContext } from "./compareContext";
 import styles from "./components.module.css";
 import DetailsButton from "./DetailsButton";
 import DropDown from "./DropDown";
 import { useAlert } from "react-alert";
+
+const handleDetailsOpen = () => {
+  hideElement("nav_btn");
+  hideElement("home_btn");
+};
+
+const handleDetailsClose = () => {
+  showElement("nav_btn");
+  showElement("home_btn");
+};
 
 const ButtonTrigger = ({ show, setShowDetails, onClick, setDetails }) => {
   !show && setDetails && setDetails(false);
@@ -84,7 +96,7 @@ const ImageItem = ({ block, showFloor = false, floorNum, floors, blocks }) => {
       {showFloor && (
         <>
           <img
-            style={{ width: "40px", height: "auto", marginRight: "10px" }}
+            style={{ width: "32px", height: "auto", marginRight: "10px" }}
             src={`${process.env.PUBLIC_URL}/images/icons/layers.svg`}
             alt="location icon"
           />
@@ -235,13 +247,19 @@ function BuildingsDetails({ onClick }) {
             backgroundColor: colors.light_green,
             paddingBottom: "40px",
             borderRadius: "0px 0px 0px 10px",
+            display: "flex",
+            flexDirection: "column",
+            flexWrap: "wrap",
+            maxHeight: "100vh",
           }}
+          className={styles.details_wrapper}
         >
           <div
             style={{
               padding: "40px 40px 0px 30px",
               color: "white",
               fontWeight: 400,
+              width: window.innerHeight < 500 ? "100vw" : "500px",
             }}
           >
             <h2
@@ -290,30 +308,32 @@ function BuildingsDetails({ onClick }) {
                 </h3>
               </a>
             </div>
-            <div style={{ margin: "30px 0px" }}>
-              <h1
+            <div style={{ width: "100%" }}>
+              <div style={{ margin: "30px 0px" }}>
+                <h1
+                  style={{
+                    borderLeft: "4px solid",
+                    borderColor: colors.gold,
+                    paddingLeft: "15px",
+                    fontWeight: 500,
+                  }}
+                >
+                  We Bring you
+                </h1>
+              </div>
+              <div
                 style={{
-                  borderLeft: "4px solid",
-                  borderColor: colors.gold,
-                  paddingLeft: "15px",
-                  fontWeight: 500,
+                  display: "flex",
+                  fontSize: sizes.medium,
+                  justifyContent: "space-between",
                 }}
               >
-                We Bring you
-              </h1>
+                <Features value="5" name={"Towers"} />
+                <Features value="12" name={"Floors"} />
+                <Features value="444" name={"Flats"} />
+                <Features value="30,000 Sq.ft." name={"Clubhouse"} />
+              </div>
             </div>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              fontSize: sizes.medium,
-              justifyContent: "space-between",
-            }}
-          >
-            <Features value="5" name={"Towers"} />
-            <Features value="12" name={"Floors"} />
-            <Features value="444" name={"Flats"} />
-            <Features value="30,000 Sq.ft." name={"Clubhouse"} />
           </div>
         </div>
       </Collapsible>
@@ -339,12 +359,14 @@ function SingleBuildingDetails({
             show
             setShowDetails={setOpenDetails}
             setDetails={setDetails}
+            onClick={handleDetailsOpen}
           />
         }
         triggerWhenOpen={
           <ButtonTrigger
             setShowDetails={setOpenDetails}
             setDetails={setDetails}
+            onClick={handleDetailsClose}
           />
         }
         open={openDetails}
@@ -390,10 +412,24 @@ const FloorsDetails = ({
   // .filter((floor) => floor !== floorId);
   openDetails && setDetails(false);
   return (
-    <div className={styles.collapsible_wrapper} style={{ width: "400px" }}>
+    <div
+      className={styles.collapsible_wrapper}
+      style={{ width: window.innerHeight < 500 ? "100vw" : "400px" }}
+    >
       <Collapsible
-        trigger={<ButtonTrigger show setShowDetails={setOpenDetails} />}
-        triggerWhenOpen={<ButtonTrigger setShowDetails={setOpenDetails} />}
+        trigger={
+          <ButtonTrigger
+            onClick={handleDetailsOpen}
+            show
+            setShowDetails={setOpenDetails}
+          />
+        }
+        triggerWhenOpen={
+          <ButtonTrigger
+            onClick={handleDetailsClose}
+            setShowDetails={setOpenDetails}
+          />
+        }
         open={openDetails}
       >
         <div className={styles.details_wrapper} style={{ paddingTop: "40px" }}>
@@ -483,8 +519,19 @@ const FlatDetails = ({
       ) : (
         <div className={styles.collapsible_wrapper}>
           <Collapsible
-            trigger={<ButtonTrigger show setShowDetails={setShowDetails} />}
-            triggerWhenOpen={<ButtonTrigger setShowDetails={setShowDetails} />}
+            trigger={
+              <ButtonTrigger
+                onClick={handleDetailsOpen}
+                show
+                setShowDetails={setShowDetails}
+              />
+            }
+            triggerWhenOpen={
+              <ButtonTrigger
+                onClick={handleDetailsClose}
+                setShowDetails={setShowDetails}
+              />
+            }
             open={showDetails}
           >
             <div className={styles.details_wrapper}>
