@@ -108,6 +108,7 @@ function VirtualTour({ blockId, floorId, flatId, handleClose, modelId }) {
         <div
           style={{
             height: "100%",
+            overflow: "hidden",
             width: window.innerWidth,
             display: "block",
             margin: 0,
