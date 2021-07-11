@@ -93,16 +93,14 @@ function Block({
                     singleton={target}
                     key={index}
                   >
-                    {!loading && (
-                      <VectorFloor
-                        blockId={id}
-                        floorId={floor.id}
-                        d={floor.d}
-                        handleOnClick={() => {
-                          setDetails({ floorId: floor.id });
-                        }}
-                      />
-                    )}
+                    <VectorFloor
+                      blockId={id}
+                      floorId={floor.id}
+                      d={floor.d}
+                      handleOnClick={() => {
+                        setDetails({ floorId: floor.id });
+                      }}
+                    />
                   </Tippy>
                 ))}
               </>
