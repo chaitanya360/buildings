@@ -1,6 +1,6 @@
 import React from "react";
 import Lottie from "react-lottie";
-import loadingSVG from "./loading.json";
+import loadingSVG from "./loading2.json";
 
 function Loading(props) {
   const defaultOptions = {
@@ -23,8 +23,8 @@ function Loading(props) {
     >
       <Lottie
         options={defaultOptions}
-        height={400}
-        width={400}
+        height={200}
+        width={200}
         isClickToPauseDisabled
       />
     </div>

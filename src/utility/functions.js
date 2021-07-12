@@ -3,6 +3,7 @@ import {
   buildingsArray,
   availableFlats,
   underConstructionBlocks,
+  bookedBlocks,
 } from "../data";
 
 const getFloorName = (floorNum) => {
@@ -37,41 +38,6 @@ const getBlocks = () => {
 const getFlatNum = (flatId) => flatId.substr(4);
 
 const getAbsoluteFlatNum = (blockId, floorId, flatId) => {
-  // switch (blockId) {
-  //   case "blocka":
-  //     return getAbsoluteFlatNumInBlock(blockId, floorId, flatId);
-  //   case "blockb":
-  //     return (
-  //       getTotalFlatsInFloor("blocka") * 12 +
-  //       getAbsoluteFlatNumInBlock(blockId, floorId, flatId)
-  //     );
-
-  //   case "blockc":
-  //     return (
-  //       (getTotalFlatsInFloor("blocka") + getTotalFlatsInFloor("blockb")) * 12 +
-  //       getAbsoluteFlatNumInBlock(blockId, floorId, flatId)
-  //     );
-
-  //   case "blockd":
-  //     return (
-  //       (getTotalFlatsInFloor("blocka") +
-  //         getTotalFlatsInFloor("blockb") +
-  //         getTotalFlatsInFloor("blockc")) *
-  //         12 +
-  //       getAbsoluteFlatNumInBlock(blockId, floorId, flatId)
-  //     );
-
-  //   case "blocke":
-  //     return (
-  //       (getTotalFlatsInFloor("blocka") +
-  //         getTotalFlatsInFloor("blockb") +
-  //         getTotalFlatsInFloor("blockc") +
-  //         getTotalFlatsInFloor("blockd")) *
-  //         12 +
-  //       getAbsoluteFlatNumInBlock(blockId, floorId, flatId)
-  //     );
-  // }
-
   const flatNoInFloor =
     parseInt(getFloorNum(floorId) * 100) + parseInt(getFlatNum(flatId));
   switch (blockId) {
@@ -91,12 +57,12 @@ const getAbsoluteFlatNum = (blockId, floorId, flatId) => {
   }
 };
 
-const getAbsoluteFlatNumInBlock = (blockId, floorId, flatId) => {
-  return (
-    (parseInt(getFloorNum(floorId)) - 1) * getTotalFlatsInFloor(blockId) +
-    parseInt(getFlatNum(flatId))
-  );
-};
+// const getAbsoluteFlatNumInBlock = (blockId, floorId, flatId) => {
+//   return (
+//     (parseInt(getFloorNum(floorId)) - 1) * getTotalFlatsInFloor(blockId) +
+//     parseInt(getFlatNum(flatId))
+//   );
+// };
 
 const getTotalFlatsInFloor = (blockId) => {
   return buildings[blockId].flats.length;
@@ -128,33 +94,16 @@ const isBlockUnderConstruction = (blockId) => {
   return underConstructionBlocks.indexOf(blockId) !== -1;
 };
 
-const isFlatAvailable = (flatNum) => {
-  // return availableFlats.indexOf(flatNum) === -1 ? false : true;
-  return true;
+const isFlatAvailable = (flatId, ...rest) => {
+  return availableFlats.indexOf(flatId) === -1 ? false : true;
 };
 
-const isFloorBooked = (blockId, floorId) => {
-  let lb = getAbsoluteFlatNum(blockId, floorId, "flat1");
-  let ub = getAbsoluteFlatNum(
-    blockId,
-    floorId,
-    "flat" + getTotalFlatsInFloor(blockId)
-  );
-
-  while (lb <= ub) if (isFlatAvailable(lb++)) return false;
-  return true;
+const isFloorBooked = () => {
+  return false;
 };
 
 const isBlockBooked = (blockId) => {
-  let lb = getAbsoluteFlatNum(blockId, "floor1", "flat1");
-  let ub = getAbsoluteFlatNum(
-    blockId,
-    "floor12",
-    "flat" + getTotalFlatsInFloor(blockId)
-  );
-
-  while (lb <= ub) if (isFlatAvailable(lb++)) return false;
-  return true;
+  return bookedBlocks.indexOf(blockId) !== -1;
 };
 
 const hideElement = (id) => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { colors, sizes } from "../utility";
-import { getFlatNum } from "../utility/functions";
+import { getFlatNum, isBlockUnderConstruction } from "../utility/functions";
 
 function Info({
   title = "blocka",
@@ -12,14 +12,12 @@ function Info({
   blockId,
   floorId,
   flatId,
-  isUnderConstruction,
 }) {
   return (
     <div
       style={{
-        backgroundColor: isBooked ? colors.booked : colors.light_green,
-        paddingInline: "10px",
-        paddingBlock: "5px",
+        backgroundColor: isBooked ? colors.bookedInfo : colors.light_green,
+        padding: "5px 10px",
         color: "rgba(255,255,255,0.9)",
         display: window.innerWidth < 900 && !title ? "none" : "block",
         borderRadius: "8px",
@@ -33,11 +31,11 @@ function Info({
         style={{
           padding: "0px",
           display: "flex",
-          paddingLeft: window.innerWidth > 900 ? "10px" : "10px",
-          paddingRight: window.innerWidth > 900 ? "30px" : "20px",
-          borderLeft: isFlat ? "0px" : "3px solid",
+          borderLeft: "3px solid",
           borderColor: colors.gold,
-          margin: "5px 20px",
+          margin: "5px 5px",
+          marginTop: "10px",
+          minWidth: "120px",
         }}
       >
         <div
@@ -50,13 +48,17 @@ function Info({
           <img
             src={`${process.env.PUBLIC_URL}/images/icons/location.svg`}
             alt="location icon"
-            style={{ marginLeft: "5px", height: "25px", width: "auto" }}
+            style={{
+              margin: "0px 15px",
+              marginRight: "5px",
+              height: "20px",
+              width: "auto",
+            }}
           />
         </div>
         <div
           style={{
-            fontSize: "1.4rem",
-            margin: "0px 10px",
+            fontSize: "1.2rem",
           }}
         >
           {title}
@@ -64,8 +66,15 @@ function Info({
       </div>
       {isBooked ? (
         <div>Not Available</div>
-      ) : !isUnderConstruction ? (
-        <div style={{ marginTop: "20px", fontWeight: 400, fontSize: "1rem" }}>
+      ) : !isBlockUnderConstruction(blockId) ? (
+        <div
+          style={{
+            marginTop: "20px",
+            marginRight: "20px",
+            fontWeight: 400,
+            fontSize: "1rem",
+          }}
+        >
           {items.map((item) => (
             <div style={{ margin: "15px 10px" }} key={item}>
               {item}

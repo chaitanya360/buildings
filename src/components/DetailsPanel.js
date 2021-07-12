@@ -59,7 +59,9 @@ const ButtonTrigger = ({ show, setShowDetails, onClick, setDetails }) => {
 
 const Features = ({ value, name }) => {
   return (
-    <div style={{ textAlign: "center", margin: "0px 15px" }}>
+    <div
+      style={{ textAlign: "center", margin: "0px 25px", marginBottom: "20px" }}
+    >
       <div>{value}</div>
       <div style={{ color: colors.font_light }}>{name}</div>
     </div>
@@ -72,14 +74,15 @@ const ImageItem = ({ block, showFloor = false, floorNum, floors, blocks }) => {
       style={{
         fontWeight: 400,
         textAlign: "left",
-        fontSize: "25px",
+        fontSize: "20px",
         display: "flex",
         width: "100%",
         margin: "10px 0",
+        alignItems: "center",
       }}
     >
       <img
-        style={{ width: "25px", height: "auto", marginRight: "10px" }}
+        style={{ width: "23px", height: "auto", marginRight: "10px" }}
         src={`${process.env.PUBLIC_URL}/images/icons/building.svg`}
         alt="location icon"
       />
@@ -87,7 +90,6 @@ const ImageItem = ({ block, showFloor = false, floorNum, floors, blocks }) => {
       <div
         style={{
           position: "relative",
-          display: "inline-block",
           marginRight: "40px",
         }}
       >
@@ -96,7 +98,7 @@ const ImageItem = ({ block, showFloor = false, floorNum, floors, blocks }) => {
       {showFloor && (
         <>
           <img
-            style={{ width: "32px", height: "auto", marginRight: "10px" }}
+            style={{ width: "25px", height: "auto", marginRight: "10px" }}
             src={`${process.env.PUBLIC_URL}/images/icons/layers.svg`}
             alt="location icon"
           />
@@ -132,12 +134,13 @@ const AppartmentsItem = ({ bhk = "3", units = false, size = false }) => {
     <div
       style={{
         padding: "10px 10px",
-        margin: "20px 0px",
+        margin: "15px 20px",
         border: "1px solid #4AA5A6",
         borderRadius: "8px",
         textAlign: "left",
         fontWeight: 300,
         fontSize: sizes.medium,
+        width: "90%",
       }}
     >
       <div>
@@ -166,7 +169,7 @@ const AppartmentsItem = ({ bhk = "3", units = false, size = false }) => {
   );
 };
 
-const FlatDetailsItem = ({ size = "1234 Sq.ft", type = "13bhk" }) => {
+const FlatDetailsItem = ({ size = "1234 Sq.ft", type = "3bhk" }) => {
   return (
     <div
       style={{
@@ -245,24 +248,28 @@ function BuildingsDetails({ onClick }) {
         <div
           style={{
             backgroundColor: colors.light_green,
-            paddingBottom: "40px",
+            paddingBottom: "0px",
             borderRadius: "0px 0px 0px 10px",
             display: "flex",
             flexDirection: "column",
             flexWrap: "wrap",
             maxHeight: "100vh",
+            maxWidth: "100vw",
+            paddingRigth: "0px",
+            alignItems: "center",
+            justifyContent: "center",
           }}
           className={styles.details_wrapper}
         >
           <div
             style={{
-              padding: "40px 40px 0px 30px",
+              padding: "20px 0px 0px 0px",
               color: "white",
               fontWeight: 400,
-              width: window.innerHeight < 500 ? "100vw" : "500px",
+              width: window.innerHeight < 500 ? "100vw" : "250px",
             }}
           >
-            <h2
+            <h3
               style={{
                 fontWeight: 400,
                 marginBottom: "20px",
@@ -272,9 +279,20 @@ function BuildingsDetails({ onClick }) {
               }}
             >
               2, 3 and 3.5 BHK Premium Apartments
-            </h2>
-            <div style={{ margin: "40px 0px", fontWeight: 400 }}>
-              <h3 style={{ fontWeight: 400, display: "flex" }}>
+            </h3>
+            <div style={{ margin: "35px 0px", fontWeight: 400 }}>
+              <span
+                style={{
+                  marginLeft: "30px",
+                  fontSize: "1.2rem",
+                  color: "white",
+                  fontWeight: 500,
+                }}
+              >
+                Gothic Pentagon Clouds
+              </span>
+
+              <h4 style={{ fontWeight: 400, display: "flex" }}>
                 <span
                   style={{
                     display: "flex",
@@ -283,34 +301,34 @@ function BuildingsDetails({ onClick }) {
                   }}
                 >
                   <img
-                    style={{ height: "30px", width: "auto" }}
+                    style={{ height: "auto", width: "20px" }}
                     src={`${process.env.PUBLIC_URL}/images/icons/location.svg`}
                     alt="location icon"
                   />
                 </span>
-                <span style={{ margin: "20px" }}>
+                <span style={{ margin: "10px" }}>
                   Bachupally, Hyderabad, Telangana
                 </span>
-              </h3>
+              </h4>
               <a
                 href="https://www.google.com/maps/place/Gothic+Living+Spaces/@17.5445009,78.3704341,299m/data=!3m1!1e3!4m13!1m7!3m6!1s0x0:0x0!2zMTfCsDMyJzQwLjYiTiA3OMKwMjInMTYuMyJF!3b1!8m2!3d17.5446205!4d78.3711929!3m4!1s0x3bcb8dad96cf6afb:0x4aa81dec5b9e78fa!8m2!3d17.544992!4d78.3709538?hl=en"
                 style={{ textDecoration: "none" }}
                 target="_blank"
               >
-                <h3
+                <h4
                   style={{
                     color: colors.gold,
                     fontWeight: 500,
-                    textAlign: "center",
+                    marginLeft: "90px",
                   }}
                 >
                   View Map
-                </h3>
+                </h4>
               </a>
             </div>
             <div style={{ width: "100%" }}>
-              <div style={{ margin: "30px 0px" }}>
-                <h1
+              <div style={{ margin: "10px 0px" }}>
+                <h3
                   style={{
                     borderLeft: "4px solid",
                     borderColor: colors.gold,
@@ -319,19 +337,22 @@ function BuildingsDetails({ onClick }) {
                   }}
                 >
                   We Bring you
-                </h1>
+                </h3>
               </div>
               <div
                 style={{
                   display: "flex",
-                  fontSize: sizes.medium,
-                  justifyContent: "space-between",
+                  fontSize: "1rem",
                 }}
               >
-                <Features value="5" name={"Towers"} />
-                <Features value="12" name={"Floors"} />
-                <Features value="444" name={"Flats"} />
-                <Features value="30,000 Sq.ft." name={"Clubhouse"} />
+                <div>
+                  <Features value="5" name={"Towers"} />
+                  <Features value="12" name={"Floors"} />
+                </div>
+                <div>
+                  <Features value="444" name={"Flats"} />
+                  <Features value="30,000 Sq.ft." name={"Clubhouse"} />
+                </div>
               </div>
             </div>
           </div>

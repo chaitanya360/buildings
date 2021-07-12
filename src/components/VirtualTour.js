@@ -58,22 +58,22 @@ const Header = ({ handleClose, title }) => {
 const getSrc = (modelId) => {
   switch (modelId) {
     case 1:
-      return "https://kuula.co/share/collection/7kmcW?fs=1&vr=1&sd=1&autorotate=0.16&thumbs=1&info=0&logo=bWVkaWEvMTE1NjUyLzYwZWEtZTQwYS1jYWMwLTExOTEucG5n";
+      return "https://kuula.co/share/collection/7kmcW?fs=1&vr=1&sd=1&autorotate=0.16&thumbs=-1&info=0&logo=bWVkaWEvMTE1NjUyLzYwZWEtZTQwYS1jYWMwLTExOTEucG5n";
 
     case 2:
-      return "https://kuula.co/share/collection/7kmcQ?fs=1&vr=1&sd=1&autorotate=0.16&thumbs=1&info=0&logo=bWVkaWEvMTE1NjUyLzYwZWEtZTQwYS1jYWMwLTExOTEucG5n";
+      return "https://kuula.co/share/collection/7kmcQ?fs=1&vr=1&sd=1&autorotate=0.16&thumbs=-1&info=0&logo=bWVkaWEvMTE1NjUyLzYwZWEtZTQwYS1jYWMwLTExOTEucG5n";
 
     case 3:
-      return "https://kuula.co/share/collection/7kmKh?fs=1&vr=1&sd=1&autorotate=0.16&thumbs=1&info=0&logo=bWVkaWEvMTE1NjUyLzYwZWEtZTQwYS1jYWMwLTExOTEucG5n";
+      return "https://kuula.co/share/collection/7kmKh?fs=1&vr=1&sd=1&autorotate=0.16&thumbs=-1&info=0&logo=bWVkaWEvMTE1NjUyLzYwZWEtZTQwYS1jYWMwLTExOTEucG5n";
 
     case 4:
-      return "https://kuula.co/share/collection/7kmK4?fs=1&vr=1&sd=1&autorotate=0.16&thumbs=1&info=0&logo=bWVkaWEvMTE1NjUyLzYwZWEtZTQwYS1jYWMwLTExOTEucG5n";
+      return "https://kuula.co/share/collection/7kmK4?fs=1&vr=1&sd=1&autorotate=0.16&thumbs=-1&info=0&logo=bWVkaWEvMTE1NjUyLzYwZWEtZTQwYS1jYWMwLTExOTEucG5n";
 
     case 5:
-      return "https://kuula.co/share/collection/7kmKm?fs=1&vr=1&sd=1&autorotate=0.16&thumbs=1&info=0&logo=bWVkaWEvMTE1NjUyLzYwZWEtZTQwYS1jYWMwLTExOTEucG5n";
+      return "https://kuula.co/share/collection/7kmKm?fs=1&vr=1&sd=1&autorotate=0.16&thumbs=-1&info=0&logo=bWVkaWEvMTE1NjUyLzYwZWEtZTQwYS1jYWMwLTExOTEucG5n";
 
     case 6:
-      return "https://kuula.co/share/collection/7kmKf?fs=1&vr=1&sd=1&autorotate=0.16&thumbs=1&info=0&logo=bWVkaWEvMTE1NjUyLzYwZWEtZTQwYS1jYWMwLTExOTEucG5n";
+      return "https://kuula.co/share/collection/7kmKf?fs=1&vr=1&sd=1&autorotate=0.16&thumbs=-1&info=0&logo=bWVkaWEvMTE1NjUyLzYwZWEtZTQwYS1jYWMwLTExOTEucG5n";
   }
 };
 

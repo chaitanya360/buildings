@@ -8,10 +8,9 @@ import Flats from "./components/Flats";
 import { CompareProvider } from "./components/compareContext";
 import { Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
-import { setBookedFlats } from "./data";
-import { useEffect } from "react";
-import { db } from "./firebase_config";
-import VirtualTour from "./components/VirtualTour";
+
+import { useEffect, useState } from "react";
+import Loading from "./components/Loading";
 
 const alertOptions = {
   position: "bottom center",
@@ -21,16 +20,16 @@ const alertOptions = {
 };
 
 function openFullscreen() {
-  const elem = document.getElementById("root");
+  let element = document.getElementById("root");
 
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) {
-    /* Safari */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) {
-    /* IE11 */
-    elem.msRequestFullscreen();
+  if (!document.fullscreenEnabled) {
+    alert("View It in Fullscreen for better experience");
+  } else {
+    document.body
+      .requestFullscreen({ navigationUI: "hide" })
+      .catch(function (error) {
+        console.log(error.message);
+      });
   }
 }
 
@@ -47,26 +46,6 @@ window.onorientationchange = function () {
 };
 
 function App() {
-  useEffect(() => {
-    // Retriving the flats information from db
-
-    db.collection("BookedFlats")
-      .get()
-      .then((snap) => {
-        snap.forEach((value) => {
-          const data = value.data();
-          if (data) {
-            const flats = [];
-            Object.keys(data).forEach(function (key) {
-              if (data[key]) flats.push(parseInt(key));
-            });
-            setBookedFlats(flats);
-          }
-        });
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
   return (
     <div>
       <AlertProvider template={AlertTemplate} {...alertOptions}>

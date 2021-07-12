@@ -35,8 +35,8 @@ const Header = ({ handleClose }) => {
       style={{
         display: "flex",
         backgroundColor: "#005E5F",
-        fontSize: sizes.ex_large,
-        padding: "20px",
+        fontSize: sizes.large,
+        padding: "10px",
         color: "white",
         justifyContent: "space-between",
       }}
@@ -185,7 +185,7 @@ function Compare({ compareItemsIds, setCompareItemsId, setShowCompare }) {
           className={styles.compare_body}
           id="gredient_bg"
           style={{
-            width: "90%",
+            width: "98%",
             height: "100%",
             paddingBottom: "50px",
             marginTop: "20px",
@@ -196,6 +196,7 @@ function Compare({ compareItemsIds, setCompareItemsId, setShowCompare }) {
             style={{
               display: "flex",
               overflow: "scroll",
+              width: "100%",
               height: "100%",
             }}
             className={styles.no_scroll}

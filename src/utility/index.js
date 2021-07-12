@@ -15,6 +15,7 @@ let colors = {
   font_light: "#C4C4C4",
   available: "rgba(0,255,0,0.3)",
   booked: "rgba(255,0,0,0.3)",
+  bookedInfo: "rgba(255,0,0,0.6)",
   unavailable: "rgba(255,215,0,0.3)",
 };
 

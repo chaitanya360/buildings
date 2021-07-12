@@ -12,15 +12,15 @@ import {
   getExtreameFlatSizesInBlock,
   getTotalFlatsInFloor,
   isBlockBooked,
-  isBlockUnderConstruction,
 } from "../utility/functions";
 
 import Loading from "./Loading";
 
-function VectorBlocks(props) {
+function VectorBlocks() {
   const [details, setDetails] = useState(false);
 
   const [loading, setLoading] = useState(true);
+  const [blockId, setBlockId] = useState(false);
 
   const [source, target] = useSingleton({
     delay: 0,
@@ -42,7 +42,6 @@ function VectorBlocks(props) {
           title={"Block " + getBlockName(details)}
           blockId={details}
           isBooked={isBlockBooked(details)}
-          isUnderConstruction={isBlockUnderConstruction(details)}
           items={[
             "2 BHK, 3 BHK and 3.5 BHK ",
             getExtreameFlatSizesInBlock(details)[0] +
@@ -83,6 +82,8 @@ function VectorBlocks(props) {
                 <Tippy
                   content={
                     <Info
+                      isBooked={isBlockBooked(blockId)}
+                      blockId={blockId}
                       title={getBlockName(building.id) + " Block"}
                       items={[
                         building.id === "blockc"
@@ -94,10 +95,6 @@ function VectorBlocks(props) {
                           " Sq.Ft.",
                         getTotalFlatsInFloor(building.id) * 12 + " Flats",
                       ]}
-                      isBooked={isBlockBooked(building.id)}
-                      isUnderConstruction={isBlockUnderConstruction(
-                        building.id
-                      )}
                     />
                   }
                   singleton={target}
@@ -109,8 +106,7 @@ function VectorBlocks(props) {
                     d={building.d}
                     key={building.id}
                     handleOnClick={() => setDetails(building.id)}
-                    isBooked={isBlockBooked(building.id)}
-                    isUnderConstruction={isBlockUnderConstruction(building.id)}
+                    setBlockId={setBlockId}
                   />
                 </Tippy>
               ))}

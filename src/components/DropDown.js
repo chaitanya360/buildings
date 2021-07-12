@@ -13,7 +13,7 @@ const Icon = ({ open = false }) => {
         transformOrigin: "center",
         transition: "transform 0.5s",
         transform: open && "rotate(180deg)",
-        width: "30px",
+        width: "20px",
         height: "auto",
         display: "inline-block",
       }}
@@ -28,7 +28,7 @@ const DropDown = ({ items, text, isFloor, blockId }) => {
     <div
       style={{
         position: "relative",
-        display: "inline-block",
+        display: "flex",
       }}
     >
       <Collapsible
@@ -37,9 +37,10 @@ const DropDown = ({ items, text, isFloor, blockId }) => {
             style={{
               cursor: "pointer",
               display: "flex",
+              alignItems: "center",
             }}
           >
-            <span style={{ margin: "0px 10px" }}>{text}</span>
+            <div style={{ margin: "0px 10px" }}>{text}</div>
             <Icon />
           </div>
         }
@@ -49,6 +50,7 @@ const DropDown = ({ items, text, isFloor, blockId }) => {
             style={{
               display: "flex",
               cursor: "pointer",
+              alignItems: "center",
             }}
           >
             <span style={{ margin: "0px 10px" }}>{text}</span>

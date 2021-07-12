@@ -15,9 +15,7 @@ function Flats({ match }) {
   const blockId = match.params.blockId;
   const flatId = match.params.flatId;
   const floorId = match.params.floorId;
-  const [openDetails, setOpenDetails] = useState(
-    window.innerWidth < 900 ? false : true
-  );
+  const [openDetails, setOpenDetails] = useState(false);
 
   const [showHomeBtn, setShowHomeBtn] = useState(true);
 
