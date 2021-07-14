@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { colors, sizes } from "../utility";
+import React, { useState } from "react";
+import { colors } from "../utility";
 import {
   getAbsoluteFlatNum,
   getFlatNum,
@@ -72,7 +72,7 @@ function Flat({
         )}
         <Image
           src={
-            floorId == "floor1"
+            floorId === "floor1"
               ? `${blockId}/first/${getFlatNum(flatId)}`
               : `${blockId}/typical/${getFlatNum(flatId)}`
           }

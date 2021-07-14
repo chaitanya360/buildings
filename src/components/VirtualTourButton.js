@@ -1,11 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { colors, sizes } from "../utility";
 
 function VirtualTourButton({ handleOnclick }) {
-  // to be added in future
-  // just add 'to' attribute in link tag
-  // and also add component in app.js page with route = <to>
   return (
     <div
       onClick={handleOnclick}

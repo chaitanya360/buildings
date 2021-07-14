@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { colors, sizes } from "../utility";
 import { getAbsoluteFlatNum, hideElement } from "../utility/functions";
 import styles from "./components.module.css";
 import Loading from "./Loading";
@@ -74,6 +73,8 @@ const getSrc = (modelId) => {
 
     case 6:
       return "https://kuula.co/share/collection/7kmKf?fs=1&vr=1&sd=1&autorotate=0.16&thumbs=-1&info=0&logo=bWVkaWEvMTE1NjUyLzYwZWEtZTQwYS1jYWMwLTExOTEucG5n";
+    default:
+      console.log("Model not defined");
   }
 };
 
@@ -127,6 +128,7 @@ function VirtualTour({ blockId, floorId, flatId, handleClose, modelId }) {
               paddingBottom: "40px",
               visibility: loading ? "hidden" : "unset",
             }}
+            title={"Flat " + getAbsoluteFlatNum(blockId, floorId, flatId)}
             onLoad={() => setLoading(false)}
             frameBorder="0"
             allowFullScreen

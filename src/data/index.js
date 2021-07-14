@@ -1570,7 +1570,7 @@ const bookedBlocks = [];
 
 const setBookedFlats = (bookedFlatsObj) => {
   let bookedFlats = [];
-  Object.keys(bookedFlatsObj).map((key) => {
+  Object.keys(bookedFlatsObj).forEach((key) => {
     if (bookedFlatsObj[key]) {
       bookedFlats.push(key.toString());
     }
@@ -1582,7 +1582,7 @@ const setBookedFlats = (bookedFlatsObj) => {
 };
 
 const setUnderConstructionBlocks = (blocks) => {
-  Object.keys(blocks).map((key) => {
+  Object.keys(blocks).forEach((key) => {
     if (blocks[key]) {
       underConstructionBlocks.push(key.toString());
     }
@@ -1590,7 +1590,7 @@ const setUnderConstructionBlocks = (blocks) => {
 };
 
 const setBookedBlocks = (bookedBlocksObj) => {
-  Object.keys(bookedBlocksObj).map((key) => {
+  Object.keys(bookedBlocksObj).forEach((key) => {
     if (bookedBlocksObj[key]) {
       bookedBlocks.push(key.toString());
     }

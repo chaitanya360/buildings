@@ -1,6 +1,6 @@
 import React from "react";
 import Lottie from "react-lottie";
-import loadingSVG from "./loading2.json";
+import loadingSVG from "./loading.json";
 
 function Loading(props) {
   const defaultOptions = {

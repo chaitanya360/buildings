@@ -94,6 +94,7 @@ function Block({
                     key={index}
                   >
                     <VectorFloor
+                      isVisible={!loading}
                       blockId={id}
                       floorId={floor.id}
                       d={floor.d}

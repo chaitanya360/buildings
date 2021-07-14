@@ -54,6 +54,9 @@ const getAbsoluteFlatNum = (blockId, floorId, flatId) => {
 
     case "blocke":
       return "E " + flatNoInFloor;
+
+    default:
+      return "block not found";
   }
 };
 

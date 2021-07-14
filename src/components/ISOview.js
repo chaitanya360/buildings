@@ -67,7 +67,7 @@ function ISOview({
   hideElement("home_btn");
 
   const src =
-    floorId == "floor1"
+    floorId === "floor1"
       ? `${blockId}/first/iso/${getFlatNum(flatId)}`
       : `${blockId}/typical/iso/${getFlatNum(flatId)}`;
 
@@ -105,6 +105,7 @@ function ISOview({
               height: window.innerHeight > 500 ? "80%" : "80vh",
               transform: window.innerHeight > 500 ? "none" : "translateY(-5%)",
             }}
+            alt="flat pic"
           />
         </div>
       </div>

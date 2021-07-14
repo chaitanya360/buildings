@@ -314,6 +314,7 @@ function BuildingsDetails({ onClick }) {
                 href="https://www.google.com/maps/place/Gothic+Living+Spaces/@17.5445009,78.3704341,299m/data=!3m1!1e3!4m13!1m7!3m6!1s0x0:0x0!2zMTfCsDMyJzQwLjYiTiA3OMKwMjInMTYuMyJF!3b1!8m2!3d17.5446205!4d78.3711929!3m4!1s0x3bcb8dad96cf6afb:0x4aa81dec5b9e78fa!8m2!3d17.544992!4d78.3709538?hl=en"
                 style={{ textDecoration: "none" }}
                 target="_blank"
+                rel="noreferrer"
               >
                 <h4
                   style={{

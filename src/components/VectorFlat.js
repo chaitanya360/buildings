@@ -21,7 +21,7 @@ const VectorFlat = forwardRef(
         <path
           className="flat"
           id={flat.id}
-          d={floorId == "floor1" ? flat.firstFloorD : flat.d}
+          d={floorId === "floor1" ? flat.firstFloorD : flat.d}
           onMouseOver={() =>
             setHoverColor(
               !isFlatAvailable(getAbsoluteFlatNum(blockId, floorId, flat.id))

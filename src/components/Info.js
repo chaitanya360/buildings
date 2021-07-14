@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { colors, sizes } from "../utility";
+import { colors } from "../utility";
 import { getFlatNum, isBlockUnderConstruction } from "../utility/functions";
 
 function Info({

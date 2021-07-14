@@ -5,7 +5,7 @@ import { isFloorBooked } from "../utility/functions";
 import { useAlert } from "react-alert";
 
 const VectorFloor = forwardRef(
-  ({ blockId, floorId, d, handleOnClick }, ref) => {
+  ({ blockId, floorId, d, handleOnClick, isVisible = false }, ref) => {
     const [hoverColor, setHoverColor] = useState("transparent");
     const alert = useAlert();
     return (
@@ -18,6 +18,7 @@ const VectorFloor = forwardRef(
         ref={ref}
       >
         <path
+          visibility={isVisible ? "visible" : "hidden"}
           // className="floor"
 
           id={floorId}

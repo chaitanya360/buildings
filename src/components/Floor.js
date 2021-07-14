@@ -80,7 +80,7 @@ function Floor({
             <image
               width="100%"
               xlinkHref={
-                floorId == "floor1"
+                floorId === "floor1"
                   ? `${process.env.PUBLIC_URL}/images/floors/first/${blockId}.png`
                   : `${process.env.PUBLIC_URL}/images/floors/typical/${blockId}.png`
               }

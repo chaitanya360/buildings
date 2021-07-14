@@ -103,13 +103,7 @@ const DetailItem = ({ detailKey = "Fruit", value = "Mango" }) => {
   );
 };
 
-const Item = ({
-  blockId,
-  flatId,
-  floorId,
-  details,
-  handleRemoveItem = { handleRemoveItem },
-}) => {
+const Item = ({ blockId, flatId, floorId, details, handleRemoveItem }) => {
   return (
     <div className={styles.compare_item}>
       <ItemHeader
@@ -119,7 +113,7 @@ const Item = ({
       <div>
         <Image
           src={
-            floorId == "floor1"
+            floorId === "floor1"
               ? `${blockId}/first/${getFlatNum(flatId)}`
               : `${blockId}/typical/${getFlatNum(flatId)}`
           }
