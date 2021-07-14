@@ -66,7 +66,7 @@ const buildings = {
         typicalSize: "1970 Sq.ft",
         type: "3 BHK",
         specifications: {
-          Dining: "17'0\" X 12'0\"",
+          Dining: "10'8\" X 16'6\"",
           Kitchen: "12'0\" X 8'0\"",
           Mbed: "14'8\" X 12'4\"",
           Bed2: "11'0\" X 13'0\"",
@@ -87,11 +87,11 @@ const buildings = {
 
         type: "2 BHK",
         specifications: {
-          Dining: "13'4\" X 10'10\"",
+          Dining: "17'4\" X 10'10\"",
           Kitchen: "8'0\" X 10'0\"",
           Mbed: "10'6\" X 16'2\"",
           Bed2: "12'0\" X 10'0\"",
-          Drawing: "14'4\" X 10'3\"",
+          Drawing: "10'6\" X 15'0\"",
           Facing: "West",
         },
       },
@@ -106,7 +106,7 @@ const buildings = {
 
         type: "2 BHK",
         specifications: {
-          Dining: "13'4\" X 10'10\"",
+          Dining: "17'4\" X 10'10\"",
           Kitchen: "8'0\" X 10'0\"",
           Mbed: "10'6\" X 16'2\"",
           Bed2: "12'0\" X 10'0\"",
@@ -125,8 +125,8 @@ const buildings = {
 
         type: "3.5 BHK",
         specifications: {
-          Dining: "11'2\" X 23'2\"",
-          Kitchen: "9'8\" X 12'0\"",
+          Dining: "11'0\" X 28'2\"",
+          Kitchen: "9'8\" X 11'0\"",
           Mbed: "15'0\" X 11'0\"",
           Bed2: "13'0\" X 12'0\"",
           Bed3: "11'0\" X 12'0\"",
@@ -168,7 +168,7 @@ const buildings = {
         type: "3 BHK",
 
         specifications: {
-          Dining: "17'0\" X 10'3\"",
+          Dining: "10'8\" X 14'3\"",
           Kitchen: "11'0\" X 7'0\"",
           Mbed: "14'0\" X 11'0\"",
           Bed2: "11'0\" X 12'0\"",
@@ -189,12 +189,12 @@ const buildings = {
 
         type: "3 BHK",
         specifications: {
-          Dining: "17'0\" X 10'3\"",
+          Dining: "10'8\" X 14'3\"",
           Kitchen: "11'0\" X 7'0\"",
           Mbed: "14'0\" X 11'0\"",
           Bed2: "11'0\" X 12'0\"",
           Bed3: "11'0\" X 12'0\"",
-          Drawing: "14'4\" X 10'3\"",
+          Drawing: "11'4\" X 10'3\"",
           Facing: "East",
         },
       },
@@ -289,7 +289,7 @@ const buildings = {
 
         type: "3 BHK",
         specifications: {
-          Dining: "17'6\" X 11'0\"",
+          Dining: "11'2\" X 15'0\"",
           Kitchen: "8'0\" X 11'0\"",
           Mbed: "14'6\" X 11'0\"",
           Bed2: "10'6\" X 12'0\"",
@@ -309,7 +309,7 @@ const buildings = {
 
         type: "2 BHK",
         specifications: {
-          Dining: "13'4\" X 10'10\"",
+          Dining: "17'4\" X 10'10\"",
           Kitchen: "8'0\" X 10'0\"",
           Mbed: "10'6\" X 16'2\"",
           Bed2: "12'0\" X 10'0\"",
@@ -328,7 +328,7 @@ const buildings = {
 
         type: "2 BHK",
         specifications: {
-          Dining: "13'4\" X 10'10\"",
+          Dining: "17'4\" X 10'10\"",
           Kitchen: "8'0\" X 10'0\"",
           Mbed: "10'6\" X 16'2\"",
           Bed2: "12'0\" X 10'0\"",
@@ -347,8 +347,8 @@ const buildings = {
 
         type: "3 BHK",
         specifications: {
-          Dining: "17'0\" X 11'0\"",
-          Kitchen: "12'0\" X 7'0\"",
+          Dining: "10'8\" X 15'0\"",
+          Kitchen: "12'0\" X 11'0\"",
           Mbed: "14'8\" X 11'0\"",
           Bed2: "11'0\" X 12'0\"",
           Bed3: "11'0\" X 12'0\"",
@@ -368,7 +368,7 @@ const buildings = {
         type: "3 BHK",
         specifications: {
           Dining: "11'8\" X 16'4\"",
-          Kitchen: "12'2\" X 7'0\"",
+          Kitchen: "12'2\" X 11'0\"",
           Mbed: "14'6\" X 11'0\"",
           Bed2: "12'0\" X 12'4\"",
           Bed3: "12'0\" X 12'4\"",
@@ -388,7 +388,7 @@ const buildings = {
 
         type: "3 BHK",
         specifications: {
-          Dining: "17'0\" X 10'3\"",
+          Dining: "10'8\" X 14'3\"",
           Kitchen: "11'0\" X 7'0\"",
           Mbed: "14'0\" X 11'0\"",
           Bed2: "11'0\" X 12'0\"",
@@ -409,7 +409,7 @@ const buildings = {
 
         type: "3 BHK",
         specifications: {
-          Dining: "17'0\" X 10'3\"",
+          Dining: "10'8\" X 14'3\"",
           Kitchen: "11'0\" X 7'0\"",
           Mbed: "14'0\" X 11'0\"",
           Bed2: "11'0\" X 12'0\"",
@@ -513,7 +513,7 @@ const buildings = {
 
         type: "3 BHK",
         specifications: {
-          Dining: "17'0\" X 11'0\"",
+          Dining: "10'8\" X 15'0\"",
           Kitchen: "8'0\" X 11'0\"",
           Mbed: "14'6\" X 11'0\"",
           Bed2: "11'0\" X 12'0\"",
@@ -533,7 +533,7 @@ const buildings = {
 
         type: "2 BHK",
         specifications: {
-          Dining: "13'4\" X 10'10\"",
+          Dining: "17'4\" X 10'10\"",
           Kitchen: "8'0\" X 10'0\"",
           Mbed: "10'6\" X 16'2\"",
           Bed2: "12'0\" X 10'0\"",
@@ -552,8 +552,8 @@ const buildings = {
 
         type: "3 BHK",
         specifications: {
-          Dining: "17'0\" X 11'0\"",
-          Kitchen: "12'0\" X 7'0\"",
+          Dining: "10'8\" X 15'0\"",
+          Kitchen: "12'0\" X 11'0\"",
           Mbed: "14'8\" X 11'0\"",
           Bed2: "11'0\" X 12'0\"",
           Bed3: "11'0\" X 12'0\"",
@@ -572,8 +572,8 @@ const buildings = {
 
         type: "3 BHK",
         specifications: {
-          Dining: "17'0\" X 12'0\"",
-          Kitchen: "11'0\" X 8'0\"",
+          Dining: "10'8\" X 16'0\"",
+          Kitchen: "11'0\" X 12'4\"",
           Mbed: "14'6\" X 12'4\"",
           Bed2: "11'0\" X 13'0\"",
           Bed3: "11'0\" X 13'0\"",
@@ -593,7 +593,7 @@ const buildings = {
 
         type: "3 BHK",
         specifications: {
-          Dining: "17'0\" X 10'3\"",
+          Dining: "10'8\" X 14'3\"",
           Kitchen: "11'0\" X 7'0\"",
           Mbed: "14'0\" X 11'0\"",
           Bed2: "11'0\" X 12'0\"",
@@ -614,7 +614,7 @@ const buildings = {
 
         type: "3 BHK",
         specifications: {
-          Dining: "17'0\" X 11'0\"",
+          Dining: "10'8\" X 15'0\"",
           Kitchen: "11'0\" X 7'0\"",
           Mbed: "14'0\" X 11'0\"",
           Bed2: "11'0\" X 12'0\"",
@@ -695,7 +695,7 @@ const buildings = {
         type: "3 BHK",
         specifications: {
           Dining: "11'8\" X 16'0\"",
-          Kitchen: "12'0\" X 7'0\"",
+          Kitchen: "11'0\" X 7'0\"",
           Mbed: "14'2\" X 11'0\"",
           Bed2: "12'0\" X 12'4\"",
           Bed3: "12'0\" X 12'4\"",
@@ -714,11 +714,11 @@ const buildings = {
 
         type: "3 BHK",
         specifications: {
-          Dining: "17'4\" X 10'3\"",
+          Dining: "10'8\" X 14'3\"",
           Kitchen: "8'0\" X 11'0\"",
           Mbed: "15'6\" X 11'0\"",
           Bed2: "12'0\" X 12'0\"",
-          Bed2: "11'4\" X 12'0\"",
+          Bed3: "11'4\" X 12'0\"",
           Drawing: "12'4\" X 10'3\"",
           Facing: "West",
         },
@@ -734,11 +734,11 @@ const buildings = {
 
         type: "3 BHK",
         specifications: {
-          Dining: "17'4\" X 10'3\"",
+          Dining: "10'8\" X 14'3\"",
           Kitchen: "8'0\" X 11'0\"",
           Mbed: "15'6\" X 11'0\"",
           Bed2: "12'0\" X 12'0\"",
-          Bed2: "11'4\" X 12'0\"",
+          Bed3: "11'4\" X 12'0\"",
           Drawing: "12'4\" X 10'3\"",
           Facing: "West",
         },
@@ -754,8 +754,8 @@ const buildings = {
 
         type: "3.5 BHK",
         specifications: {
-          Dining: "11'0\" X 23'0\"",
-          Kitchen: "9'8\" X 7'8\"",
+          Dining: "28'2\" X 11'0\"",
+          Kitchen: "9'8\" X 11'8\"",
           Mbed: "15'0\" X 11'0\"",
           Bed2: "13'0\" X 12'0\"",
           Bed3: "11'0\" X 12'0\"",
@@ -776,7 +776,7 @@ const buildings = {
         type: "3 BHK",
         specifications: {
           Dining: "11'8\" X 16'4\"",
-          Kitchen: "11'0\" X 7'0\"",
+          Kitchen: "11'0\" X 11'0\"",
           Mbed: "15'4\" X 11'0\"",
           Bed2: "12'0\" X 12'4\"",
           Bed3: "12'0\" X 12'4\"",
@@ -796,11 +796,11 @@ const buildings = {
 
         type: "2 BHK",
         specifications: {
-          Dining: "12'10\" X 10'10\"",
+          Dining: "10'10\" X 12'10\"",
           Kitchen: "8'6\" X 11'0\"",
           Mbed: "14'0\" X 10'0\"",
           Bed2: "11'6\" X 10'0\"",
-          Drawing: "11'4\" X 15'0\"",
+          Drawing: "11'0\" X 15'0\"",
           Facing: "East",
         },
       },
@@ -816,7 +816,7 @@ const buildings = {
 
         type: "3 BHK",
         specifications: {
-          Dining: "17'0\" X 10'3\"",
+          Dining: "10'8\" X 14'3\"",
           Kitchen: "11'0\" X 7'0\"",
           Mbed: "14'0\" X 11'0\"",
           Bed2: "11'0\" X 12'0\"",
@@ -836,11 +836,11 @@ const buildings = {
 
         type: "2 BHK",
         specifications: {
-          Dining: "12'10\" X 10'10\"",
+          Dining: "16'10\" X 10'10\"",
           Kitchen: "8'6\" X 11'0\"",
           Mbed: "14'0\" X 10'0\"",
           Bed2: "11'6\" X 10'0\"",
-          Drawing: "11'4\" X 15'0\"",
+          Drawing: "11'0\" X 15'0\"",
           Facing: "East",
         },
       },
@@ -857,7 +857,7 @@ const buildings = {
         type: "3 BHK",
         specifications: {
           Dining: "11'8\" X 16'0\"",
-          Kitchen: "11'0\" X 7'0\"",
+          Kitchen: "12'0\" X 7'0\"",
           Mbed: "15'8\" X 11'0\"",
           Bed2: "12'0\" X 12'4\"",
           Bed3: "12'0\" X 12'4\"",
@@ -936,7 +936,7 @@ const buildings = {
 
         type: "3 BHK",
         specifications: {
-          Dining: "17'0\" X 10'3\"",
+          Dining: "10'8\" X 15'0\"",
           Kitchen: "8'0\" X 11'0\"",
           Mbed: "14'6\" X 11'0\"",
           Bed2: "11'0\" X 12'0\"",
@@ -956,7 +956,7 @@ const buildings = {
 
         type: "2 BHK",
         specifications: {
-          Dining: "13'4\" X 10'10\"",
+          Dining: "17'4\" X 10'10\"",
           Kitchen: "8'0\" X 10'0\"",
           Mbed: "10'6\" X 16'2\"",
           Bed2: "12'0\" X 10'0\"",
@@ -976,7 +976,7 @@ const buildings = {
         type: "3 BHK",
         specifications: {
           Dining: "11'8\" X 16'4\"",
-          Kitchen: "18'8\" X 7'0\"",
+          Kitchen: "10'8\" X 11'0\"",
           Mbed: "15'4\" X 11'0\"",
           Bed2: "12'0\" X 12'4\"",
           Bed3: "12'0\" X 12'4\"",
@@ -1017,7 +1017,7 @@ const buildings = {
 
         type: "3 BHK",
         specifications: {
-          Dining: "17'0\" X 10'3\"",
+          Dining: "10'8\" X 14'3\"",
           Kitchen: "11'0\" X 7'0\"",
           Mbed: "14'0\" X 11'0\"",
           Bed2: "11'0\" X 12'0\"",
@@ -1038,7 +1038,7 @@ const buildings = {
 
         type: "3 BHK",
         specifications: {
-          Dining: "17'0\" X 12'0\"",
+          Dining: "10'8\" X 16'0\"",
           Kitchen: "11'0\" X 8'0\"",
           Mbed: "14'6\" X 12'4\"",
           Bed2: "11'0\" X 13'0\"",
@@ -1359,6 +1359,210 @@ let availableFlats = [
   "C 1204",
   "C 1205",
   "C 1206",
+
+  "D 101",
+  "D 102",
+  "D 103",
+  "D 104",
+  "D 105",
+  "D 106",
+  "D 107",
+  "D 108",
+  "D 109",
+
+  "D 201",
+  "D 202",
+  "D 203",
+  "D 204",
+  "D 205",
+  "D 206",
+  "D 207",
+  "D 208",
+  "D 209",
+
+  "D 301",
+  "D 302",
+  "D 303",
+  "D 304",
+  "D 305",
+  "D 306",
+  "D 307",
+  "D 308",
+  "D 309",
+
+  "D 401",
+  "D 402",
+  "D 403",
+  "D 404",
+  "D 405",
+  "D 406",
+  "D 407",
+  "D 408",
+  "D 409",
+
+  "D 501",
+  "D 502",
+  "D 503",
+  "D 504",
+  "D 505",
+  "D 506",
+  "D 507",
+  "D 508",
+  "D 509",
+
+  "D 601",
+  "D 602",
+  "D 603",
+  "D 604",
+  "D 605",
+  "D 606",
+  "D 607",
+  "D 608",
+  "D 609",
+
+  "D 701",
+  "D 702",
+  "D 703",
+  "D 704",
+  "D 705",
+  "D 706",
+  "D 707",
+  "D 708",
+  "D 709",
+
+  "D 801",
+  "D 802",
+  "D 803",
+  "D 804",
+  "D 805",
+  "D 806",
+  "D 807",
+  "D 808",
+  "D 809",
+
+  "D 901",
+  "D 902",
+  "D 903",
+  "D 904",
+  "D 905",
+  "D 906",
+  "D 907",
+  "D 908",
+  "D 909",
+
+  "D 1001",
+  "D 1002",
+  "D 1003",
+  "D 1004",
+  "D 1005",
+  "D 1006",
+  "D 1007",
+  "D 1008",
+  "D 1009",
+
+  "D 1101",
+  "D 1102",
+  "D 1103",
+  "D 1104",
+  "D 1105",
+  "D 1106",
+  "D 1107",
+  "D 1108",
+  "D 1109",
+
+  "D 1201",
+  "D 1202",
+  "D 1203",
+  "D 1204",
+  "D 1205",
+  "D 1206",
+  "D 1207",
+  "D 1208",
+  "D 1209",
+
+  "E 101",
+  "E 102",
+  "E 103",
+  "E 104",
+  "E 105",
+  "E 106",
+
+  "E 201",
+  "E 202",
+  "E 203",
+  "E 204",
+  "E 205",
+  "E 206",
+
+  "E 301",
+  "E 302",
+  "E 303",
+  "E 304",
+  "E 305",
+  "E 306",
+
+  "E 401",
+  "E 402",
+  "E 403",
+  "E 404",
+  "E 405",
+  "E 406",
+
+  "E 501",
+  "E 502",
+  "E 503",
+  "E 504",
+  "E 505",
+  "E 506",
+
+  "E 601",
+  "E 602",
+  "E 603",
+  "E 604",
+  "E 605",
+  "E 606",
+
+  "E 701",
+  "E 702",
+  "E 703",
+  "E 704",
+  "E 705",
+  "E 706",
+
+  "E 801",
+  "E 802",
+  "E 803",
+  "E 804",
+  "E 805",
+  "E 806",
+
+  "E 901",
+  "E 902",
+  "E 903",
+  "E 904",
+  "E 905",
+  "E 906",
+
+  "E 1001",
+  "E 1002",
+  "E 1003",
+  "E 1004",
+  "E 1005",
+  "E 1006",
+
+  "E 1101",
+  "E 1102",
+  "E 1103",
+  "E 1104",
+  "E 1105",
+  "E 1106",
+
+  "E 1201",
+  "E 1202",
+  "E 1203",
+  "E 1204",
+  "E 1205",
+  "E 1206",
 ];
 
 const underConstructionBlocks = [];

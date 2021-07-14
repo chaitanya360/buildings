@@ -49,7 +49,7 @@ const VectorBlock = forwardRef(
           onMouseLeave={() => setHoverColor("transparent")}
           fill={hoverColor}
           strokeWidth={"2px"}
-          stroke={hoverColor !== "transparent" && "black"}
+          stroke={hoverColor !== "transparent" ? "black" : "none"}
         />
       </Link>
     );

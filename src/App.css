@@ -53,22 +53,6 @@ body {
   );
 }
 
-@media screen and (orientation: portrait) {
-  #root {
-    display: none;
-  }
-  #rotate {
-    display: flex;
-    width: 100vw;
-    height: auto;
-  }
-}
-
-@media screen and (orientation: landscape) {
-  #rotate {
-    display: none !important;
-  }
-  #root {
-    display: block;
-  }
+.hoverBtn:hover {
+  border: 1px solid gold;
 }

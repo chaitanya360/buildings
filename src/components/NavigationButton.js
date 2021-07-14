@@ -40,6 +40,7 @@ function NavigationButton({
           objectFit: "cover",
         }}
         onClick={handleOnClick}
+        className="hoverBtn"
       >
         <div>
           {prev && (

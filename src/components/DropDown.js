@@ -76,19 +76,20 @@ const DropDown = ({ items, text, isFloor, blockId }) => {
           }}
         >
           {items.map((item) => (
-            <div
-              className={styles.list_item}
+            <Link
+              to={isFloor ? `/block/${blockId}/${item}` : `/block/${item}`}
               key={item}
-              style={{
-                width: "100%",
-                height: "100%",
-                textAlign: "center",
-                padding: "3px 10px",
-                fontSize: "18px",
-              }}
             >
-              <Link
-                to={isFloor ? `/block/${blockId}/${item}` : `/block/${item}`}
+              <div
+                className={styles.list_item}
+                key={item}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  textAlign: "center",
+                  padding: "3px 10px",
+                  fontSize: "18px",
+                }}
               >
                 <span
                   style={{ color: "white", textDecoration: "none" }}
@@ -96,8 +97,8 @@ const DropDown = ({ items, text, isFloor, blockId }) => {
                 >
                   {isFloor ? getFloorNum(item) : getBlockName(item)}
                 </span>
-              </Link>
-            </div>
+              </div>
+            </Link>
           ))}
         </div>
       </Collapsible>

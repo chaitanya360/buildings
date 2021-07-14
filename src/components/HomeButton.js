@@ -40,6 +40,7 @@ function HomeButton({ zIndex = 2 }) {
       >
         <Link to="/">
           <span
+            className="hoverBtn"
             style={{
               display: "block",
               width: "fit-content",

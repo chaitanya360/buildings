@@ -35,7 +35,7 @@ const ButtonTrigger = ({ show, setShowDetails, onClick, setDetails }) => {
   return (
     <div onClick={onClick}>
       <div
-        className={styles.btn_trigger}
+        className={styles.btn_trigger + " hoverBtn"}
         onClick={() => {
           show ? setShowDetails(true) : setShowDetails(false);
         }}
