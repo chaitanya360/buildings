@@ -6,7 +6,7 @@ const Image = ({ src, onLoad, style }) => {
       style={{
         objectFit: "contain",
         padding: "20px",
-        paddingTop: window.innerWidth < 900 ? "60px" : "20px",
+        paddingTop: document.body.clientWidth < 900 ? "60px" : "20px",
         minWidth: "300px",
         maxWidth: "700px",
         minHeight: "400px",

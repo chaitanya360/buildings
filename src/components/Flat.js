@@ -86,7 +86,7 @@ function Flat({
           onLoad={() => setLoading(false)}
           visibility={loading ? "hidden" : "visible"}
         />
-        {(!showDetails || window.innerWidth > 900) && (
+        {(!showDetails || document.body.clientWidth > 900) && (
           <div
             style={{
               display: "flex",

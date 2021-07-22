@@ -76,7 +76,7 @@ function ISOview({
       <div
         className={styles.compare_body}
         style={{
-          width: window.innerWidth,
+          width: document.body.clientWidth,
           height: window.innerHeight,
           overflow: "hidden",
         }}

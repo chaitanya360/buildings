@@ -69,7 +69,7 @@ function BuildingInfo({
               width: "fit-content",
               backgroundColor: colors.light_green,
               padding: "5px 10px",
-              display: window.innerWidth < 900 ? "block" : "none",
+              display: document.body.clientWidth < 900 ? "block" : "none",
               textDecoration: "none",
               color: colors.gold,
               border: "1px solid",

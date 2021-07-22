@@ -10,7 +10,7 @@ const VectorBlock = forwardRef(
   ({ id, d, handleOnClick, isBooked, setBlockId }, ref) => {
     const [hoverColor, setHoverColor] = useState("transparent");
 
-    return window.innerWidth < 900 ? (
+    return document.body.clientWidth < 900 ? (
       <path
         id={id}
         d={d}

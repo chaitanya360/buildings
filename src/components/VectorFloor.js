@@ -11,7 +11,7 @@ const VectorFloor = forwardRef(
     return (
       <Link
         to={
-          isFloorBooked(blockId, floorId) || window.innerWidth < 900
+          isFloorBooked(blockId, floorId) || document.body.clientWidth < 900
             ? `/block/${blockId}/`
             : `/block/${blockId}/${floorId}`
         }

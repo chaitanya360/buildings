@@ -71,7 +71,7 @@ function Block({
               singleton={source}
               placement={"left-end"}
               delay={[100, 0]}
-              interactive={window.innerWidth < 900}
+              interactive={document.body.clientWidth < 900}
             >
               <>
                 {floors.map((floor, index) => (

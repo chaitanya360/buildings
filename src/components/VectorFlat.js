@@ -12,7 +12,7 @@ const VectorFlat = forwardRef(
       <Link
         to={
           !isFlatAvailable(getAbsoluteFlatNum(blockId, floorId, flat.id)) ||
-          window.innerWidth < 900
+          document.body.clientWidth < 900
             ? `/block/${blockId}/${floorId}/`
             : `/${blockId}/${floorId}/flat/${floorIndex + 1}`
         }

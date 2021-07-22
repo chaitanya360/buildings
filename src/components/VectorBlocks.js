@@ -72,10 +72,12 @@ function VectorBlocks() {
 
           <Tippy
             singleton={source}
-            placement={window.innerWidth < 900 ? "top-start" : "left-start"}
+            placement={
+              document.body.clientWidth < 900 ? "top-start" : "left-start"
+            }
             trigger="focusin mouseenter"
             delay={[0, 100]}
-            interactive={window.innerWidth < 900 ? true : false}
+            interactive={document.body.clientWidth < 900 ? true : false}
           >
             <>
               {buildings.map((building) => (

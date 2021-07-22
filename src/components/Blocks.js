@@ -44,7 +44,7 @@ function Blocks({ match }) {
         justifyContent: "center",
       }}
     >
-      {(!openDetails || window.innerWidth > 900) && <HomeButton />}
+      {(!openDetails || document.body.clientWidth > 900) && <HomeButton />}
 
       <Carousel
         width="100%"
@@ -60,7 +60,7 @@ function Blocks({ match }) {
             prev
             handleOnClick={handleClick}
             hasPrev={hasPrev}
-            isBlocks={window.innerWidth < 900 && !openDetails}
+            isBlocks={document.body.clientWidth < 900 && !openDetails}
           />
         )}
         renderArrowNext={(handleClick, hasNext) => (
@@ -68,7 +68,7 @@ function Blocks({ match }) {
             next
             handleOnClick={handleClick}
             hasNext={hasNext}
-            isBlocks={window.innerWidth < 900 && !openDetails}
+            isBlocks={document.body.clientWidth < 900 && !openDetails}
           />
         )}
       >

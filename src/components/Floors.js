@@ -15,11 +15,11 @@ function Floors({ match }) {
   const [openDetails, setOpenDetails] = useState(false);
   return (
     <>
-      {(!openDetails || window.innerWidth > 900) && <HomeButton />}
+      {(!openDetails || document.body.clientWidth > 900) && <HomeButton />}
       <div className="gredient_bg">
         <Carousel
           // dynamicHeight
-          width={window.innerWidth}
+          width={document.body.clientWidth}
           autoPlay={false}
           showIndicators={false}
           showThumbs={false}

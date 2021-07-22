@@ -24,7 +24,7 @@ function Flats({ match }) {
         backgroundColor: "#8df0f7",
       }}
     >
-      {(!openDetails || window.innerWidth > 900) && showHomeBtn && (
+      {(!openDetails || document.body.clientWidth > 900) && showHomeBtn && (
         <HomeButton />
       )}
       <Carousel

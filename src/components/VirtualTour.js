@@ -97,7 +97,7 @@ function VirtualTour({ blockId, floorId, flatId, handleClose, modelId }) {
       <div
         className={styles.compare_body}
         style={{
-          width: window.innerWidth,
+          width: document.body.clientWidth,
           height: window.innerHeight,
           overflow: "unset",
         }}
@@ -110,11 +110,11 @@ function VirtualTour({ blockId, floorId, flatId, handleClose, modelId }) {
           style={{
             height: "100%",
             overflow: "hidden",
-            width: window.innerWidth,
+            width: document.body.clientWidth,
             display: "block",
             margin: 0,
             marginTop: "40px",
-            // paddingBottom: window.innerWidth > 900 ? "5vh" : "1vh",
+            // paddingBottom: document.body.clientWidth > 900 ? "5vh" : "1vh",
             backgroundColor: "black",
           }}
         >

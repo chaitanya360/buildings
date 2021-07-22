@@ -46,7 +46,7 @@ function Floor({
           <Info
             style={{
               position: "absolute",
-              top: "12vh",
+              top: "15vh",
               left: "10px",
               zIndex: "999",
             }}
@@ -92,7 +92,7 @@ function Floor({
               singleton={source}
               placement={"left-end"}
               delay={[100, 0]}
-              interactive={window.innerWidth < 900}
+              interactive={document.body.clientWidth < 900}
             >
               <>
                 {flats.map((flat, index) => (
