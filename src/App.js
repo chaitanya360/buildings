@@ -8,6 +8,7 @@ import Flats from "./components/Flats";
 import { CompareProvider } from "./components/compareContext";
 import { Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
+import Clubhouse from "./components/Clubhouse";
 
 const alertOptions = {
   position: "bottom center",
@@ -45,6 +46,7 @@ function App() {
                 />
                 <Route path="/block/:blockId/:floorId" component={Floors} />
                 <Route path="/block/:id" component={Blocks} />
+                <Route exact path="/clubhouse" component={Clubhouse} />
               </Switch>
             </Router>
           </CompareProvider>

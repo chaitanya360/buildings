@@ -3,6 +3,7 @@ import React from "react";
 import Info from "./Info";
 import VectorBlock from "./VectorBlock";
 import { buildingsArray as buildings } from "../data";
+
 import styles from "./components.module.css";
 import { useState } from "react";
 import { BlocksDetails } from "./DetailsPanel";
@@ -31,27 +32,41 @@ function VectorBlocks() {
     <div className={styles.vector_blocks}>
       <BlocksDetails onClick={() => setDetails(false)} />
       {loading && <Loading />}
-      {details && (
-        <Info
-          style={{
-            position: "absolute",
-            bottom: "10px",
-            left: "0%",
-            padding: "10px 5px",
-          }}
-          title={"Block " + getBlockName(details)}
-          blockId={details}
-          isBooked={isBlockBooked(details)}
-          items={[
-            "2 BHK, 3 BHK and 3.5 BHK ",
-            getExtreameFlatSizesInBlock(details)[0] +
-              " - " +
-              getExtreameFlatSizesInBlock(details)[1] +
-              " Sq.Ft.",
-            getTotalFlatsInFloor(details) * 12 + " Flats",
-          ]}
-        />
-      )}
+      {details &&
+        (details === "clubhouse" ? (
+          <Info
+            style={{
+              position: "absolute",
+              bottom: "10px",
+              left: "0%",
+              padding: "10px 5px",
+            }}
+            title={"Club Gothic"}
+            blockId={details}
+            isBooked={false}
+            items={["30,000 Sq.Ft."]}
+          />
+        ) : (
+          <Info
+            style={{
+              position: "absolute",
+              bottom: "10px",
+              left: "0%",
+              padding: "10px 5px",
+            }}
+            title={"Block " + getBlockName(details)}
+            blockId={details}
+            isBooked={isBlockBooked(details)}
+            items={[
+              "2 BHK, 3 BHK and 3.5 BHK ",
+              getExtreameFlatSizesInBlock(details)[0] +
+                " - " +
+                getExtreameFlatSizesInBlock(details)[1] +
+                " Sq.Ft.",
+              getTotalFlatsInFloor(details) * 12 + " Flats",
+            ]}
+          />
+        ))}
       <svg
         height="100%"
         viewBox="0 0 2326 1348"
@@ -83,21 +98,30 @@ function VectorBlocks() {
               {buildings.map((building) => (
                 <Tippy
                   content={
-                    <Info
-                      isBooked={isBlockBooked(blockId)}
-                      blockId={blockId}
-                      title={getBlockName(building.id) + " Block"}
-                      items={[
-                        building.id === "blockc"
-                          ? "2 BHK and 3 BHK"
-                          : "2 BHK, 3 BHK and 3.5 BHK ",
-                        getExtreameFlatSizesInBlock(building.id)[0] +
-                          " - " +
-                          getExtreameFlatSizesInBlock(building.id)[1] +
-                          " Sq.Ft.",
-                        getTotalFlatsInFloor(building.id) * 12 + " Flats",
-                      ]}
-                    />
+                    building.id === "clubhouse" ? (
+                      <Info
+                        isBooked={false}
+                        blockId={"clubhouse"}
+                        title={"Club Gothic"}
+                        items={["30,000 Sq.Ft."]}
+                      />
+                    ) : (
+                      <Info
+                        isBooked={isBlockBooked(blockId)}
+                        blockId={blockId}
+                        title={getBlockName(building.id) + " Block"}
+                        items={[
+                          building.id === "blockc"
+                            ? "2 BHK and 3 BHK"
+                            : "2 BHK, 3 BHK and 3.5 BHK ",
+                          getExtreameFlatSizesInBlock(building.id)[0] +
+                            " - " +
+                            getExtreameFlatSizesInBlock(building.id)[1] +
+                            " Sq.Ft.",
+                          getTotalFlatsInFloor(building.id) * 12 + " Flats",
+                        ]}
+                      />
+                    )
                   }
                   singleton={target}
                   key={building.id}

@@ -9,7 +9,7 @@ import { colors } from "../utility";
 const VectorBlock = forwardRef(
   ({ id, d, handleOnClick, isBooked, setBlockId }, ref) => {
     const [hoverColor, setHoverColor] = useState("transparent");
-
+    const isClubhouse = id === "clubhouse";
     return document.body.clientWidth < 900 ? (
       <path
         id={id}
@@ -31,7 +31,7 @@ const VectorBlock = forwardRef(
         stroke={hoverColor !== "transparent" ? "black" : "none"}
       />
     ) : (
-      <Link to={isBooked ? "" : `/block/${id}`}>
+      <Link to={isClubhouse ? `/clubhouse` : isBooked ? "" : `/block/${id}`}>
         <path
           id={id}
           d={d}

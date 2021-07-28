@@ -13,6 +13,8 @@ function Info({
   floorId,
   flatId,
 }) {
+  const isClubhouse = blockId === "clubhouse";
+
   return (
     <div
       style={{
@@ -94,7 +96,9 @@ function Info({
         {!isBooked && (
           <Link
             to={
-              isFlat
+              isClubhouse
+                ? `/clubhouse`
+                : isFlat
                 ? `/${blockId}/${floorId}/flat/${getFlatNum(flatId)}`
                 : `/block/${blockId}`
             }
