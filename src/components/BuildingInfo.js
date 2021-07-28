@@ -20,7 +20,7 @@ function BuildingInfo({
         backgroundColor: colors.light_green,
         color: "white",
         borderRadius: "5px",
-        padding: "10px 20px",
+        padding: "10px 15px",
         paddingTop: "20px",
       }}
     >

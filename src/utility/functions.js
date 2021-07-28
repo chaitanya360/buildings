@@ -75,8 +75,8 @@ const getExtreameFlatSizesInBlock = (blockId) => {
   let smallestSize = 999999;
   let biggestFlatSizeInBlock = 0;
   buildings[blockId].flats.forEach((flat) => {
-    if (parseInt(flat.size.substr(0, 4)) < smallestSize) {
-      smallestSize = parseInt(flat.size.substr(0, 4));
+    if (parseInt(flat.typicalSize.substr(0, 4)) < smallestSize) {
+      smallestSize = parseInt(flat.typicalSize.substr(0, 4));
     }
 
     if (parseInt(flat.typicalSize.substr(0, 4)) > biggestFlatSizeInBlock) {

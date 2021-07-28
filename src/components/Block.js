@@ -45,7 +45,14 @@ function Block({
           <BuildingInfo
             title={getFloorName(getFloorNum(details.floorId))}
             isBooked={false}
-            items={["3bhk and 2bhks", getTotalFlatsInFloor(id) + " Units"]}
+            items={[
+              "3bhk and 2bhks",
+              getExtreameFlatSizesInBlock(id)[0] +
+                " - " +
+                getExtreameFlatSizesInBlock(id)[1] +
+                " Sq.Ft.",
+              getTotalFlatsInFloor(id) + " Flats",
+            ]}
             blockId={id}
             floorId={details.floorId}
           />
