@@ -58,7 +58,11 @@ function Flats({ match }) {
             floorId={floorId}
             showDetails={openDetails}
             setShowDetails={setOpenDetails}
-            specifications={flat.specifications}
+            specifications={
+              floorId === "floor1"
+                ? flat.specifications
+                : flat.typicalSpecifications
+            }
             size={floorId === "floor1" ? flat.size : flat.typicalSize}
             type={flat.type}
             key={flat.id}
