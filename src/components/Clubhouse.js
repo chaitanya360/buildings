@@ -7,11 +7,14 @@ import NavigationButton from "./NavigationButton";
 import Floor from "./Floor";
 import { getFloorNum } from "../utility/functions";
 import HomeButton from "./HomeButton";
+import Loading from "./Loading";
 
 function Clubhouse() {
+  const [loading, setLoading] = useState(true);
   const clubHouseIterator = [1, 2, 3, 4, 5];
   return (
     <>
+      {loading && <Loading />}
       <HomeButton />
       <div style={{ backgroundColor: "white" }}>
         <Carousel
@@ -41,7 +44,12 @@ function Clubhouse() {
         >
           {clubHouseIterator.map((element) => (
             <img
-              style={{ height: "100vh", width: "auto" }}
+              onLoad={() => setLoading(false)}
+              style={{
+                height: "100vh",
+                width: "auto",
+                visibility: loading ? "hidden" : "visible",
+              }}
               src={`${process.env.PUBLIC_URL}/images/clubhouse/${element}.jpeg`}
             />
           ))}
