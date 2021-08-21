@@ -69,6 +69,11 @@ const Features = ({ value, name }) => {
 };
 
 const ImageItem = ({ block, showFloor = false, floorNum, floors, blocks }) => {
+  // this is supposedly handle before but never mind
+  // blocks contained clubhouse also
+  // so it is showing in drop down list
+  // filtering it out
+  blocks = blocks.filter((block) => block !== "clubhouse");
   return (
     <div
       style={{
