@@ -19,7 +19,6 @@ function Info({
   isMortgaged = false,
 }) {
   const isClubhouse = blockId === "clubhouse";
-
   return (
     <div
       style={{
@@ -93,6 +92,17 @@ function Info({
               {item}
             </div>
           ))}
+          {isFlat && isMortgaged && (
+            <div
+              style={{
+                textAlign: "center",
+                color: colors.gold,
+                marginBottom: "5px",
+              }}
+            >
+              Mortaged
+            </div>
+          )}
         </div>
       ) : (
         <div style={{ padding: "10px" }}>Not Open for Sale</div>
