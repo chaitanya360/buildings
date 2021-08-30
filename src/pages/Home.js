@@ -2,50 +2,8 @@ import React, { useEffect, useState } from "react";
 import VectorBlocks from "../components/VectorBlocks";
 import styles from "./pages.module.css";
 
-import {
-  setBookedBlocks,
-  setBookedFlats,
-  setUnderConstructionBlocks,
-} from "../data";
-import { db } from "../firebase_config";
 import Loading from "../components/Loading";
 import FullScreenModeAlert from "../components/FullScreenModeAlert";
-
-const getDataFromDB = (setReceivedData) => {
-  db.collection("BookedFlats")
-    .get()
-    .then((snap) => {
-      snap.forEach((value) => {
-        const data = value.data();
-        setBookedFlats(data);
-        setReceivedData(true);
-      });
-    });
-
-  db.collection("UnderContructionBlocks")
-    .get()
-    .then((snap) => {
-      snap.forEach((value) => {
-        const data = value.data();
-        setUnderConstructionBlocks(data);
-        setReceivedData(true);
-      });
-    });
-
-  db.collection("BookedBlocks")
-    .get()
-    .then((snap) => {
-      if (snap.metadata.fromCache) {
-        alert("Database Reached Failed");
-        setReceivedData(true);
-      }
-      snap.forEach((value) => {
-        const data = value.data();
-        setBookedBlocks(data);
-        setReceivedData(true);
-      });
-    });
-};
 
 function getFullscreenElement() {
   return (
@@ -64,15 +22,7 @@ function toggleFullscreen() {
   }
 }
 
-function Home(props) {
-  const [displayFullScreenMsg, setDisplayFullScreenMsg] = useState(false);
-
-  const [receivedData, setReceivedData] = useState(false);
-  useEffect(() => {
-    getDataFromDB(setReceivedData);
-    if (!document.fullscreen) setDisplayFullScreenMsg(true);
-  }, []);
-
+function Home({ receivedData, setDisplayFullScreenMsg, displayFullScreenMsg }) {
   return receivedData ? (
     <>
       <div className={styles.home}>

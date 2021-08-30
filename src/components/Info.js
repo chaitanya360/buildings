@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { colors } from "../utility";
-import { getFlatNum, isBlockUnderConstruction } from "../utility/functions";
+import {
+  getFlatNum,
+  isBlockUnderConstruction,
+  isFlatMortgaged,
+} from "../utility/functions";
 
 function Info({
   title = "blocka",
@@ -12,13 +16,20 @@ function Info({
   blockId,
   floorId,
   flatId,
+  isMortgaged = false,
 }) {
   const isClubhouse = blockId === "clubhouse";
 
   return (
     <div
       style={{
-        backgroundColor: isBooked ? colors.bookedInfo : colors.light_green,
+        backgroundColor:
+          // this is for future if backgroud also wants to change
+          isMortgaged && false
+            ? colors.morgagedBackground
+            : isBooked
+            ? colors.bookedInfo
+            : colors.light_green,
         padding: "5px 10px",
         color: "rgba(255,255,255,0.9)",
         display: document.body.clientWidth < 900 && !title ? "none" : "block",

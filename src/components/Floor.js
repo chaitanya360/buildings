@@ -10,6 +10,7 @@ import {
   getFloorName,
   getFloorNum,
   isFlatAvailable,
+  isFlatMortgaged,
   isFloorBooked,
 } from "../utility/functions";
 import styles from "./components.module.css";
@@ -50,6 +51,9 @@ function Floor({
               left: "10px",
               zIndex: "999",
             }}
+            isMortgaged={isFlatMortgaged(
+              getAbsoluteFlatNum(blockId, floorId, details.id)
+            )}
             title={getAbsoluteFlatNum(blockId, floorId, details.id)}
             items={[
               buildings[blockId].flats[getFlatNum(details.id) - 1].type,
@@ -100,6 +104,9 @@ function Floor({
                     content={
                       <Info
                         isFlat
+                        isMortgaged={isFlatMortgaged(
+                          getAbsoluteFlatNum(blockId, floorId, flat.id)
+                        )}
                         flatId={flat.id}
                         title={getAbsoluteFlatNum(blockId, floorId, flat.id)}
                         items={[

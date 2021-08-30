@@ -9,6 +9,15 @@ import { CompareProvider } from "./components/compareContext";
 import { Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 import Clubhouse from "./components/Clubhouse";
+import { useEffect, useState } from "react";
+
+import {
+  setBookedBlocks,
+  setBookedFlats,
+  setMortgagedFlats,
+  setUnderConstructionBlocks,
+} from "./data";
+import { db } from "./firebase_config";
 
 const alertOptions = {
   position: "bottom center",
@@ -30,7 +39,65 @@ window.onorientationchange = function () {
   }
 };
 
+const getDataFromDB = (setReceivedData) => {
+  db.collection("BookedFlats")
+    .get()
+    .then((snap) => {
+      snap.forEach((value) => {
+        const data = value.data();
+        setBookedFlats(data);
+        setReceivedData(true);
+      });
+    });
+
+  db.collection("UnderContructionBlocks")
+    .get()
+    .then((snap) => {
+      snap.forEach((value) => {
+        const data = value.data();
+        setUnderConstructionBlocks(data);
+        setReceivedData(true);
+      });
+    });
+
+  db.collection("BookedBlocks")
+    .get()
+    .then((snap) => {
+      if (snap.metadata.fromCache) {
+        alert("Database Reached Failed");
+        setReceivedData(true);
+      }
+      snap.forEach((value) => {
+        const data = value.data();
+        setBookedBlocks(data);
+        setReceivedData(true);
+      });
+    });
+
+  db.collection("MortgagedFlats")
+    .get()
+    .then((snap) => {
+      if (snap.metadata.fromCache) {
+        alert("Database Reached Failed");
+        setReceivedData(true);
+      }
+      snap.forEach((value) => {
+        const data = value.data();
+        setMortgagedFlats(data);
+        setReceivedData(true);
+      });
+    });
+};
+
 function App() {
+  const [displayFullScreenMsg, setDisplayFullScreenMsg] = useState(false);
+  const [receivedData, setReceivedData] = useState(false);
+
+  useEffect(() => {
+    getDataFromDB(setReceivedData);
+    if (!displayFullScreenMsg && !document.fullscreen)
+      setDisplayFullScreenMsg(true);
+  }, []);
   return (
     <>
       <div>
@@ -38,7 +105,13 @@ function App() {
           <CompareProvider>
             <Router>
               <Switch>
-                <Route exact path="/" component={Home} />
+                <Route exact path="/">
+                  <Home
+                    receivedData={receivedData}
+                    displayFullScreenMsg={displayFullScreenMsg}
+                    setDisplayFullScreenMsg={setDisplayFullScreenMsg}
+                  />
+                </Route>
 
                 <Route
                   path="/:blockId/:floorId/flat/:flatId"

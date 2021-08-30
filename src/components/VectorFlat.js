@@ -2,7 +2,11 @@ import React, { forwardRef, useState } from "react";
 import { useAlert } from "react-alert";
 import { Link } from "react-router-dom";
 import { colors } from "../utility";
-import { getAbsoluteFlatNum, isFlatAvailable } from "../utility/functions";
+import {
+  getAbsoluteFlatNum,
+  isFlatAvailable,
+  isFlatMortgaged,
+} from "../utility/functions";
 
 const VectorFlat = forwardRef(
   ({ blockId, floorId, floorIndex, flat, handleOnClick }, ref) => {
@@ -24,9 +28,11 @@ const VectorFlat = forwardRef(
           d={floorId === "floor1" ? flat.firstFloorD : flat.d}
           onMouseOver={() =>
             setHoverColor(
-              !isFlatAvailable(getAbsoluteFlatNum(blockId, floorId, flat.id))
-                ? colors.booked
-                : colors.available
+              isFlatMortgaged(getAbsoluteFlatNum(blockId, floorId, flat.id))
+                ? colors.morgaged
+                : isFlatAvailable(getAbsoluteFlatNum(blockId, floorId, flat.id))
+                ? colors.available
+                : colors.booked
             )
           }
           onMouseLeave={() => setHoverColor("transparent")}

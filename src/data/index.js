@@ -1836,6 +1836,7 @@ let availableFlats = [
 
 const underConstructionBlocks = [];
 const bookedBlocks = [];
+const morgagedFlats = [];
 
 const setBookedFlats = (bookedFlatsObj) => {
   let bookedFlats = [];
@@ -1866,6 +1867,16 @@ const setBookedBlocks = (bookedBlocksObj) => {
   });
 };
 
+const setMortgagedFlats = (mortgagedFlatsObj) => {
+  Object.keys(mortgagedFlatsObj).forEach((key) => {
+    const mortgagedFlatId = key.toString();
+    if (mortgagedFlatsObj[key]) {
+      if (morgagedFlats.indexOf(mortgagedFlatId) == -1)
+        morgagedFlats.push(mortgagedFlatId);
+    }
+  });
+};
+
 export {
   buildings,
   buildingsArray,
@@ -1875,4 +1886,6 @@ export {
   setUnderConstructionBlocks,
   setBookedBlocks,
   bookedBlocks,
+  setMortgagedFlats,
+  morgagedFlats,
 };

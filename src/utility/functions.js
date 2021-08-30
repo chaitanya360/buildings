@@ -4,6 +4,7 @@ import {
   availableFlats,
   underConstructionBlocks,
   bookedBlocks,
+  morgagedFlats,
 } from "../data";
 
 const getFloorName = (floorNum) => {
@@ -109,6 +110,10 @@ const isBlockBooked = (blockId) => {
   return bookedBlocks.indexOf(blockId) !== -1;
 };
 
+const isFlatMortgaged = (flatId) => {
+  return morgagedFlats.indexOf(flatId) !== -1;
+};
+
 const hideElement = (id) => {
   let element = document.getElementsByClassName(id);
   for (let i = 0; i < element.length; i++) element[i].style.display = "none";
@@ -136,4 +141,5 @@ export {
   isBlockUnderConstruction,
   hideElement,
   showElement,
+  isFlatMortgaged,
 };
