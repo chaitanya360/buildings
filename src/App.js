@@ -18,6 +18,7 @@ import {
   setUnderConstructionBlocks,
 } from "./data";
 import { db } from "./firebase_config";
+import Loading from "./components/Loading";
 
 const alertOptions = {
   position: "bottom center",
@@ -98,7 +99,7 @@ function App() {
     if (!displayFullScreenMsg && !document.fullscreen)
       setDisplayFullScreenMsg(true);
   }, []);
-  return (
+  return receivedData ? (
     <>
       <div>
         <AlertProvider template={AlertTemplate} {...alertOptions}>
@@ -126,6 +127,10 @@ function App() {
         </AlertProvider>
       </div>
     </>
+  ) : (
+    <div style={{ height: "100vh", width: "100vw" }}>
+      <Loading />
+    </div>
   );
 }
 
