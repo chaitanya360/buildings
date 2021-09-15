@@ -4,6 +4,7 @@ import {
   getAbsoluteFlatNum,
   getFlatNum,
   isFlatAvailable,
+  isFlatMortgaged,
   showElement,
 } from "../utility/functions";
 import { FlatDetails } from "./DetailsPanel";
@@ -31,8 +32,15 @@ function Flat({
   const [loading, setLoading] = useState(true);
   const [showIso, setShowIso] = useState(false);
   const [showVirtualTour, setShowVirtualTour] = useState(false);
+  const isBooked = !isFlatAvailable(
+    getAbsoluteFlatNum(blockId, floorId, flatId)
+  );
 
-  return isFlatAvailable(getAbsoluteFlatNum(blockId, floorId, flatId)) ? (
+  const isMortgaged = isFlatMortgaged(
+    getAbsoluteFlatNum(blockId, floorId, flatId)
+  );
+
+  return (
     <>
       <div
         style={{
@@ -43,6 +51,25 @@ function Flat({
           backgroundColor: colors.purple,
         }}
       >
+        {(isBooked || isMortgaged) && (
+          <div
+            style={{
+              position: "absolute",
+              top: "5px",
+              right: "110px",
+              padding: "5px 10px",
+              fontSize: "1.2rem",
+              backgroundColor: isBooked
+                ? "rgba(250,0,0,0.7)"
+                : "rgba(255,255,0,0.7)",
+              borderRadius: "5px",
+              color: isBooked ? "white" : "black",
+              width: "fit-content",
+            }}
+          >
+            {isBooked ? "Not Available" : "Mortgaged"}
+          </div>
+        )}
         {loading && <Loading />}
         <Label label={"Flat " + getAbsoluteFlatNum(blockId, floorId, flatId)} />
         {showIso && (
@@ -115,8 +142,6 @@ function Flat({
         />
       </div>
     </>
-  ) : (
-    <NotAvailable title={"Flat"} />
   );
 }
 

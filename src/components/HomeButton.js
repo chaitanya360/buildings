@@ -29,6 +29,7 @@ function HomeButton() {
               padding: "10px 10px",
               borderRadius: "3px",
               fontSize: "0.8rem",
+              border: "1px solid transparent",
             }}
           >
             Go to Master Layout

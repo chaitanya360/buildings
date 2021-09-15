@@ -14,8 +14,13 @@ const VectorFlat = forwardRef(
     const alert = useAlert();
     return (
       <Link
+        // to={
+        //   !isFlatAvailable(getAbsoluteFlatNum(blockId, floorId, flat.id)) ||
+        //   document.body.clientWidth < 900
+        //     ? `/block/${blockId}/${floorId}/`
+        //     : `/${blockId}/${floorId}/flat/${floorIndex + 1}`
+        // }
         to={
-          !isFlatAvailable(getAbsoluteFlatNum(blockId, floorId, flat.id)) ||
           document.body.clientWidth < 900
             ? `/block/${blockId}/${floorId}/`
             : `/${blockId}/${floorId}/flat/${floorIndex + 1}`
@@ -38,11 +43,12 @@ const VectorFlat = forwardRef(
           onMouseLeave={() => setHoverColor("transparent")}
           fill={hoverColor}
           stroke={hoverColor !== "transparent" ? "black" : "none"}
-          onClick={
-            !isFlatAvailable(getAbsoluteFlatNum(blockId, floorId, flat.id))
-              ? () => alert.show("Flat is not available")
-              : handleOnClick
-          }
+          // onClick={
+          //   !isFlatAvailable(getAbsoluteFlatNum(blockId, floorId, flat.id))
+          //     ? () => alert.show("Flat is not available")
+          //     : handleOnClick
+          // }
+          onClick={handleOnClick}
         />
       </Link>
     );
