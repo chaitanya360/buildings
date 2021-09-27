@@ -19,6 +19,7 @@ import styles from "./components.module.css";
 import DetailsButton from "./DetailsButton";
 import DropDown from "./DropDown";
 import { useAlert } from "react-alert";
+import { getTotalAvailableFlatsInBlock } from "../data";
 
 const handleDetailsOpen = () => {
   hideElement("nav_btn");
@@ -123,11 +124,12 @@ const ImageItem = ({ block, showFloor = false, floorNum, floors, blocks }) => {
   );
 };
 
-const InfoItem = ({ units = false, floorNum, block, flatNum }) => {
+const InfoItem = ({ units = false, floorNum, block, flatNum, available }) => {
   return (
     <div className={styles.info_item_wrapper}>
       <span>{block} Block</span>
       {units && <span>{units + " "}Units</span>}
+      {available && <span>{available + " "}Available</span>}
       {floorNum && <span>{floorNum}</span>}
       {flatNum && <span>{flatNum}</span>}
     </div>
@@ -404,6 +406,7 @@ function SingleBuildingDetails({
           <InfoItem
             block={getBlockName(blockId)}
             units={getTotalFlatsInFloor(blockId) * 12}
+            available={getTotalAvailableFlatsInBlock(blockId)}
           />
           <AppartmentsItem bhk={2} units={units[0] * 12} />
           <AppartmentsItem bhk={3} units={units[1] * 12} />

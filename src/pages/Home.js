@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import VectorBlocks from "../components/VectorBlocks";
 import styles from "./pages.module.css";
 

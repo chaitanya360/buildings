@@ -1,5 +1,4 @@
 import React, { forwardRef, useState } from "react";
-import { useAlert } from "react-alert";
 import { Link } from "react-router-dom";
 import { colors } from "../utility";
 import {
@@ -11,7 +10,6 @@ import {
 const VectorFlat = forwardRef(
   ({ blockId, floorId, floorIndex, flat, handleOnClick }, ref) => {
     const [hoverColor, setHoverColor] = useState("transparent");
-    const alert = useAlert();
     return (
       <Link
         // to={

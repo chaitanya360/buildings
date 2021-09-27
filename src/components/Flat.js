@@ -11,7 +11,6 @@ import { FlatDetails } from "./DetailsPanel";
 import Image from "./Image";
 import Label from "./Label";
 import Loading from "./Loading";
-import NotAvailable from "./NotAvailable";
 import VirtualTourButton from "./VirtualTourButton";
 import ISOview from "./ISOview";
 import ISOButton from "./ISOButton";

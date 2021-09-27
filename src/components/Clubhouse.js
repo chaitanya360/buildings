@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import { buildings } from "../data";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import NavigationButton from "./NavigationButton";
-import Floor from "./Floor";
-import { getFloorNum } from "../utility/functions";
 import HomeButton from "./HomeButton";
 import Loading from "./Loading";
 
@@ -44,6 +41,7 @@ function Clubhouse() {
         >
           {clubHouseIterator.map((element) => (
             <img
+              alt="clubhouse-pic"
               onLoad={() => setLoading(false)}
               style={{
                 height: "100vh",

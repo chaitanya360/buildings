@@ -31,7 +31,15 @@ const VectorBlock = forwardRef(
         stroke={hoverColor !== "transparent" ? "black" : "none"}
       />
     ) : (
-      <Link to={isClubhouse ? `/clubhouse` : isBooked ? "" : `/block/${id}`}>
+      <Link
+        to={
+          isClubhouse
+            ? `/clubhouse`
+            : isBooked || isBlockUnderConstruction(id)
+            ? ""
+            : `/block/${id}`
+        }
+      >
         <path
           id={id}
           d={d}

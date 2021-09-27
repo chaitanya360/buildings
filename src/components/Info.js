@@ -1,11 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { colors } from "../utility";
-import {
-  getFlatNum,
-  isBlockUnderConstruction,
-  isFlatMortgaged,
-} from "../utility/functions";
+import { getFlatNum, isBlockUnderConstruction } from "../utility/functions";
 
 function Info({
   title = "blocka",
@@ -100,7 +96,7 @@ function Info({
                 marginBottom: "5px",
               }}
             >
-              Mortaged
+              Mortgaged
             </div>
           )}
         </div>

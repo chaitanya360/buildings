@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { buildings } from "../data";
 import Block from "./Block";
 
@@ -6,6 +6,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import NavigationButton from "./NavigationButton";
 import HomeButton from "./HomeButton";
+import { isBlockUnderConstruction } from "../utility/functions";
 
 let blocks = [
   buildings.blocka,
@@ -34,6 +35,15 @@ const getIndex = (id) => {
 
 function Blocks({ match }) {
   const [openDetails, setOpenDetails] = useState(false);
+  const [availableBlocks, setAvailableBlocks] = useState([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setAvailableBlocks(
+        blocks.filter((block) => !isBlockUnderConstruction(block.id))
+      );
+    }, 50);
+  }, []);
 
   return (
     <div
@@ -72,7 +82,7 @@ function Blocks({ match }) {
           />
         )}
       >
-        {blocks.map((block) => (
+        {availableBlocks.map((block) => (
           <div style={{ height: window.innerHeight }} key={block.id}>
             <Block
               id={block.id}

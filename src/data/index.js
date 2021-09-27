@@ -1,3 +1,5 @@
+import { getTotalFlatsInFloor } from "../utility/functions";
+
 const buildings = {
   blocka: {
     id: "blocka",
@@ -1871,11 +1873,43 @@ const setMortgagedFlats = (mortgagedFlatsObj) => {
   Object.keys(mortgagedFlatsObj).forEach((key) => {
     const mortgagedFlatId = key.toString();
     if (mortgagedFlatsObj[key]) {
-      if (morgagedFlats.indexOf(mortgagedFlatId) == -1)
+      if (morgagedFlats.indexOf(mortgagedFlatId) === -1)
         morgagedFlats.push(mortgagedFlatId);
     }
   });
 };
+
+const getTotalAvailableFlatsInBlock = (blockId) => {
+  // in case blocka else a
+  if (blockId.length > 1) blockId = blockId[blockId.length - 1];
+
+  blockId = blockId.toUpperCase();
+
+  let count = 0;
+
+  availableFlats.forEach((flat) => {
+    if (flat.includes(blockId)) count++;
+  });
+
+  return count;
+};
+
+const getTotalMortgagedFlatsInBlock = (blockId) => {
+  // in case blocka else a
+  if (blockId.length > 1) blockId = blockId[blockId.length - 1];
+
+  blockId = blockId.toUpperCase();
+
+  let count = 0;
+
+  morgagedFlats.forEach((flat) => {
+    if (flat.includes(blockId)) count++;
+  });
+
+  return count;
+};
+
+const getTotalFlatsInBlock = (blockId) => getTotalFlatsInFloor(blockId) * 12;
 
 export {
   buildings,
@@ -1888,4 +1922,7 @@ export {
   bookedBlocks,
   setMortgagedFlats,
   morgagedFlats,
+  getTotalAvailableFlatsInBlock,
+  getTotalFlatsInBlock,
+  getTotalMortgagedFlatsInBlock,
 };

@@ -2,24 +2,26 @@ import Tippy, { useSingleton } from "@tippyjs/react";
 import React from "react";
 import Info from "./Info";
 import VectorBlock from "./VectorBlock";
-import { buildingsArray as buildings } from "../data";
-
+import {
+  buildingsArray as buildings,
+  getTotalAvailableFlatsInBlock,
+  getTotalFlatsInBlock,
+  getTotalMortgagedFlatsInBlock,
+} from "../data";
 import styles from "./components.module.css";
 import { useState } from "react";
 import { BlocksDetails } from "./DetailsPanel";
+import Loading from "./Loading";
 
 import {
   getBlockName,
   getExtreameFlatSizesInBlock,
-  getTotalFlatsInFloor,
   isBlockBooked,
+  isBlockUnderConstruction,
 } from "../utility/functions";
-
-import Loading from "./Loading";
 
 function VectorBlocks() {
   const [details, setDetails] = useState(false);
-
   const [loading, setLoading] = useState(true);
   const [blockId, setBlockId] = useState(false);
 
@@ -56,14 +58,23 @@ function VectorBlocks() {
             }}
             title={"Block " + getBlockName(details)}
             blockId={details}
-            isBooked={isBlockBooked(details)}
+            isBooked={
+              isBlockBooked(details) || isBlockUnderConstruction(details)
+            }
             items={[
               "2 BHK, 3 BHK and 3.5 BHK ",
               getExtreameFlatSizesInBlock(details)[0] +
                 " - " +
                 getExtreameFlatSizesInBlock(details)[1] +
                 " Sq.Ft.",
-              getTotalFlatsInFloor(details) * 12 + " Flats",
+              "Total " + getTotalFlatsInBlock(details) + " Flats",
+              "Available: " +
+                getTotalAvailableFlatsInBlock(details) +
+                "," +
+                " Booked: " +
+                (getTotalFlatsInBlock(details) -
+                  getTotalAvailableFlatsInBlock(details)),
+              "Mortgaged: " + getTotalMortgagedFlatsInBlock(details),
             ]}
           />
         ))}
@@ -118,7 +129,17 @@ function VectorBlocks() {
                             " - " +
                             getExtreameFlatSizesInBlock(building.id)[1] +
                             " Sq.Ft.",
-                          getTotalFlatsInFloor(building.id) * 12 + " Flats",
+                          "Total " +
+                            getTotalFlatsInBlock(building.id) +
+                            " Flats",
+                          "Available: " +
+                            getTotalAvailableFlatsInBlock(building.id) +
+                            "," +
+                            " Booked: " +
+                            (getTotalFlatsInBlock(building.id) -
+                              getTotalAvailableFlatsInBlock(building.id)),
+                          "Mortgaged: " +
+                            getTotalMortgagedFlatsInBlock(building.id),
                         ]}
                       />
                     )
