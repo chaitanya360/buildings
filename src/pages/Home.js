@@ -4,6 +4,7 @@ import styles from "./pages.module.css";
 
 import Loading from "../components/Loading";
 import FullScreenModeAlert from "../components/FullScreenModeAlert";
+import GothicLogo from "../components/GothicLogo";
 
 function getFullscreenElement() {
   return (
@@ -26,6 +27,7 @@ function Home({ receivedData, setDisplayFullScreenMsg, displayFullScreenMsg }) {
   return receivedData ? (
     <>
       <div className={styles.home}>
+        <GothicLogo />
         <VectorBlocks />
       </div>
       {displayFullScreenMsg && (
