@@ -1839,9 +1839,9 @@ let availableFlats = [
 const underConstructionBlocks = [];
 const bookedBlocks = [];
 const morgagedFlats = [];
+const bookedFlats = [];
 
 const setBookedFlats = (bookedFlatsObj) => {
-  let bookedFlats = [];
   Object.keys(bookedFlatsObj).forEach((key) => {
     if (bookedFlatsObj[key]) {
       bookedFlats.push(key.toString());
@@ -1879,21 +1879,6 @@ const setMortgagedFlats = (mortgagedFlatsObj) => {
   });
 };
 
-const getTotalAvailableFlatsInBlock = (blockId) => {
-  // in case blocka else a
-  if (blockId.length > 1) blockId = blockId[blockId.length - 1];
-
-  blockId = blockId.toUpperCase();
-
-  let count = 0;
-
-  availableFlats.forEach((flat) => {
-    if (flat.includes(blockId)) count++;
-  });
-
-  return count;
-};
-
 const getTotalMortgagedFlatsInBlock = (blockId) => {
   // in case blocka else a
   if (blockId.length > 1) blockId = blockId[blockId.length - 1];
@@ -1907,6 +1892,40 @@ const getTotalMortgagedFlatsInBlock = (blockId) => {
   });
 
   return count;
+};
+
+const getTotalBookedFlatsInBlock = (blockId) => {
+  // in case blocka else a
+  if (blockId.length > 1) blockId = blockId[blockId.length - 1];
+
+  blockId = blockId.toUpperCase();
+
+  let count = 0;
+
+  bookedFlats.forEach((flat) => {
+    if (flat.includes(blockId) && !morgagedFlats.includes(flat)) count++;
+  });
+
+  return count;
+};
+
+const getTotalAvailableFlatsInBlock = (blockId) => {
+  // in case blocka else a
+  // if (blockId.length > 1) blockId = blockId[blockId.length - 1];
+
+  // blockId = blockId.toUpperCase();
+
+  // let count = 0;
+
+  // availableFlats.forEach((flat) => {
+  //   if (flat.includes(blockId)) count++;
+  // });
+
+  return (
+    getTotalFlatsInBlock(blockId) -
+    (getTotalBookedFlatsInBlock(blockId) +
+      getTotalMortgagedFlatsInBlock(blockId))
+  );
 };
 
 const getTotalFlatsInBlock = (blockId) => getTotalFlatsInFloor(blockId) * 12;
@@ -1925,4 +1944,5 @@ export {
   getTotalAvailableFlatsInBlock,
   getTotalFlatsInBlock,
   getTotalMortgagedFlatsInBlock,
+  getTotalBookedFlatsInBlock,
 };

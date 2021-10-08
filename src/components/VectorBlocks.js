@@ -5,6 +5,7 @@ import VectorBlock from "./VectorBlock";
 import {
   buildingsArray as buildings,
   getTotalAvailableFlatsInBlock,
+  getTotalBookedFlatsInBlock,
   getTotalFlatsInBlock,
   getTotalMortgagedFlatsInBlock,
 } from "../data";
@@ -68,13 +69,12 @@ function VectorBlocks() {
                 getExtreameFlatSizesInBlock(details)[1] +
                 " Sq.Ft.",
               "Total " + getTotalFlatsInBlock(details) + " Flats",
-              "Available: " +
-                getTotalAvailableFlatsInBlock(details) +
+              " Booked: " +
+                getTotalBookedFlatsInBlock(details) +
                 "," +
-                " Booked: " +
-                (getTotalFlatsInBlock(details) -
-                  getTotalAvailableFlatsInBlock(details)),
-              "Mortgaged: " + getTotalMortgagedFlatsInBlock(details),
+                " Mortgaged: " +
+                getTotalMortgagedFlatsInBlock(details),
+              "Available: " + getTotalAvailableFlatsInBlock(details),
             ]}
           />
         ))}
@@ -132,14 +132,13 @@ function VectorBlocks() {
                           "Total " +
                             getTotalFlatsInBlock(building.id) +
                             " Flats",
-                          "Available: " +
-                            getTotalAvailableFlatsInBlock(building.id) +
+                          " Booked: " +
+                            getTotalBookedFlatsInBlock(building.id) +
                             "," +
-                            " Booked: " +
-                            (getTotalFlatsInBlock(building.id) -
-                              getTotalAvailableFlatsInBlock(building.id)),
-                          "Mortgaged: " +
+                            " Mortgaged: " +
                             getTotalMortgagedFlatsInBlock(building.id),
+                          "Available: " +
+                            getTotalAvailableFlatsInBlock(building.id),
                         ]}
                       />
                     )
