@@ -44,7 +44,8 @@ const ButtonTrigger = ({ show, setShowDetails, onClick, setDetails }) => {
       >
         <img
           src={`${process.env.PUBLIC_URL}/images/icons/${"up_arrow"}.svg`}
-          alt="location icon"
+          alt="down icon"
+          className={`${!show && "up-down-animate"}`}
           style={{
             width: "30px",
             height: "auto",
